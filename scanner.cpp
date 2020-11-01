@@ -133,11 +133,14 @@ bool period (string s)
 // TABLES Done by: **
 
 // ** Update the tokentype to be WORD1, WORD2, PERIOD, ERROR, EOFM, etc.
-enum tokentype {ERROR, };
+enum tokentype{ VERB, VERBNEG, VERBPAST, VERBPASTNEG, IS, WAS, OBJECT, SUBJECT, DESTINATION, PRONOUN, CONNECTOR, WORD1, WORD2, EOFM };
 
 // ** For the display names of tokens - must be in the same order as the tokentype.
-string tokenName[30] = { }; 
+string tokenName[30] = {VERB, VERBNEG, VERBPAST, VERBPASTNEG, IS, WAS, OBJECT, SUBJECT, DESTINATION, PRONOUN, CONNECTOR, WORD1, WORD2, EOFM }; 
 
+string reservedWords[30] = {"masu","masen","mashita","masendeshita"
+,"desu" ,"deshita","o","wa","ni","watashi","anata","kare","kanojo","sore","mata"
+,"soshite","shikashi","dakara"};
 // ** Need the reservedwords table to be set up here. 
 // ** Do not require any file input for this. Hard code the table.
 // ** a.out should work without any additional files.
@@ -157,6 +160,7 @@ int scanner(tokentype& tt, string& w)
   // 1. If it is eofm, return right now.   
   string current ;
   fin >> current;
+  tt = ERROR;// setting this as a starting value for logic reasons ahead, ignore for now.
 
   if(current == ' '){
     fin >> current
@@ -180,9 +184,9 @@ int scanner(tokentype& tt, string& w)
   }
   else if(!(word(current))){
       //condition of a double false
-      tt = "Error" // This is to be updated after token table is created.
+      tt = ERROR; // This is to be updated after token table is created.
       w = current;// passing by reference.
-      return 0;
+      return 0;// May need to print "lexical error: &current is not a valid token" and Idea would be to recursively call scanner(), I don't see why not. 
   }
 
 /***
@@ -192,9 +196,35 @@ int scanner(tokentype& tt, string& w)
      If not reserved, tokentype is WORD1 or WORD2
      decided based on the last character.
 
+
+***/
+for(int i = reservedWords.begin();i < reservedWords.end();i++){
+
+  if(reservedWords[i]==current){
+    tt = tokenName[i];//should assign correct token if both tables are setup correctly.
+    w = current;
+    return 0;// may delete this.
+  }
+
+}
+if(current.back() == 'I'||current.back() == 'E'){
+  tt= WORD2;// needs to be added to list.
+  w = current;
+  return 0;
+}
+else{
+  tt= WORD1;
+  w = current;
+  return 0;
+}
+cout << "this is just here for testing. End of Scanner() reached, and no token type was selected."
+
+
+
+/***
   4. Return the token type & string  (pass by reference)
   */
-
+// the returns are setup at all the if/else markers. 
 }//the end of scanner
 
 
