@@ -158,11 +158,11 @@ int scanner(tokentype &tt, string &w)
   fin >> current;
   tt = ERROR; // setting this as a starting value for logic reasons ahead, ignore for now.
 
-  if (current == ' ')
+  if (current.compare(" ") == 0)
   {
     fin >> current;
   }
-  if (current == "eofm")
+  if (current.compare("eofm") == 0)
   {
     //need to add token type after table is setup. tt = eofm
     w = current; //passing value of "eofm" back and breaking out of loop.
@@ -206,7 +206,7 @@ int scanner(tokentype &tt, string &w)
     if (reservedWords[i] == current)
     {
 
-      if (i >= 9))
+      if (i >= 9)
         {
           if (i >= 13)
           {
@@ -218,7 +218,7 @@ int scanner(tokentype &tt, string &w)
           w = current;
           return 0;
         }
-      tt = tokentype[i]; //should assign correct token if both tables are setup correctly.
+      tt = tokentype(i); //should assign correct token if both tables are setup correctly.
       w = current;
       return 0; // may delete this.
     }
