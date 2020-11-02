@@ -188,6 +188,7 @@ int scanner(tokentype &tt, string &w)
     //condition of a double false
     tt = ERROR;  // This is to be updated after token table is created.
     w = current; // passing by reference.
+    cout >> "Lexical error: ">>current>> " is not a valid token">> endl;
     return 0;    // May need to print "lexical error: &current is not a valid token" and Idea would be to recursively call scanner(), I don't see why not.
   }
 
@@ -206,7 +207,7 @@ int scanner(tokentype &tt, string &w)
     if (reservedWords[i] == current)
     {
 
-      if (i >= 9))
+      if (i >= 9)
         {
           if (i >= 13)
           {
