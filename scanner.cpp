@@ -171,7 +171,7 @@ int scanner(tokentype& tt, string& w)
 
   // ** Grab the next word from the file via fin
   // 1. If it is eofm, return right now.
-  string current ;
+  string current;
   fin >> current;
   tt = ERROR;// setting this as a starting value for logic reasons ahead, ignore for now.
 
@@ -213,7 +213,7 @@ int scanner(tokentype& tt, string& w)
 
 
 ***/
-for(int i = reservedWords.begin();i < reservedWords.end();i++){
+for(int i = 0;i < 30;i++){
 
   if(reservedWords[i]==current){
     tt = tokenName[i];//should assign correct token if both tables are setup correctly.
