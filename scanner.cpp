@@ -125,7 +125,9 @@ bool word (string s)
 // PERIOD DFA
 // Done by: **
 bool period (string s)
-{  // complete this **
+{ if(s.compare(".")==0)
+  return true;
+  else return false;
 }
 
 // ------ Three  Tables -------------------------------------
