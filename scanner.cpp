@@ -138,11 +138,9 @@ bool period (string s)
 enum tokentype{VERB, VERBNEG, VERBPAST, VERBPASTNEG, IS, WAS, OBJECT, SUBJECT, DESTINATION, PRONOUN,PRONOUN,PRONOUN,PRONOUN,PRONOUN, CONNECTOR,CONNECTOR,CONNECTOR, CONNECTOR, WORD1, WORD2, EOFM };
 
 // ** For the display names of tokens - must be in the same order as the tokentype.
-<<<<<<< HEAD
 string tokenName[30] = {VERB, VERBNEG, VERBPAST, VERBPASTNEG, IS, WAS, OBJECT, SUBJECT, DESTINATION, PRONOUN,PRONOUN,PRONOUN,PRONOUN,PRONOUN, CONNECTOR,CONNECTOR,CONNECTOR, CONNECTOR, WORD1, WORD2, EOFM };
-=======
+
 string tokenName[30] = {VERB, VERBNEG, VERBPAST, VERBPASTNEG, IS, WAS, OBJECT, SUBJECT, DESTINATION, PRONOUN, CONNECTOR, WORD1, WORD2, EOFM };
->>>>>>> 171a939b103e25bbb8a61c8373d6daebb428e2b5
 
 string reservedWords[30] = {"masu","masen","mashita","masendeshita"
 ,"desu" ,"deshita","o","wa","ni","watashi","anata","kare","kanojo","sore","mata"
