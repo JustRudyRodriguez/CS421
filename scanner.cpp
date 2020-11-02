@@ -235,7 +235,7 @@ else{
 cout << "this is just here for testing. End of Scanner() reached, and no token type was selected.";
 
 
-
+return 1;//we shouldn't get to this point and if we do its an error;
 /***
   4. Return the token type & string  (pass by reference)
   */
