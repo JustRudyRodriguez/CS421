@@ -34,25 +34,25 @@ bool word(string s)
       state = 4;
     else if (state == 0 && s[charpos] == 's')
       state = 5;
-    else if (state == 0 && (s[charpos] == 'a' || s[charpos] == 'i' || s[charpos] == 'u' ||
+    else if (state == 0 && (s[charpos] == 'a' || s[charpos] == 'i' || s[charpos] == 'I'|| s[charpos] == 'E'|| s[charpos] == 'u' ||
                             s[charpos] == 'e' || s[charpos] == 'o'))
       state = 7;
     else if (state == 1 && s[charpos] == 's')
       state = 4;
     else if (state == 2 && s[charpos] == 's')
       state = 4;
-    else if (state == 2 && (s[charpos] == 'a' || s[charpos] == 'i' || s[charpos] == 'u' ||
+    else if (state == 2 && (s[charpos] == 'a' || s[charpos] == 'i' || s[charpos] == 'I'|| s[charpos] == 'E'|| s[charpos] == 'u' ||
                             s[charpos] == 'e' || s[charpos] == 'o'))
       state = 7;
-    else if (state == 3 && (s[charpos] == 'a' || s[charpos] == 'i' || s[charpos] == 'u' ||
+    else if (state == 3 && (s[charpos] == 'a' || s[charpos] == 'i' || s[charpos] == 'I'|| s[charpos] == 'E'|| s[charpos] == 'u' ||
                             s[charpos] == 'e' || s[charpos] == 'o'))
       state = 7;
-    else if (state == 4 && (s[charpos] == 'a' || s[charpos] == 'i' || s[charpos] == 'u' ||
+    else if (state == 4 && (s[charpos] == 'a' || s[charpos] == 'i' || s[charpos] == 'I'|| s[charpos] == 'E'|| s[charpos] == 'u' ||
                             s[charpos] == 'e' || s[charpos] == 'o'))
       state = 7;
     else if (state == 5 && s[charpos] == 'h')
       state = 4;
-    else if (state == 5 && (s[charpos] == 'a' || s[charpos] == 'i' || s[charpos] == 'u' ||
+    else if (state == 5 && (s[charpos] == 'a' || s[charpos] == 'i'|| s[charpos] == 'I'|| s[charpos] == 'E' || s[charpos] == 'u' ||
                             s[charpos] == 'e' || s[charpos] == 'o'))
       state = 7;
     else if (state == 6 && s[charpos] == 'c')
@@ -66,7 +66,7 @@ bool word(string s)
       state = 4;
     else if (state == 6 && s[charpos] == 's')
       state = 5;
-    else if (state == 6 && (s[charpos] == 'a' || s[charpos] == 'i' || s[charpos] == 'u' ||
+    else if (state == 6 && (s[charpos] == 'a' || s[charpos] == 'i' || s[charpos] == 'I'|| s[charpos] == 'E'|| s[charpos] == 'u' ||
                             s[charpos] == 'e' || s[charpos] == 'o'))
       state = 7;
     else if (state == 7 && s[charpos] == 'c')
@@ -83,7 +83,7 @@ bool word(string s)
       state = 5;
     else if (state == 7 && s[charpos] == 'n')
       state = 6;
-    else if (state == 7 && (s[charpos] == 'a' || s[charpos] == 'i' || s[charpos] == 'u' ||
+    else if (state == 7 && (s[charpos] == 'a' || s[charpos] == 'i' || s[charpos] == 'I'|| s[charpos] == 'E'|| s[charpos] == 'u' ||
                             s[charpos] == 'e' || s[charpos] == 'o'))
       state = 7;
     else
@@ -186,12 +186,7 @@ int scanner(tokentype &tt, string &w)
   else if (!(word(current)))
   {
 
-    if (current.back() == 'I' || current.back() == 'E')
-    {
-      tt = WORD2; // needs to be added to list.
-      w = current;
-      return 0;
-    }
+
     //condition of a double false
     tt = ERROR;  // This is to be updated after token table is created.
     w = current; // passing by reference.
@@ -231,7 +226,12 @@ int scanner(tokentype &tt, string &w)
       return 0; // may delete this.
     }
   }
-
+  if (current.back() == 'I' || current.back() == 'E')
+  {
+    tt = WORD2; // needs to be added to list.
+    w = current;
+    return 0;
+  }
   else
   {
     tt = WORD1;
