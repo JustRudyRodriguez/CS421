@@ -99,7 +99,7 @@ bool word(string s)
 }
 
 // PERIOD DFA
-// Done by: **
+// Done by: *Andrew Malmstead*
 bool period(string s)
 {
   if (s.compare(".") == 0)
