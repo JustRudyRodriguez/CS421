@@ -185,11 +185,18 @@ int scanner(tokentype &tt, string &w)
   }
   else if (!(word(current)))
   {
+
+    if (current.back() == 'I' || current.back() == 'E')
+    {
+      tt = WORD2; // needs to be added to list.
+      w = current;
+      return 0;
+    }
     //condition of a double false
     tt = ERROR;  // This is to be updated after token table is created.
     w = current; // passing by reference.
-    cout << "Lexical error: "<<current<< " is not a valid token"<< endl;
-    return 0;    // May need to print "lexical error: &current is not a valid token" and Idea would be to recursively call scanner(), I don't see why not.
+    cout << "Lexical error: " << current << " is not a valid token" << endl;
+    return 0; // May need to print "lexical error: &current is not a valid token" and Idea would be to recursively call scanner(), I don't see why not.
   }
 
   /***
@@ -208,28 +215,23 @@ int scanner(tokentype &tt, string &w)
     {
 
       if (i >= 9)
+      {
+        if (i >= 13)
         {
-          if (i >= 13)
-          {
-            tt = CONNECTOR;
-            w = current;
-            return 0;
-          }
-          tt = PRONOUN;
+          tt = CONNECTOR;
           w = current;
           return 0;
         }
+        tt = PRONOUN;
+        w = current;
+        return 0;
+      }
       tt = tokentype(i); //should assign correct token if both tables are setup correctly.
       w = current;
       return 0; // may delete this.
     }
   }
-  if (current.back() == 'I' || current.back() == 'E')
-  {
-    tt = WORD2; // needs to be added to list.
-    w = current;
-    return 0;
-  }
+
   else
   {
     tt = WORD1;
