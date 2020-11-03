@@ -74,7 +74,7 @@ bool word(string s)
     else if (state == 7 && s[charpos] == 't')
       state = 2;
     else if (state == 7 && (s[charpos] == 'b' || s[charpos] == 'm' || s[charpos] == 'k' ||
-                            s[charpos] == 'h' || s[charpos] == 'p' || s[charpos] == 'r'))
+                            s[charpos] == 'h' || s[charpos] == 'p' || s[charpos] == 'r'||s[charpos] == 'g'))
       state = 3;
     else if (state == 7 && (s[charpos] == 'd' || s[charpos] == 'w' || s[charpos] == 'z' ||
                             s[charpos] == 'y' || s[charpos] == 'j'))
