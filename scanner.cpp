@@ -177,6 +177,29 @@ int scanner(tokentype &tt, string &w)
      Let the tokentype be ERROR in that case.
 
 ***/
+for (int i = 0; i < 30; i++)
+{
+
+  if (reservedWords[i] == current)
+  {
+
+    if (i >= 9)
+    {
+      if (i >= 13)
+      {
+        tt = CONNECTOR;
+        w = current;
+        return 0;
+      }
+      tt = PRONOUN;
+      w = current;
+      return 0;
+    }
+    tt = tokentype(i); //should assign correct token if both tables are setup correctly.
+    w = current;
+    return 0; // may delete this.
+  }
+}
   if (period(current))
   {
     tt = PERIOD;
@@ -203,29 +226,7 @@ int scanner(tokentype &tt, string &w)
 
 
 ***/
-  for (int i = 0; i < 30; i++)
-  {
 
-    if (reservedWords[i] == current)
-    {
-
-      if (i >= 9)
-      {
-        if (i >= 13)
-        {
-          tt = CONNECTOR;
-          w = current;
-          return 0;
-        }
-        tt = PRONOUN;
-        w = current;
-        return 0;
-      }
-      tt = tokentype(i); //should assign correct token if both tables are setup correctly.
-      w = current;
-      return 0; // may delete this.
-    }
-  }
   if (current.back() == 'I' || current.back() == 'E')
   {
     tt = WORD2; // needs to be added to list.
