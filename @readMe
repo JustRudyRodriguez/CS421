@@ -1,22 +1,17 @@
-Scanner Part of the Project
+Parser Part of the Project
 
-Use scanner.cpp to write your scanner so that it will
-move smoothly onto the parser.
+Use parser.cpp to do your parser so that 
+it will move smoothly onto the translator.
 
-In scannertest2, the 2nd column are words causing lexical errors.
- 
-Check your outputs against correctoutput1 and correctoutput2 
+Use the provided test cases - read the comments in them first.
+Be sure to check correctoutput for cases 1 and 6.
+Be sure to check OutputEC.txt for case 2 and 3 error correction for EC.
 
-Do NOT read from the file reservedword.text.
-Just use the file content to hard code it.
 
-main() should not be reading from the file, the read should be in scanner.
+Compile your Parser on Empress!!!
 
-Compile your scanner on Empress!!! 
-
-/cs/submitIt_LK G# group#scanner.out
-along with scannerWork.txt with required info.
+/cs/submitIt_LK G# group#parser.out
+ along with required info in parserWork.txt
 
 /cs/checkIt_LK G# 
-can be used to get my feedback later. 
-
+can be used to get my feedback.

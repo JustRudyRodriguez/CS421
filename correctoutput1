@@ -1,105 +1,162 @@
-Input file name: scannertest1
+Processing <story>
 
-"watashi" is token type PRONOUN
+Processing <s>
+Scanner called using word: watashi
+Processing <noun>
+Matched PRONOUN
+Scanner called using word: wa
+Matched SUBJECT
+Processing <afterSubject>
+Scanner called using word: rika
+Processing <noun>
+Matched WORD1
+Processing <afterNoun>
+Scanner called using word: desu
+Processing <be>
+Matched IS
+Scanner called using word: .
+Matched PERIOD
+Scanner called using word: watashi
+Processing <s>
+Processing <noun>
+Matched PRONOUN
+Scanner called using word: wa
+Matched SUBJECT
+Processing <afterSubject>
+Scanner called using word: sensei
+Processing <noun>
+Matched WORD1
+Processing <afterNoun>
+Scanner called using word: desu
+Processing <be>
+Matched IS
+Scanner called using word: .
+Matched PERIOD
+Scanner called using word: rika
+Processing <s>
+Processing <noun>
+Matched WORD1
+Scanner called using word: wa
+Matched SUBJECT
+Processing <afterSubject>
+Scanner called using word: gohan
+Processing <noun>
+Matched WORD1
+Processing <afterNoun>
+Scanner called using word: o
+Matched OBJECT
+Processing <afterObject>
+Scanner called using word: tabE
+Processing <verb>
+Matched WORD2
+Processing <tense>
+Scanner called using word: masu
+Matched VERB
+Scanner called using word: .
+Matched PERIOD
+Scanner called using word: watashi
+Processing <s>
+Processing <noun>
+Matched PRONOUN
+Scanner called using word: wa
+Matched SUBJECT
+Processing <afterSubject>
+Scanner called using word: tesuto
+Processing <noun>
+Matched WORD1
+Processing <afterNoun>
+Scanner called using word: o
+Matched OBJECT
+Processing <afterObject>
+Scanner called using word: seito
+Processing <noun>
+Matched WORD1
+Scanner called using word: ni
+Matched DESTINATION
+Processing <verb>
+Scanner called using word: agE
+Matched WORD2
+Processing <tense>
+Scanner called using word: mashita
+Matched VERBPAST
+Scanner called using word: .
+Matched PERIOD
+Scanner called using word: shikashi
+Processing <s>
+Matched CONNECTOR
+Processing <noun>
+Scanner called using word: seito
+Matched WORD1
+Scanner called using word: wa
+Matched SUBJECT
+Processing <afterSubject>
+Scanner called using word: yorokobI
+Processing <verb>
+Matched WORD2
+Processing <tense>
+Scanner called using word: masendeshita
+Matched VERBPASTNEG
+Scanner called using word: .
+Matched PERIOD
+Scanner called using word: dakara
+Processing <s>
+Matched CONNECTOR
+Processing <noun>
+Scanner called using word: watashi
+Matched PRONOUN
+Scanner called using word: wa
+Matched SUBJECT
+Processing <afterSubject>
+Scanner called using word: kanashii
+Processing <noun>
+Matched WORD1
+Processing <afterNoun>
+Scanner called using word: deshita
+Processing <be>
+Matched WAS
+Scanner called using word: .
+Matched PERIOD
+Scanner called using word: soshite
+Processing <s>
+Matched CONNECTOR
+Processing <noun>
+Scanner called using word: rika
+Matched WORD1
+Scanner called using word: wa
+Matched SUBJECT
+Processing <afterSubject>
+Scanner called using word: toire
+Processing <noun>
+Matched WORD1
+Processing <afterNoun>
+Scanner called using word: ni
+Matched DESTINATION
+Processing <verb>
+Scanner called using word: ikI
+Matched WORD2
+Processing <tense>
+Scanner called using word: mashita
+Matched VERBPAST
+Scanner called using word: .
+Matched PERIOD
+Scanner called using word: rika
+Processing <s>
+Processing <noun>
+Matched WORD1
+Scanner called using word: wa
+Matched SUBJECT
+Processing <afterSubject>
+Scanner called using word: nakI
+Processing <verb>
+Matched WORD2
+Processing <tense>
+Scanner called using word: mashita
+Matched VERBPAST
+Scanner called using word: .
+Matched PERIOD
+Scanner called using word: eofm
 
-"wa" is token type SUBJECT
+Successfully parsed <story>.
 
-"rika" is token type WORD1
 
-"desu" is token type IS
 
-"." is token type PERIOD
-
-"watashi" is token type PRONOUN
-
-"wa" is token type SUBJECT
-
-"sensei" is token type WORD1
-
-"desu" is token type IS
-
-"." is token type PERIOD
-
-"watashi" is token type PRONOUN
-
-"wa" is token type SUBJECT
-
-"ryouri" is token type WORD1
-
-"o" is token type OBJECT
-
-"yarI" is token type WORD2
-
-"masu" is token type VERB
-
-"." is token type PERIOD
-
-"watashi" is token type PRONOUN
-
-"wa" is token type SUBJECT
-
-"gohan" is token type WORD1
-
-"o" is token type OBJECT
-
-"seito" is token type WORD1
-
-"ni" is token type DESTINATION
-
-"agE" is token type WORD2
-
-"mashita" is token type VERBPAST
-
-"." is token type PERIOD
-
-"shikashi" is token type CONNECTOR
-
-"seito" is token type WORD1
-
-"wa" is token type SUBJECT
-
-"yorokobI" is token type WORD2
-
-"masendeshita" is token type VERBPASTNEG
-
-"." is token type PERIOD
-
-"dakara" is token type CONNECTOR
-
-"watashi" is token type PRONOUN
-
-"wa" is token type SUBJECT
-
-"kanashii" is token type WORD1
-
-"deshita" is token type WAS
-
-"." is token type PERIOD
-
-"soshite" is token type CONNECTOR
-
-"watashi" is token type PRONOUN
-
-"wa" is token type SUBJECT
-
-"toire" is token type WORD1
-
-"ni" is token type DESTINATION
-
-"ikI" is token type WORD2
-
-"mashita" is token type VERBPAST
-
-"." is token type PERIOD
-
-"watashi" is token type PRONOUN
-
-"wa" is token type SUBJECT
-
-"nakI" is token type WORD2
-
-"mashita" is token type VERBPAST
-
-"." is token type PERIOD
-
-End of file is encountered.
