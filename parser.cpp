@@ -2,6 +2,7 @@
 #include<fstream>
 #include<string>
 using namespace std;
+#include<scanner.cpp>
 
 /* INSTRUCTION:  Complete all ** parts.
    You may use any method to connect this file to scanner.cpp
@@ -23,7 +24,10 @@ using namespace std;
 
 // Type of error: **
 // Done by: ** 
-void syntaxerror1(  ){    }
+void syntaxerror1(string lexeme,tokentype token  ){   
+
+   cout<< "SyntaxError 1 Found:"<<endl;
+ }
 // Type of error: **
 // Done by: ** 
 void syntaxerror2(  ) {    }
@@ -31,12 +35,29 @@ void syntaxerror2(  ) {    }
 // ** Need the updated match and next_token with 2 global vars
 // saved_token and saved_lexeme
 
-// Purpose: **
-// Done by: **
-token_type next_token(){}
+tokentype saved_token;
+string saved_lexeme;// the example has this within next_token()
+bool token_available;//not sure if this needs to be here.
 
 // Purpose: **
 // Done by: **
+
+tokentype next_token(){
+   //bool token_available;
+   if(!token_available){
+      scanner(saved_token,saved_lexeme);
+      token_available=true;
+
+      if(saved_token == ERROR){  
+         syntaxerror1(saved_lexeme,saved_token);
+      }
+}
+   return saved_token;
+}
+
+// Purpose: **
+// Done by: **
+
 boolean match(tokentype expected) {}
 
 // ----- RDP functions - one per non-term -------------------
