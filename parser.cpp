@@ -78,7 +78,7 @@ boolean match(tokentype expected) {
 
 // ----- RDP functions - one per non-term -------------------
 void story(string sentence){
-
+  
 }
 // ** Make each non-terminal into a function here
 // ** Be sure to put the corresponding grammar rule above each function
@@ -97,17 +97,10 @@ int main()
 {
   cout << "Enter the input file name: ";
   cin >> filename;
-  ifstream fin;
-  String line;
   fin.open(filename.c_str());
-  if(fin.good()){//if the file is good run the parser.
-    while (getline(fin, line)) {//while we can get a line
-      story(line);      //** calls the <story> to start parsing
-    }
-    fin.close();//** closes the input file
-  }else
-    cout<<"The file does not exist"<<endl;//error handling for when a file doesn't exist
-  
+
+  //** calls the <story> to start parsing
+  //** closes the input file
 
 }// end
 //** require no other input files!
