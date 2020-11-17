@@ -77,7 +77,9 @@ boolean match(tokentype expected) {
 }
 
 // ----- RDP functions - one per non-term -------------------
-
+void story(string sentence){
+  
+}
 // ** Make each non-terminal into a function here
 // ** Be sure to put the corresponding grammar rule above each function
 // ** Be sure to put the name of the programmer above each function
