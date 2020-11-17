@@ -26,11 +26,17 @@ using namespace std;
 // Done by: ** 
 void syntaxerror1(string lexeme,tokentype token  ){   
 
-   cout<< "SyntaxError 1 Found:"<<endl;
+   cout<< "SyntaxError 1 Found. "<<endl;
+   cout<< "String       Token "<<endl;
+   cout<< lexeme << "      "<< token<< endl;
  }
 // Type of error: **
 // Done by: ** 
-void syntaxerror2(  ) {    }
+void syntaxerror2( tokentype input,tokentype expected  ) {
+   cout<< "SyntaxError 2 Encountered:"<<endl;
+      cout<< "Input       Expected "<<endl;
+   cout<< input << "      "<< expected<< endl;
+    }
 
 // ** Need the updated match and next_token with 2 global vars
 // saved_token and saved_lexeme
@@ -58,7 +64,17 @@ tokentype next_token(){
 // Purpose: **
 // Done by: **
 
-boolean match(tokentype expected) {}
+boolean match(tokentype expected) {
+
+   if(next_token()!=expected){
+      syntaxerror2(saved_token,expected);
+   }
+   else{
+      token_available=false;
+      return true;
+   }
+
+}
 
 // ----- RDP functions - one per non-term -------------------
 
