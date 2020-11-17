@@ -6,32 +6,32 @@ using namespace std;
 
 /* INSTRUCTION:  Complete all ** parts.
    You may use any method to connect this file to scanner.cpp
-   that you had written.  
+   that you had written.
   e.g. You can copy scanner.cpp here by:
-          cp ../ScannerFiles/scanner.cpp .  
-       and then append the two files into one: 
+          cp ../ScannerFiles/scanner.cpp .
+       and then append the two files into one:
           cat scanner.cpp parser.cpp > myparser.cpp
 */
 
 //=================================================
-// File parser.cpp written by Group Number: **
+// File parser.cpp written by Group Number: *25*
 //=================================================
 
 // ----- Four Utility Functions and Globals -----------------------------------
 
 // ** Need syntaxerror1 and syntaxerror2 functions (each takes 2 args)
-//    to display syntax error messages as specified by me.  
+//    to display syntax error messages as specified by me.
 
 // Type of error: **
-// Done by: ** 
-void syntaxerror1(string lexeme,tokentype token  ){   
+// Done by: **
+void syntaxerror1(string lexeme,tokentype token  ){
 
    cout<< "SyntaxError 1 Found. "<<endl;
    cout<< "String       Token "<<endl;
    cout<< lexeme << "      "<< token<< endl;
  }
 // Type of error: **
-// Done by: ** 
+// Done by: **
 void syntaxerror2( tokentype input,tokentype expected  ) {
    cout<< "SyntaxError 2 Encountered:"<<endl;
       cout<< "Input       Expected "<<endl;
@@ -54,7 +54,7 @@ tokentype next_token(){
       scanner(saved_token,saved_lexeme);
       token_available=true;
 
-      if(saved_token == ERROR){  
+      if(saved_token == ERROR){
          syntaxerror1(saved_lexeme,saved_token);
       }
 }
@@ -98,7 +98,7 @@ int main()
   fin.open(filename.c_str());
 
   //** calls the <story> to start parsing
-  //** closes the input file 
+  //** closes the input file
 
 }// end
 //** require no other input files!
