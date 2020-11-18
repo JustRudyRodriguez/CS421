@@ -78,14 +78,73 @@ boolean match(tokentype expected) {
 
 // ----- RDP functions - one per non-term -------------------
 void story(string sentence){
-
+if(next_token()==CONNECTOR)
+  match(CONNECTOR)
 }
+  NOUN();
+  match(SUBJECT);
+  AFTER_SUBJECT();
+}
+
+void AFTER_SUBJECT(){
+  switch (next_toke()) {
+    case VERB:
+      VERB();
+      TENSE();
+      match(PERIOD);
+      break;
+    case NOUN
+      NOUN()
+      AFTER_NOUN()
+      break;
+    default:
+
+  }
+}
+void AFTER_NOUN(){
+  switch (next_token()) {
+    case BE:
+      BE();
+      match(PERIOD);
+      break;
+    case DESTINATION:
+      match(DESTINATION);
+      VERB();
+      TENSE();
+      match(PERIOD);
+      break;
+    case OBJECT:
+      match(OBJECT);
+      AFTER_OBJECT();
+      break;
+    default:
+  }
+}
+void AFTER_OBJECT(){
+  switch (next_token()) {
+    case VERB:
+      VERB();
+      TENSE();
+      match(period);
+      break;
+    case NOUN:
+      NOUN();
+      match(DESTINATION);
+      VERB();
+      TENSE();
+      match(PERIOD);
+      break;
+    default:
+  }
+}
+
 // ** Make each non-terminal into a function here
 // ** Be sure to put the corresponding grammar rule above each function
 // ** Be sure to put the name of the programmer above each function
 
 // Grammar: **
 // Done by: **
+
 
 string filename;
 
