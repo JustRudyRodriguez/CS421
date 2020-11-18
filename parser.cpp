@@ -137,7 +137,47 @@ void AFTER_OBJECT(){
     default:
   }
 }
+void NOUN(){
+  switch (next_token()) {
+    case WORD1:
+      match(WORD1);
+      break;
+    case PRONOUN:
+      match(PRONOUN);
+      break;
+    default:
 
+  }
+}
+void VERB(){
+  match(WORD2);
+}
+void BE(){
+  switch (next_token) {
+    case IS:
+      match(IS);
+      break;
+    case WAS:
+      match(WAS);
+      break;
+    default:
+  }
+}
+void TENSE(){
+  switch (next_token) {
+    case VERBPAST:
+      break;
+    case VERBPASTNEG:
+      break;
+    case VERB:
+      match(VERB);
+      break;
+    case VERBNEG:
+      match(VERBNEG);
+      break;
+    default:
+  }
+}
 // ** Make each non-terminal into a function here
 // ** Be sure to put the corresponding grammar rule above each function
 // ** Be sure to put the name of the programmer above each function
