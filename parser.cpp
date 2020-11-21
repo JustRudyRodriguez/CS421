@@ -248,7 +248,6 @@ int main()
   fin.open(filename.c_str());
   if(fin.good()){//if the file is good run the parser.
     while (getline(fin, line)) {//while we can get a line from the text
-      while(token_available)//while we still have a valid token
       story(line);      //** calls the <story> to start parsing
     }
     fin.close();//** closes the input file
