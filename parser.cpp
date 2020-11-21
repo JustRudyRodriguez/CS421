@@ -4,6 +4,8 @@
 #include<string>
 using namespace std;
 #include<scanner.cpp>
+#include<sstream>
+
 
 /* INSTRUCTION:  Complete all ** parts.
    You may use any method to connect this file to scanner.cpp
@@ -25,6 +27,7 @@ using namespace std;
 
 // Type of error: **
 // Done by: **
+
 void syntax_error1(string lexeme,tokentype token  ){
 
    cout<< "SYNTAX ERROR: expected " << token << "but found " << lexeme << endl;
@@ -104,8 +107,8 @@ void AFTER_SUBJECT(){
   if(display_tracing_flag == true)
     cout << "Processing <AFTER_SUBJECT>\n";
   switch (next_token()) {
-    case VERB:
-      VERB_FUNC();
+    case WORD2:
+      VERB();
       TENSE();
       match(PERIOD);
       break;
@@ -135,7 +138,7 @@ void AFTER_NOUN(){
       break;
     case DESTINATION:
       match(DESTINATION);
-      VERB_FUNC();
+      VERB();
       TENSE();
       match(PERIOD);
       break;
@@ -151,21 +154,21 @@ void AFTER_OBJECT(){
     cout << "Processing <AFTER_OBJECT>\n";
   switch (next_token()) {
     case VERB:
-      VERB_FUNC();
+      VERB();
       TENSE();
       match(PERIOD);
       break;
     case WORD1:
       NOUN();
       match(DESTINATION);
-      VERB_FUNC();
+      VERB();
       TENSE();
       match(PERIOD);
       break;
     case PRONOUN:
       NOUN();
       match(DESTINATION);
-      VERB_FUNC();
+      VERB();
       TENSE();
       match(PERIOD);
       break;
@@ -186,7 +189,7 @@ void NOUN(){
 
   }
 }
-void VERB_FUNC(){
+void VERB(){
   if(display_tracing_flag == true)
     cout << "Processing <VERB>\n";
   match(WORD2);
@@ -228,8 +231,6 @@ void TENSE(){
 // Grammar: **
 // Done by: **
 
-istringstream split;
-string filename;
 
 //----------- Driver ---------------------------
 
