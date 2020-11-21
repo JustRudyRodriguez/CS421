@@ -51,13 +51,13 @@ void syntax_error2( tokentype input,tokentype expected  ) {
 tokentype saved_token;
 string saved_lexeme;// the example has this within next_token()
 bool token_available;//not sure if this needs to be here.
-bool display_tracing_flag = true; // used for turning on and off tracing messages 
+bool display_tracing_flag = true; // used for turning on and off tracing messages
 // Purpose: **
 // Done by: **
 
 tokentype next_token(){
    //bool token_available;
-   //need to set saved_lexeme = scanner() 
+   //need to set saved_lexeme = scanner()
    if(!token_available){
       scanner(saved_token,saved_lexeme);
       token_available=true;
@@ -79,17 +79,18 @@ bool match(tokentype expected) {
    }
    else{
       token_available=false;
-      //can add flag to turn on and off tracing messages 
+      //can add flag to turn on and off tracing messages
       if(display_tracing_flag == true)
         cout<< "Match succeeded, token type is: "+ expected << endl;//display matched token_type when succeeds, used for tracing the program
+        split>>saved_lexeme;
       return true;
    }
 
 }
 
 // ----- RDP functions - one per non-term -------------------
-void story(string sentence){
-  if(display_tracing_flag == true)  
+void story(){
+  if(display_tracing_flag == true)
     cout << "Processing <story>\n";
   if(next_token()==CONNECTOR){
     match(CONNECTOR);
@@ -167,7 +168,7 @@ void AFTER_OBJECT(){
       VERB_FUNC();
       TENSE();
       match(PERIOD);
-      break;  
+      break;
     default:syntax_error2(saved_token, saved_token);
   }
 }
@@ -204,7 +205,7 @@ void BE(){
   }
 }
 void TENSE(){
-  if(display_tracing_flag == true)  
+  if(display_tracing_flag == true)
     cout << "Processing <TENSE>\n";
   switch (next_token()) {
     case VERBPAST:
@@ -227,7 +228,7 @@ void TENSE(){
 // Grammar: **
 // Done by: **
 
-
+istringstream split;
 string filename;
 
 //----------- Driver ---------------------------
@@ -248,7 +249,8 @@ int main()
   fin.open(filename.c_str());
   if(fin.good()){//if the file is good run the parser.
     while (getline(fin, line)) {//while we can get a line from the text
-      story(line);      //** calls the <story> to start parsing
+split(line);
+      story();      //** calls the <story> to start parsing
     }
     fin.close();//** closes the input file
   }else{
@@ -259,4 +261,3 @@ int main()
 //** require no other input files!
 //** syntax error EC requires producing errors.txt of error messages
 //** tracing On/Off EC requires sending a flag to trace message output functions
-
