@@ -98,7 +98,7 @@ void AFTER_SUBJECT(){
       AFTER_NOUN()
       break;
     default:
-    syntaxerror2(next_token(),SUBJECT);
+    syntaxerror2(saved_token,SUBJECT);
     break;
 
   }
@@ -124,7 +124,7 @@ void AFTER_NOUN(){
       AFTER_OBJECT();
       break;
     default:
-    syntaxerror2(next_token(),NOUN);
+    syntaxerror2(saved_token,NOUN);
     break;
   }
 }
@@ -143,7 +143,7 @@ void AFTER_OBJECT(){
       match(PERIOD);
       break;
     default:
-    syntaxerror2(next_token(),OBJECT);
+    syntaxerror2(saved_token,OBJECT);
     break;
   }
 }
@@ -156,7 +156,7 @@ void NOUN(){
       match(PRONOUN);
       break;
     default:
-    syntaxerror2(next_token(),NOUN);
+    syntaxerror2(saved_token,NOUN);
     break;
 
   }
@@ -173,7 +173,7 @@ void BE(){
       match(WAS);
       break;
     default:
-    syntaxerror2(next_token(),BE);
+    syntaxerror2(saved_token,BE);
     break;
   }
 }
@@ -190,7 +190,7 @@ void TENSE(){
       match(VERBNEG);
       break;
     default:
-    syntaxerror2(next_token(),TENSE);
+    syntaxerror2(saved_token,TENSE);
     break;
   }
 }
