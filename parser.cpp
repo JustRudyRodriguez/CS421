@@ -1,6 +1,7 @@
 
 #include<iostream>
 #include<fstream>
+#include<sstream>
 #include<string>
 using namespace std;
 #include<scanner.cpp>
@@ -82,7 +83,6 @@ bool match(tokentype expected) {
       //can add flag to turn on and off tracing messages
       if(display_tracing_flag == true)
         cout<< "Match succeeded, token type is: "+ expected << endl;//display matched token_type when succeeds, used for tracing the program
-        split>>saved_lexeme;
       return true;
    }
 
@@ -90,6 +90,8 @@ bool match(tokentype expected) {
 
 // ----- RDP functions - one per non-term -------------------
 void story(){
+  split>>saved_lexeme;
+
   if(display_tracing_flag == true)
     cout << "Processing <story>\n";
   if(next_token()==CONNECTOR){
@@ -101,6 +103,8 @@ void story(){
 }
 
 void AFTER_SUBJECT(){
+  split>>saved_lexeme;
+
   if(display_tracing_flag == true)
     cout << "Processing <AFTER_SUBJECT>\n";
   switch (next_token()) {
@@ -122,6 +126,8 @@ void AFTER_SUBJECT(){
   }
 }
 void AFTER_NOUN(){
+  split>>saved_lexeme;
+
   if(display_tracing_flag == true)
     cout << "Processing <AFTER_NOUN>\n";
   switch (next_token()) {
@@ -147,6 +153,8 @@ void AFTER_NOUN(){
   }
 }
 void AFTER_OBJECT(){
+  split>>saved_lexeme;
+
   if(display_tracing_flag == true)
     cout << "Processing <AFTER_OBJECT>\n";
   switch (next_token()) {
@@ -173,6 +181,8 @@ void AFTER_OBJECT(){
   }
 }
 void NOUN(){
+  split>>saved_lexeme;
+
   if(display_tracing_flag == true)
     cout << "Processing <NOUN>\n";
   switch (next_token()) {
@@ -187,11 +197,15 @@ void NOUN(){
   }
 }
 void VERB_FUNC(){
+  split>>saved_lexeme;
+
   if(display_tracing_flag == true)
     cout << "Processing <VERB>\n";
   match(WORD2);
 }
 void BE(){
+  split>>saved_lexeme;
+
   if(display_tracing_flag == true)
     cout << "Processing <BE>\n";
   switch (next_token()) {
@@ -205,6 +219,8 @@ void BE(){
   }
 }
 void TENSE(){
+  split>>saved_lexeme;
+
   if(display_tracing_flag == true)
     cout << "Processing <TENSE>\n";
   switch (next_token()) {
