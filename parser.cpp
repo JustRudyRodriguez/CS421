@@ -1,3 +1,4 @@
+
 #include<iostream>
 #include<fstream>
 #include<string>
@@ -19,23 +20,29 @@ using namespace std;
 
 // ----- Four Utility Functions and Globals -----------------------------------
 
-// ** Need syntaxerror1 and syntaxerror2 functions (each takes 2 args)
+// ** Need syntax_error1 and syntax_error2 functions (each takes 2 args)
 //    to display syntax error messages as specified by me.
 
 // Type of error: **
 // Done by: **
-void syntaxerror1(string lexeme,tokentype token  ){
+void syntax_error1(string lexeme,tokentype token  ){
 
-   cout<< "SyntaxError 1 Found. "<<endl;
-   cout<< "String       Token "<<endl;
+   cout<< "SYNTAX ERROR: expected " << token << "but found " << lexeme << endl;
+   //cout<< "String       Token "<<endl;
    cout<< lexeme << "      "<< token<< endl;
+   ofstream file;
+   file.open("errors.txt");
+   file<< "SYNTAX ERROR: expected " << token << "but found " << lexeme << endl;
+   file.close();
  }
 // Type of error: **
 // Done by: **
-void syntaxerror2( tokentype input,tokentype expected  ) {
+void syntax_error2( tokentype input,tokentype expected  ) {
+
    cout<< "SyntaxError 2 Encountered:"<<endl;
       cout<< "Input       Expected "<<endl;
    cout<< input << "      "<< expected<< endl;
+      //need exit(1)
     }
 
 // ** Need the updated match and next_token with 2 global vars
@@ -44,33 +51,37 @@ void syntaxerror2( tokentype input,tokentype expected  ) {
 tokentype saved_token;
 string saved_lexeme;// the example has this within next_token()
 bool token_available;//not sure if this needs to be here.
-
+bool display_tracing_flag = true; // used for turning on and off tracing messages 
 // Purpose: **
 // Done by: **
 
 tokentype next_token(){
    //bool token_available;
+   //need to set saved_lexeme = scanner() 
    if(!token_available){
       scanner(saved_token,saved_lexeme);
       token_available=true;
 
       if(saved_token == ERROR){
-         syntaxerror1(saved_lexeme,saved_token);
+         syntax_error1(saved_lexeme,saved_token);
       }
-}
+  }
    return saved_token;
 }
 
 // Purpose: **
 // Done by: **
 
-boolean match(tokentype expected) {
-
+bool match(tokentype expected) {
    if(next_token()!=expected){
-      syntaxerror2(saved_token,expected);
+      syntax_error2(saved_token,expected);
+
    }
    else{
       token_available=false;
+      //can add flag to turn on and off tracing messages 
+      if(display_tracing_flag == true)
+        cout<< "Match succeeded, token type is: "+ expected << endl;//display matched token_type when succeeds, used for tracing the program
       return true;
    }
 
@@ -78,38 +89,52 @@ boolean match(tokentype expected) {
 
 // ----- RDP functions - one per non-term -------------------
 void story(string sentence){
-if(next_token()==CONNECTOR)
-  match(CONNECTOR)
-}
+  if(display_tracing_flag == true)  
+    cout << "Processing <story>\n";
+  if(next_token()==CONNECTOR){
+    match(CONNECTOR);
+  }
   NOUN();
   match(SUBJECT);
   AFTER_SUBJECT();
 }
 
 void AFTER_SUBJECT(){
-  switch (next_toke()) {
+  if(display_tracing_flag == true)
+    cout << "Processing <AFTER_SUBJECT>\n";
+  switch (next_token()) {
     case VERB:
-      VERB();
+      VERB_FUNC();
       TENSE();
       match(PERIOD);
       break;
-    case NOUN
-      NOUN()
-      AFTER_NOUN()
+    case WORD1:
+      NOUN();
+      AFTER_NOUN();
       break;
-    default:
+    case PRONOUN:
+      NOUN();
+      AFTER_NOUN();
+      break;
+    default:syntax_error2(saved_token, saved_token);
 
   }
 }
 void AFTER_NOUN(){
+  if(display_tracing_flag == true)
+    cout << "Processing <AFTER_NOUN>\n";
   switch (next_token()) {
-    case BE:
+    case IS:
+      BE();
+      match(PERIOD);
+      break;
+    case WAS:
       BE();
       match(PERIOD);
       break;
     case DESTINATION:
       match(DESTINATION);
-      VERB();
+      VERB_FUNC();
       TENSE();
       match(PERIOD);
       break;
@@ -117,27 +142,38 @@ void AFTER_NOUN(){
       match(OBJECT);
       AFTER_OBJECT();
       break;
-    default:
+    default:syntax_error2(saved_token, saved_token);
   }
 }
 void AFTER_OBJECT(){
+  if(display_tracing_flag == true)
+    cout << "Processing <AFTER_OBJECT>\n";
   switch (next_token()) {
     case VERB:
-      VERB();
-      TENSE();
-      match(period);
-      break;
-    case NOUN:
-      NOUN();
-      match(DESTINATION);
-      VERB();
+      VERB_FUNC();
       TENSE();
       match(PERIOD);
       break;
-    default:
+    case WORD1:
+      NOUN();
+      match(DESTINATION);
+      VERB_FUNC();
+      TENSE();
+      match(PERIOD);
+      break;
+    case PRONOUN:
+      NOUN();
+      match(DESTINATION);
+      VERB_FUNC();
+      TENSE();
+      match(PERIOD);
+      break;  
+    default:syntax_error2(saved_token, saved_token);
   }
 }
 void NOUN(){
+  if(display_tracing_flag == true)
+    cout << "Processing <NOUN>\n";
   switch (next_token()) {
     case WORD1:
       match(WORD1);
@@ -145,26 +181,32 @@ void NOUN(){
     case PRONOUN:
       match(PRONOUN);
       break;
-    default:
+    default:syntax_error2(saved_token, saved_token);
 
   }
 }
-void VERB(){
+void VERB_FUNC(){
+  if(display_tracing_flag == true)
+    cout << "Processing <VERB>\n";
   match(WORD2);
 }
 void BE(){
-  switch (next_token) {
+  if(display_tracing_flag == true)
+    cout << "Processing <BE>\n";
+  switch (next_token()) {
     case IS:
       match(IS);
       break;
     case WAS:
       match(WAS);
       break;
-    default:
+    default:syntax_error2(saved_token, saved_token);
   }
 }
 void TENSE(){
-  switch (next_token) {
+  if(display_tracing_flag == true)  
+    cout << "Processing <TENSE>\n";
+  switch (next_token()) {
     case VERBPAST:
       break;
     case VERBPASTNEG:
@@ -175,7 +217,7 @@ void TENSE(){
     case VERBNEG:
       match(VERBNEG);
       break;
-    default:
+    default:syntax_error2(saved_token, saved_token);
   }
 }
 // ** Make each non-terminal into a function here
@@ -194,10 +236,15 @@ string filename;
 // Done by:  **
 int main()
 {
+  string choice;
+  cout << "Display tracing messages? Y/N: ";
+  cin >> choice;
+  if(choice == "N")
+    display_tracing_flag = false;
   cout << "Enter the input file name: ";
   cin >> filename;
   ifstream fin;
-  String line;
+  string line;
   fin.open(filename.c_str());
   if(fin.good()){//if the file is good run the parser.
     while (getline(fin, line)) {//while we can get a line from the text
@@ -213,3 +260,4 @@ int main()
 //** require no other input files!
 //** syntax error EC requires producing errors.txt of error messages
 //** tracing On/Off EC requires sending a flag to trace message output functions
+
