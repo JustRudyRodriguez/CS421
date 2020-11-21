@@ -283,7 +283,7 @@ void syntax_error1(string lexeme, tokentype token)
 
   cout << "SYNTAX ERROR 1: expected " << tokenName[token] << " but found " << lexeme << endl;
   //cout<< "String       Token "<<endl;
-  cout << lexeme << "      " << token << endl;
+  //cout << lexeme << "      " << token << endl;
   ofstream file;
   file.open("errors.txt");
   file << "SYNTAX ERROR: expected " << tokenName[token] << " but found " << lexeme << endl;
