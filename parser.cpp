@@ -271,43 +271,26 @@ void BE()
     AFTER_SUBJECT();
   }
 
-  // ** Make each non-terminal into a function here
-  // ** Be sure to put the corresponding grammar rule above each function
-  // ** Be sure to put the name of the programmer above each function
+//----------- Driver ---------------------------
 
-  // Grammar: **
-  // Done by: **
-
-  string filename;
-
-  //----------- Driver ---------------------------
-
-  // The new test driver to start the parser
-  // Done by:  **
-  int main()
-  {
-    string choice;
-    cout << "Display tracing messages? Y/N: ";
-    cin >> choice;
-    if (choice == "N")
-      display_tracing_flag = false;
-    cout << "Enter the input file name: ";
-    cin >> filename;
-    ifstream fin;
-    string line;
-    fin.open(filename.c_str());
-    if (fin.good())
-    { //if the file is good run the parser.
-      while (getline(fin, line))
-      { //while we can get a line from the text
-        split(line);
-        story(); //** calls the <story> to start parsing
-      }
-      fin.close(); //** closes the input file
-    }
-    else
-    {
-      cout << "The file does not exist" << endl; //error handling for when a file doesn't exist
+// The new test driver to start the parser
+// Done by:  **
+int main()
+{
+  string choice;
+  cout << "Display tracing messages? Y/N: ";
+  cin >> choice;
+  if(choice == "N")
+    display_tracing_flag = false;
+  cout << "Enter the input file name: ";
+  cin >> filename;
+  ifstream fin;
+  string line;
+  fin.open(filename.c_str());
+  if(fin.good()){//if the file is good run the parser.
+    while (getline(fin, line)) {//while we can get a line from the text
+split=new istringstream(line);
+      story();      //** calls the <story> to start parsing
     }
 
   } // end
