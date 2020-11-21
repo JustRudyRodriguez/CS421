@@ -19,95 +19,95 @@ istringstream split;
 bool word(string s)
 {
 
-  int state = 0;
-  int charpos = 0;
-  // replace the following todo the word dfa  **
-  while (s[charpos] != '\0')
-  {
-    if (state == 0 && s[charpos] == 'c')
-      state = 1;
-    else if (state == 0 && s[charpos] == 't')
-      state = 2;
-    else if (state == 0 && (s[charpos] == 'b' || s[charpos] == 'm' || s[charpos] == 'k' ||
-                            s[charpos] == 'n' || s[charpos] == 'h' || s[charpos] == 'p' || s[charpos] == 'r'))
-      state = 3;
-    else if (state == 0 && (s[charpos] == 'd' || s[charpos] == 'w' || s[charpos] == 'z' ||
-                            s[charpos] == 'y' || s[charpos] == 'j'))
-      state = 4;
-    else if (state == 0 && s[charpos] == 's')
-      state = 5;
-    else if (state == 0 && (s[charpos] == 'a' || s[charpos] == 'i' || s[charpos] == 'I'|| s[charpos] == 'E'|| s[charpos] == 'u' ||
-                            s[charpos] == 'e' || s[charpos] == 'o'))
-      state = 7;
-    else if (state == 1 && s[charpos] == 's')
-      state = 4;
-    else if (state == 2 && s[charpos] == 's')
-      state = 4;
-    else if (state == 2 && (s[charpos] == 'a' || s[charpos] == 'i' || s[charpos] == 'I'|| s[charpos] == 'E'|| s[charpos] == 'u' ||
-                            s[charpos] == 'e' || s[charpos] == 'o'))
-      state = 7;
-    else if (state == 3 && (s[charpos] == 'a' || s[charpos] == 'i' || s[charpos] == 'I'|| s[charpos] == 'E'|| s[charpos] == 'u' ||
-                            s[charpos] == 'e' || s[charpos] == 'o'))
-      state = 7;
-    else if (state == 4 && (s[charpos] == 'a' || s[charpos] == 'i' || s[charpos] == 'I'|| s[charpos] == 'E'|| s[charpos] == 'u' ||
-                            s[charpos] == 'e' || s[charpos] == 'o'))
-      state = 7;
-    else if (state == 5 && s[charpos] == 'h')
-      state = 4;
-    else if (state == 5 && (s[charpos] == 'a' || s[charpos] == 'i'|| s[charpos] == 'I'|| s[charpos] == 'E' || s[charpos] == 'u' ||
-                            s[charpos] == 'e' || s[charpos] == 'o'))
-      state = 7;
-    else if (state == 6 && s[charpos] == 'c')
-      state = 1;
-    else if (state == 6 && s[charpos] == 't')
-      state = 2;
-    else if (state == 6 && (s[charpos] == 'b' || s[charpos] == 'm' || s[charpos] == 'k' ||
-                            s[charpos] == 'n' || s[charpos] == 'h' || s[charpos] == 'p' || s[charpos] == 'r'))
-      state = 3;
-    else if (state == 6 && s[charpos] == 'y')
-      state = 4;
-    else if (state == 6 && s[charpos] == 's')
-      state = 5;
-    else if (state == 6 && (s[charpos] == 'a' || s[charpos] == 'i' || s[charpos] == 'I'|| s[charpos] == 'E'|| s[charpos] == 'u' ||
-                            s[charpos] == 'e' || s[charpos] == 'o'))
-      state = 7;
-    else if (state == 7 && s[charpos] == 'c')
-      state = 1;
-    else if (state == 7 && s[charpos] == 't')
-      state = 2;
-    else if (state == 7 && (s[charpos] == 'b' || s[charpos] == 'm' || s[charpos] == 'k' ||
-                            s[charpos] == 'h' || s[charpos] == 'p' || s[charpos] == 'r'||s[charpos] == 'g'))
-      state = 3;
-    else if (state == 7 && (s[charpos] == 'd' || s[charpos] == 'w' || s[charpos] == 'z' ||
-                            s[charpos] == 'y' || s[charpos] == 'j'))
-      state = 4;
-    else if (state == 7 && s[charpos] == 's')
-      state = 5;
-    else if (state == 7 && s[charpos] == 'n')
-      state = 6;
-    else if (state == 7 && (s[charpos] == 'a' || s[charpos] == 'i' || s[charpos] == 'I'|| s[charpos] == 'E'|| s[charpos] == 'u' ||
-                            s[charpos] == 'e' || s[charpos] == 'o'))
-      state = 7;
-    else
-      return (false);
-    charpos++;
-  } //end of while
+    int state = 0;
+    int charpos = 0;
+    // replace the following todo the word dfa  **
+    while (s[charpos] != '\0')
+    {
+        if (state == 0 && s[charpos] == 'c')
+            state = 1;
+        else if (state == 0 && s[charpos] == 't')
+            state = 2;
+        else if (state == 0 && (s[charpos] == 'b' || s[charpos] == 'm' || s[charpos] == 'k' ||
+            s[charpos] == 'n' || s[charpos] == 'h' || s[charpos] == 'p' || s[charpos] == 'r'))
+            state = 3;
+        else if (state == 0 && (s[charpos] == 'd' || s[charpos] == 'w' || s[charpos] == 'z' ||
+            s[charpos] == 'y' || s[charpos] == 'j'))
+            state = 4;
+        else if (state == 0 && s[charpos] == 's')
+            state = 5;
+        else if (state == 0 && (s[charpos] == 'a' || s[charpos] == 'i' || s[charpos] == 'I' || s[charpos] == 'E' || s[charpos] == 'u' ||
+            s[charpos] == 'e' || s[charpos] == 'o'))
+            state = 7;
+        else if (state == 1 && s[charpos] == 's')
+            state = 4;
+        else if (state == 2 && s[charpos] == 's')
+            state = 4;
+        else if (state == 2 && (s[charpos] == 'a' || s[charpos] == 'i' || s[charpos] == 'I' || s[charpos] == 'E' || s[charpos] == 'u' ||
+            s[charpos] == 'e' || s[charpos] == 'o'))
+            state = 7;
+        else if (state == 3 && (s[charpos] == 'a' || s[charpos] == 'i' || s[charpos] == 'I' || s[charpos] == 'E' || s[charpos] == 'u' ||
+            s[charpos] == 'e' || s[charpos] == 'o'))
+            state = 7;
+        else if (state == 4 && (s[charpos] == 'a' || s[charpos] == 'i' || s[charpos] == 'I' || s[charpos] == 'E' || s[charpos] == 'u' ||
+            s[charpos] == 'e' || s[charpos] == 'o'))
+            state = 7;
+        else if (state == 5 && s[charpos] == 'h')
+            state = 4;
+        else if (state == 5 && (s[charpos] == 'a' || s[charpos] == 'i' || s[charpos] == 'I' || s[charpos] == 'E' || s[charpos] == 'u' ||
+            s[charpos] == 'e' || s[charpos] == 'o'))
+            state = 7;
+        else if (state == 6 && s[charpos] == 'c')
+            state = 1;
+        else if (state == 6 && s[charpos] == 't')
+            state = 2;
+        else if (state == 6 && (s[charpos] == 'b' || s[charpos] == 'm' || s[charpos] == 'k' ||
+            s[charpos] == 'n' || s[charpos] == 'h' || s[charpos] == 'p' || s[charpos] == 'r'))
+            state = 3;
+        else if (state == 6 && s[charpos] == 'y')
+            state = 4;
+        else if (state == 6 && s[charpos] == 's')
+            state = 5;
+        else if (state == 6 && (s[charpos] == 'a' || s[charpos] == 'i' || s[charpos] == 'I' || s[charpos] == 'E' || s[charpos] == 'u' ||
+            s[charpos] == 'e' || s[charpos] == 'o'))
+            state = 7;
+        else if (state == 7 && s[charpos] == 'c')
+            state = 1;
+        else if (state == 7 && s[charpos] == 't')
+            state = 2;
+        else if (state == 7 && (s[charpos] == 'b' || s[charpos] == 'm' || s[charpos] == 'k' ||
+            s[charpos] == 'h' || s[charpos] == 'p' || s[charpos] == 'r' || s[charpos] == 'g'))
+            state = 3;
+        else if (state == 7 && (s[charpos] == 'd' || s[charpos] == 'w' || s[charpos] == 'z' ||
+            s[charpos] == 'y' || s[charpos] == 'j'))
+            state = 4;
+        else if (state == 7 && s[charpos] == 's')
+            state = 5;
+        else if (state == 7 && s[charpos] == 'n')
+            state = 6;
+        else if (state == 7 && (s[charpos] == 'a' || s[charpos] == 'i' || s[charpos] == 'I' || s[charpos] == 'E' || s[charpos] == 'u' ||
+            s[charpos] == 'e' || s[charpos] == 'o'))
+            state = 7;
+        else
+            return (false);
+        charpos++;
+    } //end of while
 
-  // where did I end up????
-  if (state == 7)
-    return (true); // end in a final state
-  else
-    return (false);
+    // where did I end up????
+    if (state == 7)
+        return (true); // end in a final state
+    else
+        return (false);
 }
 
 // PERIOD DFA
 // Done by: *Andrew Malmstead*
 bool period(string s)
 {
-  if (s.compare(".") == 0)
-    return true;
-  else
-    return false;
+    if (s.compare(".") == 0)
+        return true;
+    else
+        return false;
 }
 
 // ------ Three  Tables -------------------------------------
@@ -139,9 +139,9 @@ enum tokentype
 };
 
 // ** For the display names of tokens - must be in the same order as the tokentype.
-string tokenName[33] = {"VERB", "VERBNEG", "VERBPAST", "VERBPASTNEG", "IS", "WAS", "OBJECT", "SUBJECT", "DESTINATION", "PRONOUN", "CONNECTOR", "WORD1", "WORD2", "EOFM", "PERIOD", "ERROR", "BE", "NOUN","BE","TENSE", "NOUN"};
+string tokenName[33] = { "VERB", "VERBNEG", "VERBPAST", "VERBPASTNEG", "IS", "WAS", "OBJECT", "SUBJECT", "DESTINATION", "PRONOUN", "CONNECTOR", "WORD1", "WORD2", "EOFM", "PERIOD", "ERROR", "BE","TENSE", "NOUN" };
 
-string reservedWords[30] = {"masu", "masen", "mashita", "masendeshita", "desu", "deshita", "o", "wa", "ni", "watashi", "anata", "kare", "kanojo", "sore", "mata", "soshite", "shikashi", "dakara"};
+string reservedWords[30] = { "masu", "masen", "mashita", "masendeshita", "desu", "deshita", "o", "wa", "ni", "watashi", "anata", "kare", "kanojo", "sore", "mata", "soshite", "shikashi", "dakara" };
 
 // ** Need the reservedwords table to be set up here.
 // ** Do not require any file input for this. Hard code the table.
@@ -154,103 +154,103 @@ ifstream fin; // global stream for reading from the input file
 // Scanner processes only one word each time it is called
 // Gives back the token type and the word itself
 // ** Done by: Rodolfo Rodriguez
-int scanner(tokentype &tt, string &w)
+int scanner(tokentype& tt, string& w)
 {
 
-  // ** Grab the next word from the file via fin
-  // 1. If it is eofm, return right now.
-  string current;
-  split >> current;
-  tt = ERROR; // setting this as a starting value for logic reasons ahead, ignore for now.
-  cout << "Scanner called using word: "<<current << endl;
-  if (current.compare(" ") == 0)
-  {
-    fin >> current;
-  }
-  if (current.compare("eofm") == 0)
-  {
-    //need to add token type after table is setup. tt = eofm
-    w = current; //passing value of "eofm" back and breaking out of loop.
-    return 0;
-  }
-  /*  **
-
-
-  2. Call the token functions (word and period)
-     one after another (if-then-else).
-     Generate a lexical error message if both DFAs failed.
-     Let the tokentype be ERROR in that case.
-
-***/
-for (int i = 0; i < 30; i++)
-{
-
-  if (reservedWords[i] == current)
-  {
-
-    if (i >= 9)
+    // ** Grab the next word from the file via fin
+    // 1. If it is eofm, return right now.
+    string current;
+    split >> current;
+    tt = ERROR; // setting this as a starting value for logic reasons ahead, ignore for now.
+    cout << "Scanner called using word: " << current << endl;
+    if (current.compare(" ") == 0)
     {
-      if (i >= 13)
-      {
-        tt = CONNECTOR;
-        w = current;
-        return 0;
-      }
-      tt = PRONOUN;
-      w = current;
-      return 0;
+        fin >> current;
     }
-    tt = tokentype(i); //should assign correct token if both tables are setup correctly.
-    w = current;
-    return 0; // may delete this.
-  }
-}
-  if (period(current))
-  {
-    tt = PERIOD;
-    w = current;
-    return 0;
-  }
-  else if (!(word(current)))
-  {
+    if (current.compare("eofm") == 0)
+    {
+        //need to add token type after table is setup. tt = eofm
+        w = current; //passing value of "eofm" back and breaking out of loop.
+        return 0;
+    }
+    /*  **
 
 
-    //condition of a double false
-    tt = ERROR;  // This is to be updated after token table is created.
-    w = current; // passing by reference.
-    cout << "Lexical error: " << current << " is not a valid token" << endl;
-    return 0; // May need to print "lexical error: &current is not a valid token" and Idea would be to recursively call scanner(), I don't see why not.
-  }
-
-  /***
-
-  3. If it was a word,
-     check against the reservedwords list.
-     If not reserved, tokentype is WORD1 or WORD2
-     decided based on the last character.
-
+    2. Call the token functions (word and period)
+       one after another (if-then-else).
+       Generate a lexical error message if both DFAs failed.
+       Let the tokentype be ERROR in that case.
 
   ***/
+    for (int i = 0; i < 30; i++)
+    {
 
-  if (current.back() == 'I' || current.back() == 'E')
-  {
-    tt = WORD2; // needs to be added to list.
-    w = current;
-    return 0;
-  }
-  else
-  {
-    tt = WORD1;
-    w = current;
-    return 0;
-  }
-  cout << "this is just here for testing. End of Scanner() reached, and no token type was selected.";
+        if (reservedWords[i] == current)
+        {
 
-  return 1; //we shouldn't get to this point and if we do its an error;
-  /***
-  4. Return the token type & string  (pass by reference)
-  */
-  // the returns are setup at all the if/else markers.
+            if (i >= 9)
+            {
+                if (i >= 13)
+                {
+                    tt = CONNECTOR;
+                    w = current;
+                    return 0;
+                }
+                tt = PRONOUN;
+                w = current;
+                return 0;
+            }
+            tt = tokentype(i); //should assign correct token if both tables are setup correctly.
+            w = current;
+            return 0; // may delete this.
+        }
+    }
+    if (period(current))
+    {
+        tt = PERIOD;
+        w = current;
+        return 0;
+    }
+    else if (!(word(current)))
+    {
+
+
+        //condition of a double false
+        tt = ERROR;  // This is to be updated after token table is created.
+        w = current; // passing by reference.
+        cout << "Lexical error: " << current << " is not a valid token" << endl;
+        return 0; // May need to print "lexical error: &current is not a valid token" and Idea would be to recursively call scanner(), I don't see why not.
+    }
+
+    /***
+
+    3. If it was a word,
+       check against the reservedwords list.
+       If not reserved, tokentype is WORD1 or WORD2
+       decided based on the last character.
+
+
+    ***/
+
+    if (current.back() == 'I' || current.back() == 'E')
+    {
+        tt = WORD2; // needs to be added to list.
+        w = current;
+        return 0;
+    }
+    else
+    {
+        tt = WORD1;
+        w = current;
+        return 0;
+    }
+    cout << "this is just here for testing. End of Scanner() reached, and no token type was selected.";
+
+    return 1; //we shouldn't get to this point and if we do its an error;
+    /***
+    4. Return the token type & string  (pass by reference)
+    */
+    // the returns are setup at all the if/else markers.
 } //the end of scanner
 
 // The temporary test driver to just call the scanner repeatedly
@@ -282,23 +282,23 @@ void AFTER_NOUN();
 void syntax_error1(string lexeme, tokentype token)
 {
 
-  cout << "SYNTAX ERROR 1: expected " << tokenName[token] << " but found " << lexeme << endl;
-  //cout<< "String       Token "<<endl;
-  //cout << lexeme << "      " << token << endl;
-  ofstream file;
-  file.open("errors.txt");
-  file << "SYNTAX ERROR: expected " << tokenName[token] << " but found " << lexeme << endl;
-  file.close();
+    cout << "SYNTAX ERROR 1: expected " << tokenName[token] << " but found " << lexeme << endl;
+    //cout<< "String       Token "<<endl;
+    //cout << lexeme << "      " << token << endl;
+    ofstream file;
+    file.open("errors.txt");
+    file << "SYNTAX ERROR: expected " << tokenName[token] << " but found " << lexeme << endl;
+    file.close();
 }
 // Type of error: **
 // Done by: **
 void syntax_error2(tokentype input, tokentype expected)
 {
 
-//<<<<<<< HEAD
-//=======
-  cout << "SYNTAX ERROR 2: expected " << tokenName[expected] << " but found " << tokenName[input] << endl;
-  //need exit(1)
+    //<<<<<<< HEAD
+    //=======
+    cout << "SYNTAX ERROR 2: expected " << tokenName[expected] << " but found " << tokenName[input] << endl;
+    //need exit(1)
 }
 
 // ** Need the updated match and next_token with 2 global vars
@@ -316,19 +316,19 @@ bool display_tracing_flag = true; // used for turning on and off tracing message
 
 tokentype next_token()
 {
-  //bool token_available;
-  //need to set saved_lexeme = scanner()
-  if (!token_available)
-  {
-    scanner(saved_token, saved_lexeme);
-    token_available = true;
-    //cout << "Scanner called using word: " << saved_lexeme << endl;
-    if (saved_token == ERROR)
+    //bool token_available;
+    //need to set saved_lexeme = scanner()
+    if (!token_available)
     {
-      syntax_error1(saved_lexeme, saved_token);
+        scanner(saved_token, saved_lexeme);
+        token_available = true;
+        //cout << "Scanner called using word: " << saved_lexeme << endl;
+        if (saved_token == ERROR)
+        {
+            syntax_error1(saved_lexeme, saved_token);
+        }
     }
-  }
-  return saved_token;
+    return saved_token;
 }
 
 // Purpose: **
@@ -336,18 +336,18 @@ tokentype next_token()
 
 bool match(tokentype expected)
 {
-  if (next_token() != expected)
-  {
-    syntax_error2(saved_token, expected);
-  }
-  else
-  {
-    token_available = false;
-    //can add flag to turn on and off tracing messages
-    if (display_tracing_flag == true)
-      cout << " Match succeeded, token type is: " + tokenName[expected] << endl; //display matched token_type when succeeds, used for tracing the program
-  }
-  return true;
+    if (next_token() != expected)
+    {
+        syntax_error2(saved_token, expected);
+    }
+    else
+    {
+        token_available = false;
+        //can add flag to turn on and off tracing messages
+        if (display_tracing_flag == true)
+            cout << " Match succeeded, token type is: " + tokenName[expected] << endl; //display matched token_type when succeeds, used for tracing the program
+    }
+    return true;
 
 }
 
@@ -356,174 +356,199 @@ bool match(tokentype expected)
 void TENSE_func()
 {
 
-  if (display_tracing_flag == true)
-    cout << "Processing <TENSE>\n";
-  switch (next_token())
-  {
-  case VERBPAST:
-    break;
-  case VERBPASTNEG:
-    break;
-  case VERB:
-    match(VERB);
-    break;
-  case VERBNEG:
-    match(VERBNEG);
-    break;
-  default:
-    syntax_error2(saved_token, TENSE);
-  }
+    if (display_tracing_flag == true)
+        cout << "Processing <TENSE>\n";
+    switch (next_token())
+    {
+    case VERBPAST:
+        break;
+    case VERBPASTNEG:
+        break;
+    case VERB:
+        match(VERB);
+        break;
+    case VERBNEG:
+        match(VERBNEG);
+        break;
+    default:
+        syntax_error2(saved_token, TENSE);
+    }
 }
 
 void VERB_FUNC()
 {
 
-  if (display_tracing_flag == true)
-    cout << "Processing <VERB>\n";
-  match(WORD2);
+    if (display_tracing_flag == true)
+        cout << "Processing <VERB>\n";
+    match(WORD2);
 }
 
 void NOUN_FUNC()
 {
 
-  if (display_tracing_flag == true)
-    cout << "Processing <NOUN>\n";
-  switch (next_token())
-  {
-  case WORD1:
-    match(WORD1);
-    break;
-  case PRONOUN:
-    match(PRONOUN);
-    break;
-  default:
-    syntax_error2(saved_token, NOUN);
-  }
+    if (display_tracing_flag == true)
+        cout << "Processing <NOUN>\n";
+    switch (next_token())
+    {
+    case WORD1:
+        match(WORD1);
+        break;
+    case PRONOUN:
+        match(PRONOUN);
+        break;
+    default:
+        syntax_error2(saved_token, NOUN);
+    }
 }
 
 void AFTER_SUBJECT()
 {
 
-  if (display_tracing_flag == true)
-    cout << "Processing <AFTER_SUBJECT>\n";
-  switch (next_token())
-  {
-  case VERB:
-    VERB_FUNC();
-    TENSE_func();
-    match(PERIOD);
-    break;
-  case WORD1:
-    NOUN_FUNC();
-    AFTER_NOUN();
-    break;
-  case PRONOUN:
-    NOUN_FUNC();
-    AFTER_NOUN();
-    break;
-  default:
-    syntax_error2(saved_token, SUBJECT);
-  }
+    if (display_tracing_flag == true)
+        cout << "Processing <AFTER_SUBJECT>\n";
+    switch (next_token())
+    {
+    case VERB:
+        VERB_FUNC();
+        TENSE_func();
+        match(PERIOD);
+        break;
+    case WORD1:
+        NOUN_FUNC();
+        AFTER_NOUN();
+        break;
+    case PRONOUN:
+        NOUN_FUNC();
+        AFTER_NOUN();
+        break;
+    default:
+        syntax_error2(saved_token, SUBJECT);
+    }
 }
 void BE_FUNC()
 {
 
-  if (display_tracing_flag == true)
-    cout << "Processing <BE>\n";
-  switch (next_token())
-  {
-  case IS:
-    match(IS);
-    break;
-  case WAS:
-    match(WAS);
-    break;
-  default:
-    syntax_error2(saved_token, BE);
-  }
+    if (display_tracing_flag == true)
+        cout << "Processing <BE>\n";
+    switch (next_token())
+    {
+    case IS:
+        match(IS);
+        break;
+    case WAS:
+        match(WAS);
+        break;
+    default:
+        syntax_error2(saved_token, BE);
+    }
 }
 void AFTER_OBJECT()
 {
 
-  if (display_tracing_flag == true)
-    cout << "Processing <AFTER_OBJECT>\n";
-  switch (next_token())
-  {
-  case VERB:
-    VERB_FUNC();
-    TENSE_func();
-    match(PERIOD);
-    break;
-  case WORD1:
-    NOUN_FUNC();
-    match(DESTINATION);
-    VERB_FUNC();
-    TENSE_func();
-    match(PERIOD);
-    break;
-  case PRONOUN:
-    NOUN_FUNC();
-    match(DESTINATION);
-    VERB_FUNC();
-    TENSE_func();
-    match(PERIOD);
-    break;
-  default:
-    syntax_error2(saved_token, OBJECT);
-  }
+    if (display_tracing_flag == true)
+        cout << "Processing <AFTER_OBJECT>\n";
+    switch (next_token())
+    {
+    case VERB:
+        VERB_FUNC();
+        TENSE_func();
+        match(PERIOD);
+        break;
+    case WORD1:
+        NOUN_FUNC();
+        match(DESTINATION);
+        VERB_FUNC();
+        TENSE_func();
+        match(PERIOD);
+        break;
+    case PRONOUN:
+        NOUN_FUNC();
+        match(DESTINATION);
+        VERB_FUNC();
+        TENSE_func();
+        match(PERIOD);
+        break;
+    default:
+        syntax_error2(saved_token, OBJECT);
+    }
 }
 
-  void AFTER_NOUN()
-  {
+void AFTER_NOUN()
+{
 
     if (display_tracing_flag == true)
-      cout << "Processing <AFTER_NOUN>\n";
+        cout << "Processing <AFTER_NOUN>\n";
     switch (next_token())
     {
     case IS:
-      BE_FUNC();
-      match(PERIOD);
-      break;
+        BE_FUNC();
+        match(PERIOD);
+        break;
     case WAS:
-      BE_FUNC();
-      match(PERIOD);
-      break;
+        BE_FUNC();
+        match(PERIOD);
+        break;
     case DESTINATION:
-      match(DESTINATION);
-      VERB_FUNC();
-      TENSE_func();
-      match(PERIOD);
-      break;
+        match(DESTINATION);
+        VERB_FUNC();
+        TENSE_func();
+        match(PERIOD);
+        break;
     case OBJECT:
-      match(OBJECT);
-      AFTER_OBJECT();
-      break;
+        match(OBJECT);
+        AFTER_OBJECT();
+        break;
     default:
-      syntax_error2(saved_token, NOUN);
+        syntax_error2(saved_token, NOUN);
     }
-  }
+}
 
-  void story()
-  {
+void story()
+{
 
     if (display_tracing_flag == true)
-      cout << "Processing <story>\n";
+        cout << "Processing <story>\n";
 
     switch (next_token()) {
-      case CONNECTOR:
-      match(CONNECTOR);
-      NOUN_FUNC();
-      match(SUBJECT);
-      AFTER_SUBJECT();
-      break;
-      default:
-      NOUN_FUNC();
-      match(SUBJECT);
-      AFTER_SUBJECT();
-      break;
+    case CONNECTOR:
+        match(CONNECTOR);
+        NOUN_FUNC();
+        match(SUBJECT);
+        AFTER_SUBJECT();
+        break;
+    default:
+        NOUN_FUNC();
+        match(SUBJECT);
+        AFTER_SUBJECT();
+        break;
     }
 
-  }
+}
+void DeleteEmptyLines(const string& FilePath)
+{
+    std::string BufferString = "";
+
+    //File
+    std::fstream FileStream;
+    std::string CurrentReadLine;
+    
+        FileStream.open(FilePath, std::fstream::in); //open the file in Input mode
+
+        //Read all the lines till the end of the file
+        while (getline(FileStream, CurrentReadLine))
+        {
+            //Check if the line is empty
+            if (!CurrentReadLine.empty())
+                BufferString = BufferString + CurrentReadLine + "\n";
+        }
+       // if (DEBUG) cout << BufferString << endl;
+        FileStream.close();
+
+        FileStream.open(FilePath, std::fstream::out); //open file in Output mode. This line will delete all data inside the file.
+        FileStream << BufferString;
+        FileStream.close();
+    }
+    // else --->> do nothing
 
 //----------- Driver ---------------------------
 
@@ -531,31 +556,32 @@ void AFTER_OBJECT()
 // Done by:  **
 int main()
 {
-  string choice;
-  string filename;
-  cout << "Display tracing messages? Y/N: ";
-  cin >> choice;
+    string choice;
+    string filename;
+    cout << "Display tracing messages? Y/N: ";
+    cin >> choice;
 
-  if(choice == "N")
-    display_tracing_flag = false;
-  cout << "Enter the input file name: ";
-  cin >> filename;
-  ifstream fin;
-  string line;
-  fin.open(filename.c_str());
-  if(fin.good()){//if the file is good run the parser.
-    while (getline(fin, line)) {//while we can get a line from the text
-      if(line==NULL)
-      continue;
-      cout<<line<<endl;
-      split = istringstream(line);
-      story();      //** calls the <story> to start parsing
-      cout  << endl;
+    if (choice == "N")
+        display_tracing_flag = false;
+    cout << "Enter the input file name: ";
+    cin >> filename;
+    ifstream fin;
+    string line;
+    string word;
+    DeleteEmptyLines(filename.c_str());
+    fin.open(filename.c_str());
+    
+    if (fin.good()) {//if the file is good run the parser.
+        while (getline(fin, line)) {//while we can get a line from the text
+            cout << line << endl;
+            split = istringstream(line);
+            story();      //** calls the <story> to start parsing
+        }
+
     }
-
-  }else
-  cout<<"There is no filename:"<<filename<<endl;
- }// end
-  //** require no other input files!
-  //** syntax error EC requires producing errors.txt of error messages
-  //** tracing On/Off EC requires sending a flag to trace message output functions
+    else
+        cout << "There is no filename:" << filename << endl;
+}// end
+ //** require no other input files!
+ //** syntax error EC requires producing errors.txt of error messages
+ //** tracing On/Off EC requires sending a flag to trace message output functions
