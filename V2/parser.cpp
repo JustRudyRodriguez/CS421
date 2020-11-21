@@ -509,7 +509,6 @@ void AFTER_OBJECT()
     }
   }
 
-
   void story()
   {
     split >> saved_lexeme;
@@ -535,6 +534,7 @@ int main()
   string filename;
   cout << "Display tracing messages? Y/N: ";
   cin >> choice;
+  
   if(choice == "N")
     display_tracing_flag = false;
   cout << "Enter the input file name: ";
