@@ -98,7 +98,7 @@ bool match(tokentype expected)
 }
 
 // ----- RDP functions - one per non-term -------------------
-}
+
 void TENSE()
 {
   split >> saved_lexeme;
