@@ -296,7 +296,7 @@ void syntax_error2(tokentype input, tokentype expected)
 
   cout << "SyntaxError 2 Encountered:" << endl;
   cout << "Input       Expected " << endl;
-  cout << input << "      " << expected << endl;
+  cout << tokenName[input] << "      " << expected << endl;
   //need exit(1)
 }
 
@@ -507,13 +507,21 @@ void AFTER_OBJECT()
 
     if (display_tracing_flag == true)
       cout << "Processing <story>\n";
-    if (next_token() == CONNECTOR)
-    {
+
+    switch (next_token()) {
+      case CONNECTOR:
       match(CONNECTOR);
+      NOUN_FUNC();
+      match(SUBJECT);
+      AFTER_SUBJECT();
+      break;
+      default:
+      NOUN_FUNC();
+      match(SUBJECT);
+      AFTER_SUBJECT();
+      break;
     }
-    NOUN_FUNC();
-    match(SUBJECT);
-    AFTER_SUBJECT();
+
   }
 
 //----------- Driver ---------------------------
