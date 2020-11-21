@@ -4,7 +4,7 @@
 #include <sstream>
 #include <string>
 using namespace std;
-
+istringstream split;
 /* Look for all **'s and complete them */
 
 //=====================================================
