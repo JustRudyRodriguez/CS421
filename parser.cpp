@@ -534,6 +534,7 @@ int main()
   string filename;
   cout << "Display tracing messages? Y/N: ";
   cin >> choice;
+  
   if(choice == "N")
     display_tracing_flag = false;
   cout << "Enter the input file name: ";
@@ -547,7 +548,9 @@ split.str(line);
       story();      //** calls the <story> to start parsing
     }
 
-  } }// end
+  }else
+  cout<<"There is no filename:"<<filename<<endl;
+ }// end
   //** require no other input files!
   //** syntax error EC requires producing errors.txt of error messages
   //** tracing On/Off EC requires sending a flag to trace message output functions
