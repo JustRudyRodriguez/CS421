@@ -4,7 +4,7 @@
 #include<sstream>
 #include<string>
 using namespace std;
-#include<scanner.cpp>
+#include"scanner.cpp"
 
 /* INSTRUCTION:  Complete all ** parts.
    You may use any method to connect this file to scanner.cpp
