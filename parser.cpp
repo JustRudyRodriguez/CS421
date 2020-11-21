@@ -548,9 +548,6 @@ int main()
     while (getline(fin, line)) {//while we can get a line from the text
       cout<<line<<endl;
       split = istringstream(line);
-while(split.good()){
-split>>word;
-cout<<word<<endl;}
       story();      //** calls the <story> to start parsing
     }
 
