@@ -345,7 +345,7 @@ bool match(tokentype expected)
         token_available = false;
         //can add flag to turn on and off tracing messages
         if (display_tracing_flag == true)
-            cout << "Matched: " + tokenName[expected] << endl; //display matched token_type when succeeds, used for tracing the program
+            cout << " Match succeeded, token type is: " + tokenName[expected] << endl; //display matched token_type when succeeds, used for tracing the program
     }
     return true;
 
@@ -531,7 +531,7 @@ void DeleteEmptyLines(const string& FilePath)
     //File
     std::fstream FileStream;
     std::string CurrentReadLine;
-    
+
         FileStream.open(FilePath, std::fstream::in); //open the file in Input mode
 
         //Read all the lines till the end of the file
@@ -570,12 +570,13 @@ int main()
     string word;
     DeleteEmptyLines(filename.c_str());
     fin.open(filename.c_str());
-    
+
     if (fin.good()) {//if the file is good run the parser.
         while (getline(fin, line)) {//while we can get a line from the text
-            // this is for testing. cout << line << endl;
+            cout << line << endl;
             split = istringstream(line);
             story();      //** calls the <story> to start parsing
+            cout<<endl;
         }
 
     }
