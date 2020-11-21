@@ -345,7 +345,7 @@ bool match(tokentype expected)
         token_available = false;
         //can add flag to turn on and off tracing messages
         if (display_tracing_flag == true)
-            cout << " Match succeeded, token type is: " + tokenName[expected] << endl; //display matched token_type when succeeds, used for tracing the program
+            cout << "Matched: " + tokenName[expected] << endl; //display matched token_type when succeeds, used for tracing the program
     }
     return true;
 
@@ -573,7 +573,7 @@ int main()
     
     if (fin.good()) {//if the file is good run the parser.
         while (getline(fin, line)) {//while we can get a line from the text
-            cout << line << endl;
+            // this is for testing. cout << line << endl;
             split = istringstream(line);
             story();      //** calls the <story> to start parsing
         }
