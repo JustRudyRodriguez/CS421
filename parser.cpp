@@ -149,7 +149,7 @@ string reservedWords[30] = {"masu", "masen", "mashita", "masendeshita", "desu", 
 // ------------ Scanner and Driver -----------------------
 
 ifstream fin; // global stream for reading from the input file
-
+istringstream split;
 // Scanner processes only one word each time it is called
 // Gives back the token type and the word itself
 // ** Done by: Rodolfo Rodriguez
@@ -294,9 +294,12 @@ void syntax_error1(string lexeme, tokentype token)
 void syntax_error2(tokentype input, tokentype expected)
 {
 
+//<<<<<<< HEAD
   cout << "SyntaxError 2 Encountered:" << endl;
   cout << "Input       Expected " << endl;
   cout << tokenName[input] << "      " << expected << endl;
+//=======
+  cout << "SYNTAX ERROR: expected " << tokenName[expected] << "but found " << tokenName[input] << endl;
   //need exit(1)
 }
 
