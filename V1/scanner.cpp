@@ -130,7 +130,9 @@ enum tokentype
   WORD2,
   EOFM,
   PERIOD,
-  ERROR
+  ERROR,
+  BE,
+  TENSE
 };
 
 // ** For the display names of tokens - must be in the same order as the tokentype.

@@ -117,28 +117,29 @@ bool period(string s)
 // ** Update the tokentype to be WORD1, WORD2, PERIOD, ERROR, EOFM, etc.
 enum tokentype
 {
-  VERB,
-  VERBNEG,
-  VERBPAST,
-  VERBPASTNEG,
-  IS,
-  WAS,
-  OBJECT,
-  SUBJECT,
-  DESTINATION,
-  PRONOUN,
-  CONNECTOR,
-  WORD1,
-  WORD2,
-  EOFM,
-  PERIOD,
-  ERROR,
-  BE,
-  NOUN
+    VERB,
+    VERBNEG,
+    VERBPAST,
+    VERBPASTNEG,
+    IS,
+    WAS,
+    OBJECT,
+    SUBJECT,
+    DESTINATION,
+    PRONOUN,
+    CONNECTOR,
+    WORD1,
+    WORD2,
+    EOFM,
+    PERIOD,
+    ERROR,
+    BE,
+    TENSE,
+    NOUN
 };
 
 // ** For the display names of tokens - must be in the same order as the tokentype.
-string tokenName[32] = {"VERB", "VERBNEG", "VERBPAST", "VERBPASTNEG", "IS", "WAS", "OBJECT", "SUBJECT", "DESTINATION", "PRONOUN", "CONNECTOR", "WORD1", "WORD2", "EOFM", "PERIOD", "ERROR", "BE", "NOUN"};
+string tokenName[33] = {"VERB", "VERBNEG", "VERBPAST", "VERBPASTNEG", "IS", "WAS", "OBJECT", "SUBJECT", "DESTINATION", "PRONOUN", "CONNECTOR", "WORD1", "WORD2", "EOFM", "PERIOD", "ERROR", "BE", "NOUN","BE","TENSE", "NOUN"};
 
 string reservedWords[30] = {"masu", "masen", "mashita", "masendeshita", "desu", "deshita", "o", "wa", "ni", "watashi", "anata", "kare", "kanojo", "sore", "mata", "soshite", "shikashi", "dakara"};
 
@@ -352,7 +353,7 @@ bool match(tokentype expected)
 
 // ----- RDP functions - one per non-term -------------------
 
-void TENSE()
+void TENSE_func()
 {
 
   if (display_tracing_flag == true)
@@ -370,7 +371,7 @@ void TENSE()
     match(VERBNEG);
     break;
   default:
-    syntax_error2(saved_token, saved_token);
+    syntax_error2(saved_token, TENSE);
   }
 }
 
@@ -396,7 +397,7 @@ void NOUN_FUNC()
     match(PRONOUN);
     break;
   default:
-    syntax_error2(saved_token, saved_token);
+    syntax_error2(saved_token, NOUN);
   }
 }
 
@@ -409,7 +410,7 @@ void AFTER_SUBJECT()
   {
   case VERB:
     VERB_FUNC();
-    TENSE();
+    TENSE_func();
     match(PERIOD);
     break;
   case WORD1:
@@ -421,7 +422,7 @@ void AFTER_SUBJECT()
     AFTER_NOUN();
     break;
   default:
-    syntax_error2(saved_token, saved_token);
+    syntax_error2(saved_token, SUBJECT);
   }
 }
 void BE_FUNC()
@@ -438,7 +439,7 @@ void BE_FUNC()
     match(WAS);
     break;
   default:
-    syntax_error2(saved_token, saved_token);
+    syntax_error2(saved_token, BE);
   }
 }
 void AFTER_OBJECT()
@@ -450,25 +451,25 @@ void AFTER_OBJECT()
   {
   case VERB:
     VERB_FUNC();
-    TENSE();
+    TENSE_func();
     match(PERIOD);
     break;
   case WORD1:
     NOUN_FUNC();
     match(DESTINATION);
     VERB_FUNC();
-    TENSE();
+    TENSE_func();
     match(PERIOD);
     break;
   case PRONOUN:
     NOUN_FUNC();
     match(DESTINATION);
     VERB_FUNC();
-    TENSE();
+    TENSE_func();
     match(PERIOD);
     break;
   default:
-    syntax_error2(saved_token, saved_token);
+    syntax_error2(saved_token, OBJECT);
   }
 }
 
@@ -490,7 +491,7 @@ void AFTER_OBJECT()
     case DESTINATION:
       match(DESTINATION);
       VERB_FUNC();
-      TENSE();
+      TENSE_func();
       match(PERIOD);
       break;
     case OBJECT:
@@ -498,7 +499,7 @@ void AFTER_OBJECT()
       AFTER_OBJECT();
       break;
     default:
-      syntax_error2(saved_token, saved_token);
+      syntax_error2(saved_token, NOUN);
     }
   }
 
