@@ -281,12 +281,12 @@ void AFTER_NOUN();
 void syntax_error1(string lexeme, tokentype token)
 {
 
-  cout << "SYNTAX ERROR: expected " << token << "but found " << lexeme << endl;
+  cout << "SYNTAX ERROR: expected " << tokenName[token] << "but found " << lexeme << endl;
   //cout<< "String       Token "<<endl;
   cout << lexeme << "      " << token << endl;
   ofstream file;
   file.open("errors.txt");
-  file << "SYNTAX ERROR: expected " << token << "but found " << lexeme << endl;
+  file << "SYNTAX ERROR: expected " << tokenName[token] << "but found " << lexeme << endl;
   file.close();
 }
 // Type of error: **
@@ -294,9 +294,13 @@ void syntax_error1(string lexeme, tokentype token)
 void syntax_error2(tokentype input, tokentype expected)
 {
 
+<<<<<<< HEAD
   cout << "SyntaxError 2 Encountered:" << endl;
   cout << "Input       Expected " << endl;
   cout << tokenName[input] << "      " << expected << endl;
+=======
+  cout << "SYNTAX ERROR: expected " << tokenName[expected] << "but found " << tokenName[input] << endl;
+>>>>>>> 83878fbbca8dda8206a4854caf557588fc901cf4
   //need exit(1)
 }
 
