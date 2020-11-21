@@ -92,18 +92,7 @@ bool match(tokentype expected) {
 }
 
 // ----- RDP functions - one per non-term -------------------
-void story(){
-  split>>saved_lexeme;
 
-  if(display_tracing_flag == true)
-    cout << "Processing <story>\n";
-  if(next_token()==CONNECTOR){
-    match(CONNECTOR);
-  }
-  NOUN();
-  match(SUBJECT);
-  AFTER_SUBJECT();
-}
 
 void AFTER_SUBJECT(){
   split>>saved_lexeme;
@@ -155,34 +144,7 @@ void AFTER_NOUN(){
     default:syntax_error2(saved_token, saved_token);
   }
 }
-void AFTER_OBJECT(){
-  split>>saved_lexeme;
 
-  if(display_tracing_flag == true)
-    cout << "Processing <AFTER_OBJECT>\n";
-  switch (next_token()) {
-    case VERB:
-      VERB_FUNC();
-      TENSE();
-      match(PERIOD);
-      break;
-    case WORD1:
-      NOUN();
-      match(DESTINATION);
-      VERB_FUNC();
-      TENSE();
-      match(PERIOD);
-      break;
-    case PRONOUN:
-      NOUN();
-      match(DESTINATION);
-      VERB_FUNC();
-      TENSE();
-      match(PERIOD);
-      break;
-    default:syntax_error2(saved_token, saved_token);
-  }
-}
 void NOUN(){
   split>>saved_lexeme;
 
@@ -240,6 +202,48 @@ void TENSE(){
     default:syntax_error2(saved_token, saved_token);
   }
 }
+void AFTER_OBJECT(){
+  split>>saved_lexeme;
+
+  if(display_tracing_flag == true)
+    cout << "Processing <AFTER_OBJECT>\n";
+  switch (next_token()) {
+    case VERB:
+      VERB_FUNC();
+      TENSE();
+      match(PERIOD);
+      break;
+    case WORD1:
+      NOUN();
+      match(DESTINATION);
+      VERB_FUNC();
+      TENSE();
+      match(PERIOD);
+      break;
+    case PRONOUN:
+      NOUN();
+      match(DESTINATION);
+      VERB_FUNC();
+      TENSE();
+      match(PERIOD);
+      break;
+    default:syntax_error2(saved_token, saved_token);
+  }
+}
+
+void story(){
+  split>>saved_lexeme;
+
+  if(display_tracing_flag == true)
+    cout << "Processing <story>\n";
+  if(next_token()==CONNECTOR){
+    match(CONNECTOR);
+  }
+  NOUN();
+  match(SUBJECT);
+  AFTER_SUBJECT();
+}
+
 // ** Make each non-terminal into a function here
 // ** Be sure to put the corresponding grammar rule above each function
 // ** Be sure to put the name of the programmer above each function
