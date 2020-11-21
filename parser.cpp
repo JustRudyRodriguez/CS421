@@ -41,8 +41,10 @@ void syntax_error1(string lexeme, tokentype token)
 // Done by: **
 void syntax_error2(tokentype input, tokentype expected)
 {
-  cout << "SYNTAX ERROR: expected " << expected << "but found " << input << endl;
 
+  cout << "SyntaxError 2 Encountered:" << endl;
+  cout << "Input       Expected " << endl;
+  cout << input << "      " << expected << endl;
   //need exit(1)
 }
 
@@ -91,8 +93,9 @@ bool match(tokentype expected)
     //can add flag to turn on and off tracing messages
     if (display_tracing_flag == true)
       cout << "Match succeeded, token type is: " + expected << endl; //display matched token_type when succeeds, used for tracing the program
-    return true;
   }
+  return true;
+
 }
 
 // ----- RDP functions - one per non-term -------------------
@@ -137,7 +140,7 @@ void NOUN()
     cout << "Processing <NOUN>\n";
   switch (next_token())
   {
-  case VERB:
+  case WORD1:
     match(WORD1);
     break;
   case PRONOUN:
@@ -156,7 +159,7 @@ void AFTER_SUBJECT()
     cout << "Processing <AFTER_SUBJECT>\n";
   switch (next_token())
   {
-  case WORD2:
+  case VERB:
     VERB_FUNC();
     TENSE();
     match(PERIOD);
@@ -191,6 +194,7 @@ void BE()
     syntax_error2(saved_token, saved_token);
   }
 }
+
   void AFTER_NOUN()
   {
     split >> saved_lexeme;
@@ -276,6 +280,7 @@ void BE()
 int main()
 {
   string choice;
+  string filename;
   cout << "Display tracing messages? Y/N: ";
   cin >> choice;
   if(choice == "N")
@@ -287,14 +292,11 @@ int main()
   fin.open(filename.c_str());
   if(fin.good()){//if the file is good run the parser.
     while (getline(fin, line)) {//while we can get a line from the text
-      split=new istringstream(line);
+split.str(line);
       story();      //** calls the <story> to start parsing
     }
 
-  } 
-  
-  }
-  // end
+  } // end
   //** require no other input files!
   //** syntax error EC requires producing errors.txt of error messages
   //** tracing On/Off EC requires sending a flag to trace message output functions
