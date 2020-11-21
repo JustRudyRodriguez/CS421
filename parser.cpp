@@ -287,7 +287,7 @@ int main()
   fin.open(filename.c_str());
   if(fin.good()){//if the file is good run the parser.
     while (getline(fin, line)) {//while we can get a line from the text
-split=new istringstream(line);
+      split=new istringstream(line);
       story();      //** calls the <story> to start parsing
     }
 
