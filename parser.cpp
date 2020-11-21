@@ -230,7 +230,7 @@ for (int i = 0; i < 30; i++)
      decided based on the last character.
 
 
-***/
+  ***/
 
   if (current.back() == 'I' || current.back() == 'E')
   {
@@ -322,7 +322,7 @@ tokentype next_token()
   {
     scanner(saved_token, saved_lexeme);
     token_available = true;
-    cout << "Scanner called using word: " << saved_lexeme << endl;
+    //cout << "Scanner called using word: " << saved_lexeme << endl;
     if (saved_token == ERROR)
     {
       syntax_error1(saved_lexeme, saved_token);
