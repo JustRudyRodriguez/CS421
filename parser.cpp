@@ -545,7 +545,7 @@ int main()
   fin.open(filename.c_str());
   if(fin.good()){//if the file is good run the parser.
     while (getline(fin, line)) {//while we can get a line from the text
-      if(line.length()==NULL)
+      if(line==NULL)
       continue;
       cout<<line<<endl;
       split = istringstream(line);
