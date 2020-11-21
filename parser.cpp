@@ -41,10 +41,8 @@ void syntax_error1(string lexeme, tokentype token)
 // Done by: **
 void syntax_error2(tokentype input, tokentype expected)
 {
+  cout << "SYNTAX ERROR: expected " << expected << "but found " << input << endl;
 
-  cout << "SyntaxError 2 Encountered:" << endl;
-  cout << "Input       Expected " << endl;
-  cout << input << "      " << expected << endl;
   //need exit(1)
 }
 
@@ -98,7 +96,7 @@ bool match(tokentype expected)
 }
 
 // ----- RDP functions - one per non-term -------------------
-}
+
 void TENSE()
 {
   split >> saved_lexeme;
@@ -122,7 +120,7 @@ void TENSE()
   }
 }
 
-void VERB()
+void VERB_FUNC()
 {
   split >> saved_lexeme;
 
@@ -139,7 +137,7 @@ void NOUN()
     cout << "Processing <NOUN>\n";
   switch (next_token())
   {
-  case WORD1:
+  case VERB:
     match(WORD1);
     break;
   case PRONOUN:
@@ -159,7 +157,7 @@ void AFTER_SUBJECT()
   switch (next_token())
   {
   case WORD2:
-    VERB();
+    VERB_FUNC();
     TENSE();
     match(PERIOD);
     break;
@@ -211,7 +209,7 @@ void BE()
       break;
     case DESTINATION:
       match(DESTINATION);
-      VERB();
+      VERB_FUNC();
       TENSE();
       match(PERIOD);
       break;
@@ -233,21 +231,21 @@ void BE()
     switch (next_token())
     {
     case VERB:
-      VERB();
+      VERB_FUNC();
       TENSE();
       match(PERIOD);
       break;
     case WORD1:
       NOUN();
       match(DESTINATION);
-      VERB();
+      VERB_FUNC();
       TENSE();
       match(PERIOD);
       break;
     case PRONOUN:
       NOUN();
       match(DESTINATION);
-      VERB();
+      VERB_FUNC();
       TENSE();
       match(PERIOD);
       break;
