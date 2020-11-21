@@ -176,7 +176,7 @@ void AFTER_SUBJECT()
     syntax_error2(saved_token, saved_token);
   }
 }
-void BE()
+void BE_FUNC()
 {
   split >> saved_lexeme;
 
@@ -204,11 +204,11 @@ void BE()
     switch (next_token())
     {
     case IS:
-      BE();
+      BE_FUNC();
       match(PERIOD);
       break;
     case WAS:
-      BE();
+      BE_FUNC();
       match(PERIOD);
       break;
     case DESTINATION:
