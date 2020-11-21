@@ -294,13 +294,12 @@ void syntax_error1(string lexeme, tokentype token)
 void syntax_error2(tokentype input, tokentype expected)
 {
 
-<<<<<<< HEAD
+//<<<<<<< HEAD
   cout << "SyntaxError 2 Encountered:" << endl;
   cout << "Input       Expected " << endl;
   cout << tokenName[input] << "      " << expected << endl;
-=======
+//=======
   cout << "SYNTAX ERROR: expected " << tokenName[expected] << "but found " << tokenName[input] << endl;
->>>>>>> 83878fbbca8dda8206a4854caf557588fc901cf4
   //need exit(1)
 }
 
