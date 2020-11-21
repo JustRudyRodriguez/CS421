@@ -294,6 +294,11 @@ void syntax_error1(string lexeme, tokentype token)
 void syntax_error2(tokentype input, tokentype expected)
 {
 
+//<<<<<<< HEAD
+  cout << "SyntaxError 2 Encountered:" << endl;
+  cout << "Input       Expected " << endl;
+  cout << tokenName[input] << "      " << expected << endl;
+//=======
   cout << "SYNTAX ERROR: expected " << tokenName[expected] << "but found " << tokenName[input] << endl;
   //need exit(1)
 }
@@ -505,13 +510,21 @@ void AFTER_OBJECT()
 
     if (display_tracing_flag == true)
       cout << "Processing <story>\n";
-    if (next_token() == CONNECTOR)
-    {
+
+    switch (next_token()) {
+      case CONNECTOR:
       match(CONNECTOR);
+      NOUN_FUNC();
+      match(SUBJECT);
+      AFTER_SUBJECT();
+      break;
+      default:
+      NOUN_FUNC();
+      match(SUBJECT);
+      AFTER_SUBJECT();
+      break;
     }
-    NOUN_FUNC();
-    match(SUBJECT);
-    AFTER_SUBJECT();
+
   }
 
 //----------- Driver ---------------------------
