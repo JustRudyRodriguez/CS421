@@ -257,7 +257,6 @@ void AFTER_OBJECT()
     }
   }
 
-
   void story()
   {
     split >> saved_lexeme;
