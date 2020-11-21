@@ -122,7 +122,7 @@ void TENSE()
   }
 }
 
-void VERB_FUNC()
+void VERB()
 {
   split >> saved_lexeme;
 
@@ -158,8 +158,8 @@ void AFTER_SUBJECT()
     cout << "Processing <AFTER_SUBJECT>\n";
   switch (next_token())
   {
-  case VERB:
-    VERB_FUNC();
+  case WORD2:
+    VERB();
     TENSE();
     match(PERIOD);
     break;
@@ -211,7 +211,7 @@ void BE()
       break;
     case DESTINATION:
       match(DESTINATION);
-      VERB_FUNC();
+      VERB();
       TENSE();
       match(PERIOD);
       break;
@@ -233,21 +233,21 @@ void BE()
     switch (next_token())
     {
     case VERB:
-      VERB_FUNC();
+      VERB();
       TENSE();
       match(PERIOD);
       break;
     case WORD1:
       NOUN();
       match(DESTINATION);
-      VERB_FUNC();
+      VERB();
       TENSE();
       match(PERIOD);
       break;
     case PRONOUN:
       NOUN();
       match(DESTINATION);
-      VERB_FUNC();
+      VERB();
       TENSE();
       match(PERIOD);
       break;
