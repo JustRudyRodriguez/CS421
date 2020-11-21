@@ -281,12 +281,12 @@ void AFTER_NOUN();
 void syntax_error1(string lexeme, tokentype token)
 {
 
-  cout << "SYNTAX ERROR: expected " << token << "but found " << lexeme << endl;
+  cout << "SYNTAX ERROR: expected " << tokenName[token] << "but found " << lexeme << endl;
   //cout<< "String       Token "<<endl;
   cout << lexeme << "      " << token << endl;
   ofstream file;
   file.open("errors.txt");
-  file << "SYNTAX ERROR: expected " << token << "but found " << lexeme << endl;
+  file << "SYNTAX ERROR: expected " << tokenName[token] << "but found " << lexeme << endl;
   file.close();
 }
 // Type of error: **
@@ -294,9 +294,7 @@ void syntax_error1(string lexeme, tokentype token)
 void syntax_error2(tokentype input, tokentype expected)
 {
 
-  cout << "SyntaxError 2 Encountered:" << endl;
-  cout << "Input       Expected " << endl;
-  cout << input << "      " << expected << endl;
+  cout << "SYNTAX ERROR: expected " << tokenName[expected] << "but found " << tokenName[input] << endl;
   //need exit(1)
 }
 
@@ -308,7 +306,7 @@ string saved_lexeme;              // the example has this within next_token()
 bool token_available;             //not sure if this needs to be here.
 bool display_tracing_flag = true; // used for turning on and off tracing messages
 
-istringstream split;
+
 
 // Purpose: **
 // Done by: **
