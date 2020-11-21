@@ -229,7 +229,7 @@ for (int i = 0; i < 30; i++)
      decided based on the last character.
 
 
-***/
+  ***/
 
   if (current.back() == 'I' || current.back() == 'E')
   {
