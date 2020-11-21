@@ -5,7 +5,7 @@
 #include <string>
 using namespace std;
 #include "scanner.cpp"
-
+void AFTER_NOUN();
 /* INSTRUCTION:  Complete all ** parts.
    You may use any method to connect this file to scanner.cpp
    that you had written.
@@ -194,6 +194,37 @@ void BE_FUNC()
     syntax_error2(saved_token, saved_token);
   }
 }
+void AFTER_OBJECT()
+{
+  split >> saved_lexeme;
+
+  if (display_tracing_flag == true)
+    cout << "Processing <AFTER_OBJECT>\n";
+  switch (next_token())
+  {
+  case VERB:
+    VERB_FUNC();
+    TENSE();
+    match(PERIOD);
+    break;
+  case WORD1:
+    NOUN_FUNC();
+    match(DESTINATION);
+    VERB_FUNC();
+    TENSE();
+    match(PERIOD);
+    break;
+  case PRONOUN:
+    NOUN_FUNC();
+    match(DESTINATION);
+    VERB_FUNC();
+    TENSE();
+    match(PERIOD);
+    break;
+  default:
+    syntax_error2(saved_token, saved_token);
+  }
+}
 
   void AFTER_NOUN()
   {
@@ -226,37 +257,6 @@ void BE_FUNC()
     }
   }
 
-  void AFTER_OBJECT()
-  {
-    split >> saved_lexeme;
-
-    if (display_tracing_flag == true)
-      cout << "Processing <AFTER_OBJECT>\n";
-    switch (next_token())
-    {
-    case VERB:
-      VERB_FUNC();
-      TENSE();
-      match(PERIOD);
-      break;
-    case WORD1:
-      NOUN_FUNC();
-      match(DESTINATION);
-      VERB_FUNC();
-      TENSE();
-      match(PERIOD);
-      break;
-    case PRONOUN:
-      NOUN_FUNC();
-      match(DESTINATION);
-      VERB_FUNC();
-      TENSE();
-      match(PERIOD);
-      break;
-    default:
-      syntax_error2(saved_token, saved_token);
-    }
-  }
 
   void story()
   {
