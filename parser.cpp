@@ -53,6 +53,9 @@ tokentype saved_token;
 string saved_lexeme;// the example has this within next_token()
 bool token_available;//not sure if this needs to be here.
 bool display_tracing_flag = true; // used for turning on and off tracing messages
+
+istringstream split;
+
 // Purpose: **
 // Done by: **
 
@@ -244,7 +247,6 @@ void TENSE(){
 // Grammar: **
 // Done by: **
 
-istringstream split;
 string filename;
 
 //----------- Driver ---------------------------
