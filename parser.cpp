@@ -132,7 +132,7 @@ void VERB_FUNC()
   match(WORD2);
 }
 
-void NOUN()
+void NOUN_FUNC()
 {
   split >> saved_lexeme;
 
@@ -165,11 +165,11 @@ void AFTER_SUBJECT()
     match(PERIOD);
     break;
   case WORD1:
-    NOUN();
+    NOUN_FUNC();
     AFTER_NOUN();
     break;
   case PRONOUN:
-    NOUN();
+    NOUN_FUNC();
     AFTER_NOUN();
     break;
   default:
@@ -240,14 +240,14 @@ void BE()
       match(PERIOD);
       break;
     case WORD1:
-      NOUN();
+      NOUN_FUNC();
       match(DESTINATION);
       VERB_FUNC();
       TENSE();
       match(PERIOD);
       break;
     case PRONOUN:
-      NOUN();
+      NOUN_FUNC();
       match(DESTINATION);
       VERB_FUNC();
       TENSE();
@@ -268,7 +268,7 @@ void BE()
     {
       match(CONNECTOR);
     }
-    NOUN();
+    NOUN_FUNC();
     match(SUBJECT);
     AFTER_SUBJECT();
   }
