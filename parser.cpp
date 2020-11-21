@@ -4,7 +4,7 @@
 #include <sstream>
 #include <string>
 using namespace std;
-
+istringstream split;
 /* Look for all **'s and complete them */
 
 //=====================================================
@@ -308,7 +308,7 @@ string saved_lexeme;              // the example has this within next_token()
 bool token_available;             //not sure if this needs to be here.
 bool display_tracing_flag = true; // used for turning on and off tracing messages
 
-istringstream split;
+
 
 // Purpose: **
 // Done by: **
