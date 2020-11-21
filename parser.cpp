@@ -192,7 +192,7 @@ void BE()
   default:
     syntax_error2(saved_token, saved_token);
   }
-
+}
   void AFTER_NOUN()
   {
     split >> saved_lexeme;
@@ -295,7 +295,8 @@ split=new istringstream(line);
 
   } 
   
-  }// end
+  }
+  // end
   //** require no other input files!
   //** syntax error EC requires producing errors.txt of error messages
   //** tracing On/Off EC requires sending a flag to trace message output functions
