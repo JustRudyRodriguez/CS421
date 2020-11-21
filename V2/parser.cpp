@@ -4,7 +4,7 @@
 #include <sstream>
 #include <string>
 using namespace std;
-
+istringstream split;
 /* Look for all **'s and complete them */
 
 //=====================================================
@@ -117,28 +117,29 @@ bool period(string s)
 // ** Update the tokentype to be WORD1, WORD2, PERIOD, ERROR, EOFM, etc.
 enum tokentype
 {
-  VERB,
-  VERBNEG,
-  VERBPAST,
-  VERBPASTNEG,
-  IS,
-  WAS,
-  OBJECT,
-  SUBJECT,
-  DESTINATION,
-  PRONOUN,
-  CONNECTOR,
-  WORD1,
-  WORD2,
-  EOFM,
-  PERIOD,
-  ERROR,
-  BE,
-  NOUN
+    VERB,
+    VERBNEG,
+    VERBPAST,
+    VERBPASTNEG,
+    IS,
+    WAS,
+    OBJECT,
+    SUBJECT,
+    DESTINATION,
+    PRONOUN,
+    CONNECTOR,
+    WORD1,
+    WORD2,
+    EOFM,
+    PERIOD,
+    ERROR,
+    BE,
+    TENSE,
+    NOUN
 };
 
 // ** For the display names of tokens - must be in the same order as the tokentype.
-string tokenName[32] = {"VERB", "VERBNEG", "VERBPAST", "VERBPASTNEG", "IS", "WAS", "OBJECT", "SUBJECT", "DESTINATION", "PRONOUN", "CONNECTOR", "WORD1", "WORD2", "EOFM", "PERIOD", "ERROR", "BE", "NOUN"};
+string tokenName[33] = {"VERB", "VERBNEG", "VERBPAST", "VERBPASTNEG", "IS", "WAS", "OBJECT", "SUBJECT", "DESTINATION", "PRONOUN", "CONNECTOR", "WORD1", "WORD2", "EOFM", "PERIOD", "ERROR", "BE", "NOUN","BE","TENSE", "NOUN"};
 
 string reservedWords[30] = {"masu", "masen", "mashita", "masendeshita", "desu", "deshita", "o", "wa", "ni", "watashi", "anata", "kare", "kanojo", "sore", "mata", "soshite", "shikashi", "dakara"};
 
@@ -159,9 +160,9 @@ int scanner(tokentype &tt, string &w)
   // ** Grab the next word from the file via fin
   // 1. If it is eofm, return right now.
   string current;
-  fin >> current;
+  split >> current;
   tt = ERROR; // setting this as a starting value for logic reasons ahead, ignore for now.
-
+  cout << "Scanner called using word: "<<current << endl;
   if (current.compare(" ") == 0)
   {
     fin >> current;
@@ -229,7 +230,7 @@ for (int i = 0; i < 30; i++)
      decided based on the last character.
 
 
-***/
+  ***/
 
   if (current.back() == 'I' || current.back() == 'E')
   {
@@ -281,12 +282,12 @@ void AFTER_NOUN();
 void syntax_error1(string lexeme, tokentype token)
 {
 
-  cout << "SYNTAX ERROR: expected " << token << "but found " << lexeme << endl;
+  cout << "SYNTAX ERROR 1: expected " << tokenName[token] << " but found " << lexeme << endl;
   //cout<< "String       Token "<<endl;
-  cout << lexeme << "      " << token << endl;
+  //cout << lexeme << "      " << token << endl;
   ofstream file;
   file.open("errors.txt");
-  file << "SYNTAX ERROR: expected " << token << "but found " << lexeme << endl;
+  file << "SYNTAX ERROR: expected " << tokenName[token] << " but found " << lexeme << endl;
   file.close();
 }
 // Type of error: **
@@ -294,9 +295,9 @@ void syntax_error1(string lexeme, tokentype token)
 void syntax_error2(tokentype input, tokentype expected)
 {
 
-  cout << "SyntaxError 2 Encountered:" << endl;
-  cout << "Input       Expected " << endl;
-  cout << input << "      " << expected << endl;
+//<<<<<<< HEAD
+//=======
+  cout << "SYNTAX ERROR 2: expected " << tokenName[expected] << " but found " << tokenName[input] << endl;
   //need exit(1)
 }
 
@@ -308,7 +309,7 @@ string saved_lexeme;              // the example has this within next_token()
 bool token_available;             //not sure if this needs to be here.
 bool display_tracing_flag = true; // used for turning on and off tracing messages
 
-istringstream split;
+
 
 // Purpose: **
 // Done by: **
@@ -321,7 +322,7 @@ tokentype next_token()
   {
     scanner(saved_token, saved_lexeme);
     token_available = true;
-
+    //cout << "Scanner called using word: " << saved_lexeme << endl;
     if (saved_token == ERROR)
     {
       syntax_error1(saved_lexeme, saved_token);
@@ -344,7 +345,7 @@ bool match(tokentype expected)
     token_available = false;
     //can add flag to turn on and off tracing messages
     if (display_tracing_flag == true)
-      cout << "Match succeeded, token type is: " + expected << endl; //display matched token_type when succeeds, used for tracing the program
+      cout << " Match succeeded, token type is: " + tokenName[expected] << endl; //display matched token_type when succeeds, used for tracing the program
   }
   return true;
 
@@ -352,9 +353,8 @@ bool match(tokentype expected)
 
 // ----- RDP functions - one per non-term -------------------
 
-void TENSE()
+void TENSE_func()
 {
-  split >> saved_lexeme;
 
   if (display_tracing_flag == true)
     cout << "Processing <TENSE>\n";
@@ -371,13 +371,12 @@ void TENSE()
     match(VERBNEG);
     break;
   default:
-    syntax_error2(saved_token, saved_token);
+    syntax_error2(saved_token, TENSE);
   }
 }
 
 void VERB_FUNC()
 {
-  split >> saved_lexeme;
 
   if (display_tracing_flag == true)
     cout << "Processing <VERB>\n";
@@ -386,7 +385,6 @@ void VERB_FUNC()
 
 void NOUN_FUNC()
 {
-  split >> saved_lexeme;
 
   if (display_tracing_flag == true)
     cout << "Processing <NOUN>\n";
@@ -399,13 +397,12 @@ void NOUN_FUNC()
     match(PRONOUN);
     break;
   default:
-    syntax_error2(saved_token, saved_token);
+    syntax_error2(saved_token, NOUN);
   }
 }
 
 void AFTER_SUBJECT()
 {
-  split >> saved_lexeme;
 
   if (display_tracing_flag == true)
     cout << "Processing <AFTER_SUBJECT>\n";
@@ -413,7 +410,7 @@ void AFTER_SUBJECT()
   {
   case VERB:
     VERB_FUNC();
-    TENSE();
+    TENSE_func();
     match(PERIOD);
     break;
   case WORD1:
@@ -425,12 +422,11 @@ void AFTER_SUBJECT()
     AFTER_NOUN();
     break;
   default:
-    syntax_error2(saved_token, saved_token);
+    syntax_error2(saved_token, SUBJECT);
   }
 }
 void BE_FUNC()
 {
-  split >> saved_lexeme;
 
   if (display_tracing_flag == true)
     cout << "Processing <BE>\n";
@@ -443,12 +439,11 @@ void BE_FUNC()
     match(WAS);
     break;
   default:
-    syntax_error2(saved_token, saved_token);
+    syntax_error2(saved_token, BE);
   }
 }
 void AFTER_OBJECT()
 {
-  split >> saved_lexeme;
 
   if (display_tracing_flag == true)
     cout << "Processing <AFTER_OBJECT>\n";
@@ -456,31 +451,30 @@ void AFTER_OBJECT()
   {
   case VERB:
     VERB_FUNC();
-    TENSE();
+    TENSE_func();
     match(PERIOD);
     break;
   case WORD1:
     NOUN_FUNC();
     match(DESTINATION);
     VERB_FUNC();
-    TENSE();
+    TENSE_func();
     match(PERIOD);
     break;
   case PRONOUN:
     NOUN_FUNC();
     match(DESTINATION);
     VERB_FUNC();
-    TENSE();
+    TENSE_func();
     match(PERIOD);
     break;
   default:
-    syntax_error2(saved_token, saved_token);
+    syntax_error2(saved_token, OBJECT);
   }
 }
 
   void AFTER_NOUN()
   {
-    split >> saved_lexeme;
 
     if (display_tracing_flag == true)
       cout << "Processing <AFTER_NOUN>\n";
@@ -497,7 +491,7 @@ void AFTER_OBJECT()
     case DESTINATION:
       match(DESTINATION);
       VERB_FUNC();
-      TENSE();
+      TENSE_func();
       match(PERIOD);
       break;
     case OBJECT:
@@ -505,23 +499,30 @@ void AFTER_OBJECT()
       AFTER_OBJECT();
       break;
     default:
-      syntax_error2(saved_token, saved_token);
+      syntax_error2(saved_token, NOUN);
     }
   }
 
   void story()
   {
-    split >> saved_lexeme;
 
     if (display_tracing_flag == true)
       cout << "Processing <story>\n";
-    if (next_token() == CONNECTOR)
-    {
+
+    switch (next_token()) {
+      case CONNECTOR:
       match(CONNECTOR);
+      NOUN_FUNC();
+      match(SUBJECT);
+      AFTER_SUBJECT();
+      break;
+      default:
+      NOUN_FUNC();
+      match(SUBJECT);
+      AFTER_SUBJECT();
+      break;
     }
-    NOUN_FUNC();
-    match(SUBJECT);
-    AFTER_SUBJECT();
+
   }
 
 //----------- Driver ---------------------------
@@ -534,7 +535,7 @@ int main()
   string filename;
   cout << "Display tracing messages? Y/N: ";
   cin >> choice;
-  
+
   if(choice == "N")
     display_tracing_flag = false;
   cout << "Enter the input file name: ";

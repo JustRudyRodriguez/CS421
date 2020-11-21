@@ -162,7 +162,7 @@ int scanner(tokentype &tt, string &w)
   string current;
   split >> current;
   tt = ERROR; // setting this as a starting value for logic reasons ahead, ignore for now.
-
+  cout << "Scanner called using word: "<<current << endl;
   if (current.compare(" ") == 0)
   {
     fin >> current;
@@ -542,10 +542,15 @@ int main()
   cin >> filename;
   ifstream fin;
   string line;
+  string word;
   fin.open(filename.c_str());
   if(fin.good()){//if the file is good run the parser.
     while (getline(fin, line)) {//while we can get a line from the text
-split.str(line);
+      cout<<line<<endl;
+      split = istringstream(line);
+while(split.good()){
+split>>word;
+cout<<word<<endl;}
       story();      //** calls the <story> to start parsing
     }
 
