@@ -87,7 +87,7 @@ if(next_token()==CONNECTOR)
 }
 
 void AFTER_SUBJECT(){
-  switch (next_toke()) {
+  switch (next_token()) {
     case VERB:
       VERB();
       TENSE();
@@ -98,12 +98,18 @@ void AFTER_SUBJECT(){
       AFTER_NOUN()
       break;
     default:
+    syntaxerror2(next_token(),SUBJECT);
+    break;
 
   }
 }
 void AFTER_NOUN(){
   switch (next_token()) {
-    case BE:
+    case WAS:
+      BE();
+      match(PERIOD);
+      break;
+    case IS:
       BE();
       match(PERIOD);
       break;
@@ -118,6 +124,8 @@ void AFTER_NOUN(){
       AFTER_OBJECT();
       break;
     default:
+    syntaxerror2(next_token(),NOUN);
+    break;
   }
 }
 void AFTER_OBJECT(){
@@ -125,7 +133,7 @@ void AFTER_OBJECT(){
     case VERB:
       VERB();
       TENSE();
-      match(period);
+      match(PERIOD);
       break;
     case NOUN:
       NOUN();
@@ -135,6 +143,8 @@ void AFTER_OBJECT(){
       match(PERIOD);
       break;
     default:
+    syntaxerror2(next_token(),OBJECT);
+    break;
   }
 }
 void NOUN(){
@@ -146,6 +156,8 @@ void NOUN(){
       match(PRONOUN);
       break;
     default:
+    syntaxerror2(next_token(),NOUN);
+    break;
 
   }
 }
@@ -153,7 +165,7 @@ void VERB(){
   match(WORD2);
 }
 void BE(){
-  switch (next_token) {
+  switch (next_token()) {
     case IS:
       match(IS);
       break;
@@ -161,10 +173,12 @@ void BE(){
       match(WAS);
       break;
     default:
+    syntaxerror2(next_token(),BE);
+    break;
   }
 }
 void TENSE(){
-  switch (next_token) {
+  switch (next_token()) {
     case VERBPAST:
       break;
     case VERBPASTNEG:
@@ -176,6 +190,8 @@ void TENSE(){
       match(VERBNEG);
       break;
     default:
+    syntaxerror2(next_token(),TENSE);
+    break;
   }
 }
 // ** Make each non-terminal into a function here
@@ -201,7 +217,6 @@ int main()
   fin.open(filename.c_str());
   if(fin.good()){//if the file is good run the parser.
     while (getline(fin, line)) {//while we can get a line from the text
-      while(token_available)//while we still have a valid token
       story(line);      //** calls the <story> to start parsing
     }
     fin.close();//** closes the input file
