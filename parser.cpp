@@ -159,7 +159,7 @@ int scanner(tokentype &tt, string &w)
   // ** Grab the next word from the file via fin
   // 1. If it is eofm, return right now.
   string current;
-  fin >> current;
+  split >> current;
   tt = ERROR; // setting this as a starting value for logic reasons ahead, ignore for now.
 
   if (current.compare(" ") == 0)
@@ -354,7 +354,6 @@ bool match(tokentype expected)
 
 void TENSE()
 {
-  split >> saved_lexeme;
 
   if (display_tracing_flag == true)
     cout << "Processing <TENSE>\n";
@@ -377,7 +376,6 @@ void TENSE()
 
 void VERB_FUNC()
 {
-  split >> saved_lexeme;
 
   if (display_tracing_flag == true)
     cout << "Processing <VERB>\n";
@@ -386,7 +384,6 @@ void VERB_FUNC()
 
 void NOUN_FUNC()
 {
-  split >> saved_lexeme;
 
   if (display_tracing_flag == true)
     cout << "Processing <NOUN>\n";
@@ -405,7 +402,6 @@ void NOUN_FUNC()
 
 void AFTER_SUBJECT()
 {
-  split >> saved_lexeme;
 
   if (display_tracing_flag == true)
     cout << "Processing <AFTER_SUBJECT>\n";
@@ -430,7 +426,6 @@ void AFTER_SUBJECT()
 }
 void BE_FUNC()
 {
-  split >> saved_lexeme;
 
   if (display_tracing_flag == true)
     cout << "Processing <BE>\n";
@@ -448,7 +443,6 @@ void BE_FUNC()
 }
 void AFTER_OBJECT()
 {
-  split >> saved_lexeme;
 
   if (display_tracing_flag == true)
     cout << "Processing <AFTER_OBJECT>\n";
@@ -480,7 +474,6 @@ void AFTER_OBJECT()
 
   void AFTER_NOUN()
   {
-    split >> saved_lexeme;
 
     if (display_tracing_flag == true)
       cout << "Processing <AFTER_NOUN>\n";
@@ -511,7 +504,6 @@ void AFTER_OBJECT()
 
   void story()
   {
-    split >> saved_lexeme;
 
     if (display_tracing_flag == true)
       cout << "Processing <story>\n";
@@ -534,7 +526,7 @@ int main()
   string filename;
   cout << "Display tracing messages? Y/N: ";
   cin >> choice;
-  
+
   if(choice == "N")
     display_tracing_flag = false;
   cout << "Enter the input file name: ";
