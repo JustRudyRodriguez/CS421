@@ -149,7 +149,7 @@ string reservedWords[30] = {"masu", "masen", "mashita", "masendeshita", "desu", 
 // ------------ Scanner and Driver -----------------------
 
 ifstream fin; // global stream for reading from the input file
-istringstream split;
+
 // Scanner processes only one word each time it is called
 // Gives back the token type and the word itself
 // ** Done by: Rodolfo Rodriguez
@@ -281,12 +281,12 @@ void AFTER_NOUN();
 void syntax_error1(string lexeme, tokentype token)
 {
 
-  cout << "SYNTAX ERROR: expected " << tokenName[token] << "but found " << lexeme << endl;
+  cout << "SYNTAX ERROR 1: expected " << tokenName[token] << " but found " << lexeme << endl;
   //cout<< "String       Token "<<endl;
   cout << lexeme << "      " << token << endl;
   ofstream file;
   file.open("errors.txt");
-  file << "SYNTAX ERROR: expected " << tokenName[token] << "but found " << lexeme << endl;
+  file << "SYNTAX ERROR: expected " << tokenName[token] << " but found " << lexeme << endl;
   file.close();
 }
 // Type of error: **
@@ -295,11 +295,8 @@ void syntax_error2(tokentype input, tokentype expected)
 {
 
 //<<<<<<< HEAD
-  cout << "SyntaxError 2 Encountered:" << endl;
-  cout << "Input       Expected " << endl;
-  cout << tokenName[input] << "      " << expected << endl;
 //=======
-  cout << "SYNTAX ERROR: expected " << tokenName[expected] << "but found " << tokenName[input] << endl;
+  cout << "SYNTAX ERROR 2: expected " << tokenName[expected] << " but found " << tokenName[input] << endl;
   //need exit(1)
 }
 
@@ -324,7 +321,7 @@ tokentype next_token()
   {
     scanner(saved_token, saved_lexeme);
     token_available = true;
-
+    cout << "Scanner called using word: " << saved_lexeme << endl;
     if (saved_token == ERROR)
     {
       syntax_error1(saved_lexeme, saved_token);
@@ -347,7 +344,7 @@ bool match(tokentype expected)
     token_available = false;
     //can add flag to turn on and off tracing messages
     if (display_tracing_flag == true)
-      cout << "Match succeeded, token type is: " + expected << endl; //display matched token_type when succeeds, used for tracing the program
+      cout << " Match succeeded, token type is: " + tokenName[expected] << endl; //display matched token_type when succeeds, used for tracing the program
   }
   return true;
 
