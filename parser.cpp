@@ -120,7 +120,7 @@ bool word(string s)
         else if (state == 7 && (s[charpos] == 'n'))
             state = 6;
 
-        else if (state == 7 && (s[charpos] == 'g' || s[charpos] == 'b' || s[charpos] == 'm' || s[charpos] == 'k'  || s[charpos] == 'h' || s[charpos] == 'p' || s[charpos] == 'r'))
+        else if (state == 7 && (s[charpos] == 'g' || s[charpos] == 'b' || s[charpos] == 'm' || s[charpos] == 'k' || s[charpos] == 'h' || s[charpos] == 'p' || s[charpos] == 'r'))
             state = 3;
 
 
@@ -138,7 +138,7 @@ bool word(string s)
     } //end of while
 
     // where did I end up????
-    if (state == 7|| state == 6  )
+    if (state == 7 || state == 6)
         return (true); // end in a final state
     else
         return (false);
@@ -404,7 +404,7 @@ void TENSE_func()
         cout << "Processing <TENSE>\n";
     switch (next_token())
     {
-    case VERBPAST:
+    case VERBPAST://went here
         break;
     case VERBPASTNEG:
         break;
@@ -452,7 +452,7 @@ void AFTER_SUBJECT()
         cout << "Processing <AFTER_SUBJECT>\n";
     switch (next_token())
     {
-    case VERB:
+    case WORD2://changed from VERB: to WORD2:
         VERB_FUNC();
         TENSE_func();
         match(PERIOD);
@@ -493,7 +493,7 @@ void AFTER_OBJECT()
         cout << "Processing <AFTER_OBJECT>\n";
     switch (next_token())
     {
-    case VERB:
+    case WORD2://changed VERB => WORD2
         VERB_FUNC();
         TENSE_func();
         match(PERIOD);
@@ -570,29 +570,28 @@ void story()
 }
 void DeleteEmptyLines(const string& FilePath)
 {
-    std::string BufferString = "";
+    string BufferString = "";
 
     //File
-    std::fstream FileStream;
-    std::string CurrentReadLine;
+    fstream FileStream;
+    string CurrentReadLine;
 
-        FileStream.open(FilePath, std::fstream::in); //open the file in Input mode
+    FileStream.open(FilePath, fstream::in); //open the file in Input mode
 
-        //Read all the lines till the end of the file
-        while (getline(FileStream, CurrentReadLine))
-        {
-            //Check if the line is empty
-            if (!CurrentReadLine.empty())
-                BufferString = BufferString + CurrentReadLine + "\n";
-        }
-       // if (DEBUG) cout << BufferString << endl;
-        FileStream.close();
-
-        FileStream.open(FilePath, std::fstream::out); //open file in Output mode. This line will delete all data inside the file.
-        FileStream << BufferString;
-        FileStream.close();
+    //Read all the lines till the end of the file
+    while (getline(FileStream, CurrentReadLine))
+    {
+        //Check if the line is empty
+        if (!CurrentReadLine.empty())
+            BufferString = BufferString + CurrentReadLine + "\n";
     }
-    // else --->> do nothing
+    FileStream.close();
+    FileStream.open(FilePath, fstream::out); //open file in Output mode. This line will delete all data inside the file.
+    FileStream << BufferString;
+    FileStream.close();
+}
+
+// else --->> do nothing
 
 //----------- Driver ---------------------------
 
@@ -600,12 +599,12 @@ void DeleteEmptyLines(const string& FilePath)
 // Done by:  **
 int main()
 {
-std::cout << "CS 433 Programming assignment 3" << std::endl;
-std::cout << "Authors: Andrew, Rudy, and Julian" << std::endl;
-std::cout << "Date: 11/22/2020" << std::endl;
-std::cout << "Course: CS421 (Theory of Computing)" << std::endl;
-std::cout << "Description : parser project " << std::endl;
-std::cout << "=================================" << std::endl;
+    std::cout << "CS 433 Programming assignment 3" << std::endl;
+    std::cout << "Authors: Andrew, Rudy, and Julian" << std::endl;
+    std::cout << "Date: 11/22/2020" << std::endl;
+    std::cout << "Course: CS421 (Theory of Computing)" << std::endl;
+    std::cout << "Description : parser project " << std::endl;
+    std::cout << "=================================" << std::endl;
     string choice;
     string filename;
     cout << "Display tracing messages? Y/N: ";
@@ -622,14 +621,15 @@ std::cout << "=================================" << std::endl;
     cout << endl;
     if (fin.good()) {//if the file is good run the parser.
         while (getline(fin, line)) {//while we can get a line from the text
+
             if (line == "eofm")
                 break;
             cout << "====================================================================================================" << endl;
-            cout << "The line is: "<<line << endl;
+            cout << "The line is: " << line << endl;
             split = istringstream(line);
             story();      //** calls the <story> to start parsing
             cout << endl;
-                    token_available = false;
+            token_available = false;
 
 
         }
