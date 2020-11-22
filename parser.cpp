@@ -526,29 +526,24 @@ void story()
 }
 void DeleteEmptyLines(const string& FilePath)
 {
-    std::string BufferString = "";
-
-    //File
-    std::fstream FileStream;
-    std::string CurrentReadLine;
-
-        FileStream.open(FilePath, std::fstream::in); //open the file in Input mode
-
-        //Read all the lines till the end of the file
-        while (getline(FileStream, CurrentReadLine))
-        {
-            //Check if the line is empty
-            if (!CurrentReadLine.empty())
-                BufferString = BufferString + CurrentReadLine + "\n";
-        }
-       // if (DEBUG) cout << BufferString << endl;
-        FileStream.close();
-
-        FileStream.open(FilePath, std::fstream::out); //open file in Output mode. This line will delete all data inside the file.
-        FileStream << BufferString;
-        FileStream.close();
+    //std::
+    string BufferString = "";
+    //std::
+    fstream FileStream;
+    //std::
+    string CurrentReadLine;
+    FileStream.open(FilePath, /*std::*/ fstream::in); //open the file in Input mode
+    while (getline(FileStream, CurrentReadLine))
+    {
+        if (!CurrentReadLine.empty())
+            BufferString = BufferString + CurrentReadLine + "\n";
     }
-    // else --->> do nothing
+    FileStream.close();
+    FileStream.open(FilePath, /*std::*/ fstream::out);
+    FileStream << BufferString;
+    FileStream.close();
+}
+
 
 //----------- Driver ---------------------------
 
@@ -574,9 +569,9 @@ int main()
     if (fin.good()) {//if the file is good run the parser.
         while (getline(fin, line)) {//while we can get a line from the text
             cout << line << endl;
+            if (line == "eofm") break;
             split = istringstream(line);
             story();      //** calls the <story> to start parsing
-            cout<<endl;
         }
 
     }
