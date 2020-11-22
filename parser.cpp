@@ -35,70 +35,102 @@ bool word(string s)
 
     */
     while (s[charpos] != '\0')
-    {
+    { //q0
         if (state == 0 && s[charpos] == 'c')
             state = 1;
         else if (state == 0 && s[charpos] == 't')
             state = 2;
-        else if (state == 0 && (s[charpos] == 'b' || s[charpos] == 'm' || s[charpos] == 'k' ||
+        else if (state == 0 && s[charpos] == 's')
+            state = 5;
+
+        else if (state == 0 && (s[charpos] == 'g' || s[charpos] == 'b' || s[charpos] == 'm' || s[charpos] == 'k' ||
             s[charpos] == 'n' || s[charpos] == 'h' || s[charpos] == 'p' || s[charpos] == 'r'))
             state = 3;
+
+
         else if (state == 0 && (s[charpos] == 'd' || s[charpos] == 'w' || s[charpos] == 'z' ||
             s[charpos] == 'y' || s[charpos] == 'j'))
             state = 4;
-        else if (state == 0 && s[charpos] == 's')
-            state = 5;
-        else if (state == 0 && (s[charpos] == 'a' || s[charpos] == 'i' || s[charpos] == 'I' || s[charpos] == 'E' || s[charpos] == 'u' ||
-            s[charpos] == 'e' || s[charpos] == 'o'))
+
+        else if (state == 0 && (s[charpos] == 'a' || s[charpos] == 'i' || s[charpos] == 'I' || s[charpos] == 'E' || s[charpos] == 'e' || s[charpos] == 'u' ||
+            s[charpos] == 'o'))
             state = 7;
-        else if (state == 1 && s[charpos] == 's')
+
+        //qc
+        else if (state == 1 && s[charpos] == 'h')
             state = 4;
+
+
+        //qt
         else if (state == 2 && s[charpos] == 's')
             state = 4;
-        else if (state == 2 && (s[charpos] == 'a' || s[charpos] == 'i' || s[charpos] == 'I' || s[charpos] == 'E' || s[charpos] == 'u' ||
-            s[charpos] == 'e' || s[charpos] == 'o'))
+        else if (state == 2 && (s[charpos] == 'a' || s[charpos] == 'i' || s[charpos] == 'I' || s[charpos] == 'E' || s[charpos] == 'e' || s[charpos] == 'u' ||
+            s[charpos] == 'o'))
             state = 7;
-        else if (state == 3 && (s[charpos] == 'a' || s[charpos] == 'i' || s[charpos] == 'I' || s[charpos] == 'E' || s[charpos] == 'u' ||
-            s[charpos] == 'e' || s[charpos] == 'o'))
+
+        //qy
+        else if (state == 3 && (s[charpos] == 'a' || s[charpos] == 'i' || s[charpos] == 'I' || s[charpos] == 'E' || s[charpos] == 'e' || s[charpos] == 'u' ||
+            s[charpos] == 'o'))
             state = 7;
-        else if (state == 4 && (s[charpos] == 'a' || s[charpos] == 'i' || s[charpos] == 'I' || s[charpos] == 'E' || s[charpos] == 'u' ||
-            s[charpos] == 'e' || s[charpos] == 'o'))
+        else if (state == 3 && s[charpos] == 'y')
+            state = 4;
+
+        //qsa
+        else if (state == 4 && (s[charpos] == 'a' || s[charpos] == 'i' || s[charpos] == 'I' || s[charpos] == 'E' || s[charpos] == 'e' || s[charpos] == 'u' ||
+            s[charpos] == 'o'))
             state = 7;
+
+        //qs
         else if (state == 5 && s[charpos] == 'h')
             state = 4;
-        else if (state == 5 && (s[charpos] == 'a' || s[charpos] == 'i' || s[charpos] == 'I' || s[charpos] == 'E' || s[charpos] == 'u' ||
-            s[charpos] == 'e' || s[charpos] == 'o'))
+        else if (state == 5 && (s[charpos] == 'a' || s[charpos] == 'i' || s[charpos] == 'I' || s[charpos] == 'E' || s[charpos] == 'e' || s[charpos] == 'u' ||
+            s[charpos] == 'o'))
             state = 7;
+
+
+        //q0qy
         else if (state == 6 && s[charpos] == 'c')
             state = 1;
         else if (state == 6 && s[charpos] == 't')
             state = 2;
-        else if (state == 6 && (s[charpos] == 'b' || s[charpos] == 'm' || s[charpos] == 'k' ||
-            s[charpos] == 'n' || s[charpos] == 'h' || s[charpos] == 'p' || s[charpos] == 'r'))
-            state = 3;
-        else if (state == 6 && s[charpos] == 'y')
-            state = 4;
         else if (state == 6 && s[charpos] == 's')
             state = 5;
-        else if (state == 6 && (s[charpos] == 'a' || s[charpos] == 'i' || s[charpos] == 'I' || s[charpos] == 'E' || s[charpos] == 'u' ||
-            s[charpos] == 'e' || s[charpos] == 'o'))
+
+
+        else if (state == 6 && (s[charpos] == 'g' || s[charpos] == 'b' || s[charpos] == 'm' || s[charpos] == 'k' ||
+            s[charpos] == 'n' || s[charpos] == 'h' || s[charpos] == 'p' || s[charpos] == 'r'))
+            state = 3;
+
+        else if (state == 6 && (s[charpos] == 'd' || s[charpos] == 'w' || s[charpos] == 'z' ||
+            s[charpos] == 'y' || s[charpos] == 'j'))
+            state = 4;
+
+        else if (state == 6 && (s[charpos] == 'a' || s[charpos] == 'i' || s[charpos] == 'I' || s[charpos] == 'E' || s[charpos] == 'e' || s[charpos] == 'u' ||
+            s[charpos] == 'o'))
             state = 7;
+
+        //q0q1
         else if (state == 7 && s[charpos] == 'c')
             state = 1;
         else if (state == 7 && s[charpos] == 't')
             state = 2;
-        else if (state == 7 && (s[charpos] == 'b' || s[charpos] == 'm' || s[charpos] == 'k' ||
-            s[charpos] == 'h' || s[charpos] == 'p' || s[charpos] == 'r' || s[charpos] == 'g'))
+        else if (state == 7 && s[charpos] == 's')
+            state = 5;
+
+        else if (state == 7 && (s[charpos] == 'n'))
+            state = 6;
+
+        else if (state == 7 && (s[charpos] == 'g' || s[charpos] == 'b' || s[charpos] == 'm' || s[charpos] == 'k'  || s[charpos] == 'h' || s[charpos] == 'p' || s[charpos] == 'r'))
             state = 3;
+
+
         else if (state == 7 && (s[charpos] == 'd' || s[charpos] == 'w' || s[charpos] == 'z' ||
             s[charpos] == 'y' || s[charpos] == 'j'))
             state = 4;
-        else if (state == 7 && s[charpos] == 's')
-            state = 5;
-        else if (state == 7 && s[charpos] == 'n')
-            state = 6;
-        else if (state == 7 && (s[charpos] == 'a' || s[charpos] == 'i' || s[charpos] == 'I' || s[charpos] == 'E' || s[charpos] == 'u' ||
-            s[charpos] == 'e' || s[charpos] == 'o'))
+       
+
+        else if (state == 7 && (s[charpos] == 'a' || s[charpos] == 'i' || s[charpos] == 'I' || s[charpos] == 'E' || s[charpos] == 'e' || s[charpos] == 'u' ||
+            s[charpos] == 'o'))
             state = 7;
         else
             return (false);
@@ -106,7 +138,7 @@ bool word(string s)
     } //end of while
 
     // where did I end up????
-    if (state == 7)
+    if (state == 7|| state == 6  )
         return (true); // end in a final state
     else
         return (false);
@@ -538,24 +570,29 @@ void story()
 }
 void DeleteEmptyLines(const string& FilePath)
 {
-    //std::
-    string BufferString = "";
-    //std::
-    fstream FileStream;
-    //std::
-    string CurrentReadLine;
-    FileStream.open(FilePath, /*std::*/ fstream::in); //open the file in Input mode
-    while (getline(FileStream, CurrentReadLine))
-    {
-        if (!CurrentReadLine.empty())
-            BufferString = BufferString + CurrentReadLine + "\n";
-    }
-    FileStream.close();
-    FileStream.open(FilePath, /*std::*/ fstream::out);
-    FileStream << BufferString;
-    FileStream.close();
-}
+    std::string BufferString = "";
 
+    //File
+    std::fstream FileStream;
+    std::string CurrentReadLine;
+    
+        FileStream.open(FilePath, std::fstream::in); //open the file in Input mode
+
+        //Read all the lines till the end of the file
+        while (getline(FileStream, CurrentReadLine))
+        {
+            //Check if the line is empty
+            if (!CurrentReadLine.empty())
+                BufferString = BufferString + CurrentReadLine + "\n";
+        }
+       // if (DEBUG) cout << BufferString << endl;
+        FileStream.close();
+
+        FileStream.open(FilePath, std::fstream::out); //open file in Output mode. This line will delete all data inside the file.
+        FileStream << BufferString;
+        FileStream.close();
+    }
+    // else --->> do nothing
 
 //----------- Driver ---------------------------
 
@@ -574,16 +611,18 @@ int main()
     cin >> filename;
     ifstream fin;
     string line;
-    string word;
     DeleteEmptyLines(filename.c_str());
     fin.open(filename.c_str());
-
+    cout << endl;
     if (fin.good()) {//if the file is good run the parser.
         while (getline(fin, line)) {//while we can get a line from the text
             cout << line << endl;
-            if (line == "eofm") break;
             split = istringstream(line);
             story();      //** calls the <story> to start parsing
+            cout << endl;
+                    token_available = false;
+
+
         }
 
     }
