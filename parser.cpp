@@ -622,7 +622,9 @@ std::cout << "=================================" << std::endl;
     cout << endl;
     if (fin.good()) {//if the file is good run the parser.
         while (getline(fin, line)) {//while we can get a line from the text
-            cout<<"===================================================================================================="
+            if (line == "eofm")
+                break;
+            cout << "====================================================================================================" << endl;
             cout << "The line is: "<<line << endl;
             split = istringstream(line);
             story();      //** calls the <story> to start parsing
