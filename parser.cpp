@@ -405,8 +405,10 @@ void TENSE_func()
     switch (next_token())
     {
     case VERBPAST://went here
+        match(VERBPAST); //added
         break;
     case VERBPASTNEG:
+        match(VERBPASTNEG); //added
         break;
     case VERB:
         match(VERB);
