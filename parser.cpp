@@ -333,6 +333,7 @@ void syntax_error1(string lexeme, tokentype token)
     file.open("errors.txt");
     file << "SYNTAX ERROR: expected " << tokenName[token] << " but found " << lexeme << endl;
     file.close();
+    exit(1);
 }
 // Type of error: **
 // Done by: **
@@ -343,6 +344,7 @@ void syntax_error2(tokentype input, tokentype expected)
     //=======
     cout << "SYNTAX ERROR 2: expected " << tokenName[expected] << " but found " << tokenName[input] << endl;
     //need exit(1)
+    exit(1);
 }
 
 // ** Need the updated match and next_token with 2 global vars
