@@ -333,7 +333,7 @@ void syntax_error1(string lexeme, tokentype token)
     file.open("errors.txt");
     file << "SYNTAX ERROR: expected " << tokenName[token] << " but found " << lexeme << endl;
     file.close();
-    exit(1);
+
 }
 // Type of error: **
 // Done by: **
