@@ -127,7 +127,7 @@ bool word(string s)
         else if (state == 7 && (s[charpos] == 'd' || s[charpos] == 'w' || s[charpos] == 'z' ||
             s[charpos] == 'y' || s[charpos] == 'j'))
             state = 4;
-       
+
 
         else if (state == 7 && (s[charpos] == 'a' || s[charpos] == 'i' || s[charpos] == 'I' || s[charpos] == 'E' || s[charpos] == 'e' || s[charpos] == 'u' ||
             s[charpos] == 'o'))
@@ -575,7 +575,7 @@ void DeleteEmptyLines(const string& FilePath)
     //File
     std::fstream FileStream;
     std::string CurrentReadLine;
-    
+
         FileStream.open(FilePath, std::fstream::in); //open the file in Input mode
 
         //Read all the lines till the end of the file
@@ -600,6 +600,12 @@ void DeleteEmptyLines(const string& FilePath)
 // Done by:  **
 int main()
 {
+std::cout << "CS 433 Programming assignment 3" << std::endl;
+std::cout << "Authors: Andrew, Rudy, and Julian" << std::endl;
+std::cout << "Date: 11/22/2020" << std::endl;
+std::cout << "Course: CS421 (Theory of Computing)" << std::endl;
+std::cout << "Description : parser project " << std::endl;
+std::cout << "=================================" << std::endl;
     string choice;
     string filename;
     cout << "Display tracing messages? Y/N: ";
@@ -616,7 +622,8 @@ int main()
     cout << endl;
     if (fin.good()) {//if the file is good run the parser.
         while (getline(fin, line)) {//while we can get a line from the text
-            cout << line << endl;
+            cout<<"===================================================================================================="
+            cout << "The line is: "<<line << endl;
             split = istringstream(line);
             story();      //** calls the <story> to start parsing
             cout << endl;
