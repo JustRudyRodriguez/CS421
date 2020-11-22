@@ -22,6 +22,18 @@ bool word(string s)
     int state = 0;
     int charpos = 0;
     // replace the following todo the word dfa  **
+    /* 0=q0,
+    1=qc
+    2=qt
+    3=qy
+    4=qsa
+    5=qs
+    6=q0qy
+    7=q0q1
+    //q1 was dropped since nothing point it.
+
+
+    */
     while (s[charpos] != '\0')
     {
         if (state == 0 && s[charpos] == 'c')
