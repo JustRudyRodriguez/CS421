@@ -179,7 +179,8 @@ enum tokentype
     ERROR,
     BE,
     TENSE,
-    NOUN
+    NOUN,
+    PASS
 };
 
 // ** For the display names of tokens - must be in the same order as the tokentype.
@@ -198,13 +199,19 @@ ifstream fin; // global stream for reading from the input file
 // Scanner processes only one word each time it is called
 // Gives back the token type and the word itself
 // ** Done by: Rodolfo Rodriguez
-int scanner(tokentype& tt, string& w)
+int scanner(tokentype& tt, string& w, string reRun)
 {
 
     // ** Grab the next word from the file via fin
     // 1. If it is eofm, return right now.
     string current;
+    if (reRun=="") {// checks if we're adding a word in manually through syntax error 1
+
     split >> current;
+}
+    else {
+        current = reRun; 
+    }
     tt = ERROR; // setting this as a starting value for logic reasons ahead, ignore for now.
     cout << "Scanner called using word: " << current << endl;
     if (current.compare(" ") == 0)
@@ -323,17 +330,25 @@ void AFTER_NOUN();
 
 // Type of error: **
 // Done by: **
-void syntax_error1(string lexeme, tokentype token)
+bool syntax_error1(string lexeme, tokentype token)
 {
 
-    cout << "SYNTAX ERROR 1: expected " << tokenName[token] << " but found " << lexeme << endl;
+    cout << "SYNTAX ERROR : expected " << tokenName[token] << " but found " << lexeme << endl;
     //cout<< "String       Token "<<endl;
     //cout << lexeme << "      " << token << endl;
     ofstream file;
-    file.open("errors.txt");
+    file.open("errors.txt");// may need to write condition for re-acessing this multiple times.
     file << "SYNTAX ERROR: expected " << tokenName[token] << " but found " << lexeme << endl;
     file.close();
 
+
+    string choice;
+    cout << "Would you like to replace word? Y/N: ";
+    cin >> choice;
+    if (choice == "Y")
+        return true;
+
+    return false;
 }
 // Type of error: **
 // Done by: **
@@ -342,7 +357,7 @@ void syntax_error2(tokentype input, tokentype expected)
 
     //<<<<<<< HEAD
     //=======
-    cout << "SYNTAX ERROR 2: expected " << tokenName[expected] << " but found " << tokenName[input] << endl;
+    cout << "SYNTAX ERROR : expected " << tokenName[expected] << " but found " << tokenName[input] << endl;
     //need exit(1)
     exit(1);
 }
@@ -356,22 +371,38 @@ bool token_available;             //not sure if this needs to be here.
 bool display_tracing_flag = true; // used for turning on and off tracing messages
 
 
-
 // Purpose: **
 // Done by: **
 
-tokentype next_token()
+tokentype next_token(tokentype expected)
 {
     //bool token_available;
     //need to set saved_lexeme = scanner()
     if (!token_available)
     {
-        scanner(saved_token, saved_lexeme);
+        scanner(saved_token, saved_lexeme,"");
         token_available = true;
         //cout << "Scanner called using word: " << saved_lexeme << endl;
         if (saved_token == ERROR)
         {
-            syntax_error1(saved_lexeme, saved_token);
+            string word;
+            while (syntax_error1(saved_lexeme, saved_token)) {
+
+                cout << "Type your new word" << endl;
+                cin >> word;
+                scanner(saved_token, saved_lexeme, word);
+                if (saved_token != ERROR)//breaks out of loop on successful token.
+                    break;
+            }
+            if (saved_token == ERROR) {
+                cout << "Would you like to skip this word? Y/N?" << endl;
+                cin >> word;
+                if (word == "Y") {
+                    saved_token = expected;
+                    token_available = true;
+                }
+            }
+           // if(syntax_error1())
         }
     }
     return saved_token;
@@ -382,7 +413,8 @@ tokentype next_token()
 
 bool match(tokentype expected)
 {
-    if (next_token() != expected)
+
+    if (next_token(expected) != expected)
     {
         syntax_error2(saved_token, expected);
     }
@@ -404,7 +436,7 @@ void TENSE_func()
 
     if (display_tracing_flag == true)
         cout << "Processing <TENSE>\n";
-    switch (next_token())
+    switch (next_token(VERBPAST))
     {
     case VERBPAST://went here
         match(VERBPAST); //added
@@ -436,7 +468,7 @@ void NOUN_FUNC()
 
     if (display_tracing_flag == true)
         cout << "Processing <NOUN>\n";
-    switch (next_token())
+    switch (next_token(WORD1))
     {
     case WORD1:
         match(WORD1);
@@ -454,7 +486,7 @@ void AFTER_SUBJECT()
 
     if (display_tracing_flag == true)
         cout << "Processing <AFTER_SUBJECT>\n";
-    switch (next_token())
+    switch (next_token(WORD2))
     {
     case WORD2://changed from VERB: to WORD2:
         VERB_FUNC();
@@ -478,7 +510,7 @@ void BE_FUNC()
 
     if (display_tracing_flag == true)
         cout << "Processing <BE>\n";
-    switch (next_token())
+    switch (next_token(IS))
     {
     case IS:
         match(IS);
@@ -495,7 +527,7 @@ void AFTER_OBJECT()
 
     if (display_tracing_flag == true)
         cout << "Processing <AFTER_OBJECT>\n";
-    switch (next_token())
+    switch (next_token(WORD2))
     {
     case WORD2://changed VERB => WORD2
         VERB_FUNC();
@@ -526,7 +558,7 @@ void AFTER_NOUN()
 
     if (display_tracing_flag == true)
         cout << "Processing <AFTER_NOUN>\n";
-    switch (next_token())
+    switch (next_token(IS))
     {
     case IS:
         BE_FUNC();
@@ -557,7 +589,7 @@ void story()
     if (display_tracing_flag == true)
         cout << "Processing <story>\n";
 
-    switch (next_token()) {
+    switch (next_token(CONNECTOR)) {
     case CONNECTOR:
         match(CONNECTOR);
         NOUN_FUNC();
