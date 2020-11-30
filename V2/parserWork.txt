@@ -13,15 +13,15 @@ If the member did not fully contribute to the assigned part, do not list his/her
   Who wrote which parser functions? 
   functions             who
   ----------------      ----------
-  TENSE_FUNC()          
-  VERB_FUNC()
-  NOUN_FUNC()
-  AFTER_SUBJECT()
-  BE_FUNC()
-  AFTER_OBJECT()
-  AFTER_NOUN()
-  story()
-  DeleteEmptyLines()
+  TENSE_FUNC()          Rudy 
+  VERB_FUNC()           Andrew
+  NOUN_FUNC()           Julian
+  AFTER_SUBJECT()       Rudy
+  BE_FUNC()             Andrew
+  AFTER_OBJECT()        Julian
+  AFTER_NOUN()          Rudy
+  story()               Andy
+  DeleteEmptyLines()    Julian
 
 2.  Who came to the meeting to test the program together? Everybody
 
@@ -29,12 +29,12 @@ If the member did not fully contribute to the assigned part, do not list his/her
     (Grammer: and Done by: )
 
 4.  The parser produced correct output for 
-    all 6 test cases?
+    all 6 test cases? Yes we found our output to be correct for the test cases 
 
 5.  What extra credit feature did you include?
     If it is error correction, did you make sure errors.txt
-    got produced?
+    got produced?    
     [ You may still do EC later ]
-        
+    We implemented all extra credit options and errors.txt is produced.     
 checkIt_LK in 24 hours and immediately correct and resubmit.     
 
