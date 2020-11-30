@@ -329,7 +329,7 @@ void AFTER_NOUN();
 //    to display syntax error messages as specified by me.
 
 // Type of error: Error 1 
-// Done by: 
+// Done by: Julian 
 bool syntax_error1(string lexeme, tokentype token)
 {
 
@@ -350,8 +350,8 @@ bool syntax_error1(string lexeme, tokentype token)
 
     return false;
 }
-// Type of error: **
-// Done by: **
+// Type of error: Error 2 
+// Done by: Julian 
 void syntax_error2(tokentype input, tokentype expected)
 {
 
@@ -371,18 +371,15 @@ bool token_available;             //not sure if this needs to be here.
 bool display_tracing_flag = true; // used for turning on and off tracing messages
 
 
-// Purpose: **
-// Done by: **
+// Purpose: takes tokentype checks for token and next 
+// Done by: Rudy 
 
 tokentype next_token(tokentype expected)
 {
-    //bool token_available;
-    //need to set saved_lexeme = scanner()
     if (!token_available)
     {
         scanner(saved_token, saved_lexeme,"");
         token_available = true;
-        //cout << "Scanner called using word: " << saved_lexeme << endl;
         if (saved_token == ERROR)
         {
             string word;
@@ -402,14 +399,13 @@ tokentype next_token(tokentype expected)
                     token_available = true;
                 }
             }
-           // if(syntax_error1())
         }
     }
     return saved_token;
 }
 
-// Purpose: **
-// Done by: **
+// Purpose: recieves tokentype and checks if its expected type
+// Done by: Rudy 
 
 bool match(tokentype expected)
 {
@@ -430,7 +426,7 @@ bool match(tokentype expected)
 }
 
 // ----- RDP functions - one per non-term -------------------
-
+// Done by: Rudy
 void TENSE_FUNC()
 {
 
@@ -455,6 +451,7 @@ void TENSE_FUNC()
     }
 }
 
+//Done by: Andrew
 void VERB_FUNC()
 {
 
@@ -463,6 +460,7 @@ void VERB_FUNC()
     match(WORD2);
 }
 
+//Done by: Julian 
 void NOUN_FUNC()
 {
 
@@ -481,6 +479,7 @@ void NOUN_FUNC()
     }
 }
 
+//Done by: Rudy
 void AFTER_SUBJECT()
 {
 
@@ -505,6 +504,8 @@ void AFTER_SUBJECT()
         syntax_error2(saved_token, SUBJECT);
     }
 }
+
+//Done by: Andrew 
 void BE_FUNC()
 {
 
@@ -522,6 +523,8 @@ void BE_FUNC()
         syntax_error2(saved_token, BE);
     }
 }
+
+//Done by: Julian 
 void AFTER_OBJECT()
 {
 
@@ -553,6 +556,7 @@ void AFTER_OBJECT()
     }
 }
 
+//Done by: Rudy 
 void AFTER_NOUN()
 {
 
@@ -583,6 +587,7 @@ void AFTER_NOUN()
     }
 }
 
+//Done by: Andrew 
 void story()
 {
 
@@ -604,6 +609,8 @@ void story()
     }
 
 }
+
+//Done by: Julian 
 void DeleteEmptyLines(const string& FilePath)
 {
     string BufferString = "";
@@ -632,7 +639,7 @@ void DeleteEmptyLines(const string& FilePath)
 //----------- Driver ---------------------------
 
 // The new test driver to start the parser
-// Done by:  **
+// Done by: Andrew 
 int main()
 {
     std::cout << "CS 433 Programming assignment 3" << std::endl;
@@ -674,6 +681,4 @@ int main()
     else
         cout << "There is no filename:" << filename << endl;
 }// end
- //** require no other input files!
- //** syntax error EC requires producing errors.txt of error messages
- //** tracing On/Off EC requires sending a flag to trace message output functions
+ 
