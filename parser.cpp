@@ -328,8 +328,8 @@ void AFTER_NOUN();
 // ** Need syntax_error1 and syntax_error2 functions (each takes 2 args)
 //    to display syntax error messages as specified by me.
 
-// Type of error: **
-// Done by: **
+// Type of error: Error 1 
+// Done by: 
 bool syntax_error1(string lexeme, tokentype token)
 {
 
@@ -431,7 +431,7 @@ bool match(tokentype expected)
 
 // ----- RDP functions - one per non-term -------------------
 
-void TENSE_func()
+void TENSE_FUNC()
 {
 
     if (display_tracing_flag == true)
@@ -490,7 +490,7 @@ void AFTER_SUBJECT()
     {
     case WORD2://changed from VERB: to WORD2:
         VERB_FUNC();
-        TENSE_func();
+        TENSE_FUNC();
         match(PERIOD);
         break;
     case WORD1:
@@ -531,21 +531,21 @@ void AFTER_OBJECT()
     {
     case WORD2://changed VERB => WORD2
         VERB_FUNC();
-        TENSE_func();
+        TENSE_FUNC();
         match(PERIOD);
         break;
     case WORD1:
         NOUN_FUNC();
         match(DESTINATION);
         VERB_FUNC();
-        TENSE_func();
+        TENSE_FUNC();
         match(PERIOD);
         break;
     case PRONOUN:
         NOUN_FUNC();
         match(DESTINATION);
         VERB_FUNC();
-        TENSE_func();
+        TENSE_FUNC();
         match(PERIOD);
         break;
     default:
@@ -571,7 +571,7 @@ void AFTER_NOUN()
     case DESTINATION:
         match(DESTINATION);
         VERB_FUNC();
-        TENSE_func();
+        TENSE_FUNC();
         match(PERIOD);
         break;
     case OBJECT:
