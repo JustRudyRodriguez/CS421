@@ -427,7 +427,7 @@ bool match(tokentype expected)
 
 // ----- RDP functions - one per non-term -------------------
 // Done by: Rudy
-// Grammer: 
+// Grammer:  <tense> := VERBPAST  | VERBPASTNEG | VERB | VERBNEG
 void TENSE_FUNC()
 {
 
@@ -453,7 +453,7 @@ void TENSE_FUNC()
 }
 
 //Done by: Andrew
-//Grammer: 
+//Grammer: <verb> ::= WORD2
 void VERB_FUNC()
 {
 
@@ -463,7 +463,7 @@ void VERB_FUNC()
 }
 
 //Done by: Julian 
-// Grammer: 
+// Grammer: <noun> ::= WORD1 | PRONOUN 
 void NOUN_FUNC()
 {
 
@@ -510,7 +510,7 @@ void AFTER_SUBJECT()
 }
 
 //Done by: Andrew 
-//Grammer: 
+//Grammer: <be> ::=   IS | WAS
 void BE_FUNC()
 {
 
@@ -595,7 +595,7 @@ void AFTER_NOUN()
 }
 
 //Done by: Andrew
-//Grammer:  
+//Grammer:  <story> ::= <s>
 void story()
 {
 
