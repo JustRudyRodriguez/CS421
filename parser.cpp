@@ -334,8 +334,6 @@ bool syntax_error1(string lexeme, tokentype token)
 {
 
     cout << "SYNTAX ERROR : expected " << tokenName[token] << " but found " << lexeme << endl;
-    //cout<< "String       Token "<<endl;
-    //cout << lexeme << "      " << token << endl;
     ofstream file;
     file.open("errors.txt");// may need to write condition for re-acessing this multiple times.
     file << "SYNTAX ERROR: expected " << tokenName[token] << " but found " << lexeme << endl;
@@ -362,8 +360,6 @@ void syntax_error2(tokentype input, tokentype expected)
     exit(1);
 }
 
-// ** Need the updated match and next_token with 2 global vars
-// saved_token and saved_lexeme
 
 tokentype saved_token;
 string saved_lexeme;              // the example has this within next_token()
@@ -373,7 +369,6 @@ bool display_tracing_flag = true; // used for turning on and off tracing message
 
 // Purpose: takes tokentype checks for token and next 
 // Done by: Rudy 
-
 tokentype next_token(tokentype expected)
 {
     if (!token_available)
@@ -406,7 +401,6 @@ tokentype next_token(tokentype expected)
 
 // Purpose: recieves tokentype and checks if its expected type
 // Done by: Rudy 
-
 bool match(tokentype expected)
 {
 
@@ -435,11 +429,11 @@ void TENSE_FUNC()
         cout << "Processing <TENSE>\n";
     switch (next_token(VERBPAST))
     {
-    case VERBPAST://went here
-        match(VERBPAST); //added
+    case VERBPAST:
+        match(VERBPAST); 
         break;
     case VERBPASTNEG:
-        match(VERBPASTNEG); //added
+        match(VERBPASTNEG); 
         break;
     case VERB:
         match(VERB);
@@ -491,7 +485,7 @@ void AFTER_SUBJECT()
         cout << "Processing <AFTER_SUBJECT>\n";
     switch (next_token(WORD2))
     {
-    case WORD2://changed from VERB: to WORD2:
+    case WORD2:
         VERB_FUNC();
         TENSE_FUNC();
         match(PERIOD);
@@ -538,7 +532,7 @@ void AFTER_OBJECT()
         cout << "Processing <AFTER_OBJECT>\n";
     switch (next_token(WORD2))
     {
-    case WORD2://changed VERB => WORD2
+    case WORD2:
         VERB_FUNC();
         TENSE_FUNC();
         match(PERIOD);
@@ -643,7 +637,6 @@ void DeleteEmptyLines(const string& FilePath)
     FileStream.close();
 }
 
-// else --->> do nothing
 
 //----------- Driver ---------------------------
 
