@@ -483,7 +483,7 @@ void NOUN_FUNC()
 }
 
 //Done by: Rudy
-//Grammer: 
+//Grammer: <s> ::=  [CONNECTOR] <noun> SUBJECT  <verb> <tense> PERIOD 
 void AFTER_SUBJECT()
 {
 
@@ -530,7 +530,7 @@ void BE_FUNC()
 }
 
 //Done by: Julian 
-//Grammer: 
+//Grammer: <s> ::=  [CONNECTOR] <noun> SUBJECT  <verb> <tense> PERIOD | [CONNECTOR] <noun> SUBJECT  <noun> DESTINATION  <verb> <tense> PERIOD 
 void AFTER_OBJECT()
 {
 
@@ -563,7 +563,7 @@ void AFTER_OBJECT()
 }
 
 //Done by: Rudy 
-//Grammer:
+//Grammer:<s>  ::= [CONNECTOR] <noun> SUBJECT  <noun> DESTINATION  <verb> <tense> PERIOD | [CONNECTOR] <noun> SUBJECT  <noun> <be>    PERIOD 
 void AFTER_NOUN()
 {
 
