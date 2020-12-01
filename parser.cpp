@@ -427,6 +427,7 @@ bool match(tokentype expected)
 
 // ----- RDP functions - one per non-term -------------------
 // Done by: Rudy
+// Grammer: 
 void TENSE_FUNC()
 {
 
@@ -452,6 +453,7 @@ void TENSE_FUNC()
 }
 
 //Done by: Andrew
+//Grammer: 
 void VERB_FUNC()
 {
 
@@ -461,6 +463,7 @@ void VERB_FUNC()
 }
 
 //Done by: Julian 
+// Grammer: 
 void NOUN_FUNC()
 {
 
@@ -480,6 +483,7 @@ void NOUN_FUNC()
 }
 
 //Done by: Rudy
+//Grammer: 
 void AFTER_SUBJECT()
 {
 
@@ -506,6 +510,7 @@ void AFTER_SUBJECT()
 }
 
 //Done by: Andrew 
+//Grammer: 
 void BE_FUNC()
 {
 
@@ -525,6 +530,7 @@ void BE_FUNC()
 }
 
 //Done by: Julian 
+//Grammer: 
 void AFTER_OBJECT()
 {
 
@@ -557,6 +563,7 @@ void AFTER_OBJECT()
 }
 
 //Done by: Rudy 
+//Grammer:
 void AFTER_NOUN()
 {
 
@@ -587,7 +594,8 @@ void AFTER_NOUN()
     }
 }
 
-//Done by: Andrew 
+//Done by: Andrew
+//Grammer:  
 void story()
 {
 
@@ -611,6 +619,7 @@ void story()
 }
 
 //Done by: Julian 
+//Purpose: Remove the empty lines from txt file
 void DeleteEmptyLines(const string& FilePath)
 {
     string BufferString = "";
