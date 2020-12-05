@@ -7,12 +7,18 @@
 using namespace std;
 stringstream split;
 /* Look for all **'s and complete them */
+static std::map<std::string, std::string> dict;
 
+<<<<<<< HEAD
 /*string saved_E_word;
 void getEword(){
     saved_E_word=checkDict(saved_lexeme);
 }
 */
+=======
+string saved_E_word;
+
+>>>>>>> f3e29efd35769465851493435979efffd24a452b
 //=====================================================
 // File scanner.cpp written by: Group Number: **
 //=====================================================
@@ -363,16 +369,19 @@ void syntax_error2(tokentype input, tokentype expected)
 }
 
 
-tokentype saved_token;
 string saved_lexeme;              // the example has this within next_token()
 bool token_available;             //not sure if this needs to be here.
 bool display_tracing_flag = true; // used for turning on and off tracing messages
 ofstream translated_file("translated.txt");
+<<<<<<< HEAD
 
 static std::map<string,string>  dict;
 
 
 
+=======
+tokentype saved_token;
+>>>>>>> f3e29efd35769465851493435979efffd24a452b
 string checkDict (string input){
 
 try{// add english work.
@@ -383,7 +392,7 @@ catch(std::out_of_range){ // add japanese word
 
     return input;
 }
-
+return "";
 }
 void createDict(){
     string filename="lexicon.txt";
@@ -416,9 +425,32 @@ void createDict(){
     }
 }
 
+<<<<<<< HEAD
 
 // Purpose: takes tokentype checks for token and next 
 // Done by: Rudy 
+=======
+void getEword(){
+    saved_E_word=dict.checkDict(saved_lexeme);
+}
+void gen(string word)
+{
+    if(word !="TENSE"){
+        cout << word << ": " << saved_E_word << endl;
+        translated_file << word << ": " << saved_E_word << endl;
+    }
+    else{
+        cout << word << ": " << saved_token;
+        translated_file << word << ": " << saved_token << endl;
+    }
+
+}
+
+
+
+// Purpose: takes tokentype checks for token and next
+// Done by: Rudy
+>>>>>>> f3e29efd35769465851493435979efffd24a452b
 tokentype next_token(tokentype expected)
 {
     if (!token_available)
@@ -537,17 +569,19 @@ void AFTER_SUBJECT()
     {
     case WORD2:
         VERB_FUNC();
+        getEword();
+        gen("ACTION");
         TENSE_FUNC();
+        gen("TENSE");
         match(PERIOD);
         break;
-    case WORD1:
+    case WORD1: case PRONOUN:
         NOUN_FUNC();
+        getEword();
         AFTER_NOUN();
         break;
-    case PRONOUN:
-        NOUN_FUNC();
-        AFTER_NOUN();
-        break;
+
+
     default:
         syntax_error2(saved_token, SUBJECT);
     }
@@ -584,21 +618,22 @@ void AFTER_OBJECT()
     {
     case WORD2:
         VERB_FUNC();
+        getEword();
+        gen("ACTION");
         TENSE_FUNC();
+        gen("TENSE");
         match(PERIOD);
         break;
-    case WORD1:
+    case WORD1:  case PRONOUN:
         NOUN_FUNC();
+        getEword();
         match(DESTINATION);
+        gen("TO");
         VERB_FUNC();
+        getEword();
+        gen("ACTION");
         TENSE_FUNC();
-        match(PERIOD);
-        break;
-    case PRONOUN:
-        NOUN_FUNC();
-        match(DESTINATION);
-        VERB_FUNC();
-        TENSE_FUNC();
+        gen("TENSE");
         match(PERIOD);
         break;
     default:
@@ -615,22 +650,25 @@ void AFTER_NOUN()
         cout << "Processing <AFTER_NOUN>\n";
     switch (next_token(IS))
     {
-    case IS:
+    case IS: case WAS:
+    gen("DESCRIPTION");
         BE_FUNC();
-        match(PERIOD);
-        break;
-    case WAS:
-        BE_FUNC();
+        gen("TENSE");
         match(PERIOD);
         break;
     case DESTINATION:
         match(DESTINATION);
+        gen("TO");
         VERB_FUNC();
+        getEword();
+        gen("ACTION");
         TENSE_FUNC();
+        gen("TENSE");
         match(PERIOD);
         break;
     case OBJECT:
         match(OBJECT);
+        gen("OBJECT");
         AFTER_OBJECT();
         break;
     default:
@@ -649,13 +687,19 @@ void story()
     switch (next_token(CONNECTOR)) {
     case CONNECTOR:
         match(CONNECTOR);
+        getEword();
+        gen("CONNECTOR");
         NOUN_FUNC();
+        getEword();
         match(SUBJECT);
+        gen("ACTOR");
         AFTER_SUBJECT();
         break;
     default:
         NOUN_FUNC();
+        getEword();
         match(SUBJECT);
+        gen("ACTOR");
         AFTER_SUBJECT();
         break;
     }
@@ -688,6 +732,7 @@ void DeleteEmptyLines(const string& FilePath)
 }
 
 
+<<<<<<< HEAD
 /*void gen(string word)
 {
     if(word !="TENSE"){
@@ -701,6 +746,9 @@ void DeleteEmptyLines(const string& FilePath)
 
 }
 */
+=======
+
+>>>>>>> f3e29efd35769465851493435979efffd24a452b
 //----------- Driver ---------------------------
 
 // The new test driver to start the parser
@@ -709,7 +757,6 @@ int main()
 {
 
     createDict();
-    checkDict("junk");
     std::cout << "CS 433 Programming assignment 3" << std::endl;
     std::cout << "Authors: Andrew, Rudy, and Julian" << std::endl;
     std::cout << "Date: 11/22/2020" << std::endl;
@@ -751,4 +798,5 @@ int main()
         cout << "There is no filename:" << filename << endl;
 
     //close ofstream
+    translated_file.close();
 }// end
