@@ -668,7 +668,7 @@ void gen(string word)
     }
     else{
         cout << word << ": " << saved_token;
-        transalted_file << word << ": " << saved_taken << endl;
+        transalted_file << word << ": " << saved_token << endl;
     }
 
 }
