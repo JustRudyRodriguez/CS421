@@ -366,7 +366,7 @@ tokentype saved_token;
 string saved_lexeme;              // the example has this within next_token()
 bool token_available;             //not sure if this needs to be here.
 bool display_tracing_flag = true; // used for turning on and off tracing messages
-
+ofstream translated_file("translated.txt");
 
 static std::map<std::string, std::string> dict;
 
@@ -670,8 +670,7 @@ void DeleteEmptyLines(const string& FilePath)
     FileStream.close();
 }
 
-//translated_file should be ofstream 
-//ofstream translated_file("translated.txt");//added for outputing text in gen func
+
 void gen(string word)
 {
     if(word !="TENSE"){
@@ -680,7 +679,7 @@ void gen(string word)
     }
     else{
         cout << word << ": " << saved_token;
-        transalted_file << word << ": " << saved_token << endl;
+        translated_file << word << ": " << saved_token << endl;
     }
 
 }
@@ -730,5 +729,6 @@ int main()
     else
         cout << "There is no filename:" << filename << endl;
 
-    ofstream translated_file("translated.txt");//added for outputing text in gen func
+    //close ofstream
+    translated_file.close();
 }// end
