@@ -372,11 +372,12 @@ static std::map<std::string, std::string> dict;
 
 
 
-void getEword (){
+string checkDict (string input){
 std::cout << "does this dict work? : "<< dict.count("watashi") << endl;
 
 try{// add english work.
-std::cout << "a => " << dict.at("junk")<< '\n';
+std::cout << "a => " << dict.at(input)<< '\n';// for testing delete later.
+return dict.at(input);
 }
 catch(std::out_of_range){ // add japanese word
 
