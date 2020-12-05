@@ -658,7 +658,20 @@ void DeleteEmptyLines(const string& FilePath)
     FileStream.close();
 }
 
+//translated_file should be ofstream 
+//ofstream translated_file("translated.txt");//added for outputing text in gen func
+void gen(string word)
+{
+    if(word !="TENSE"){
+        cout << word << ": " << saved_E_word << endl;
+        translated_file << word << ": " << saved_E_word << endl;
+    }
+    else{
+        cout << word << ": " << saved_token;
+        transalted_file << word << ": " << saved_taken << endl;
+    }
 
+}
 //----------- Driver ---------------------------
 
 // The new test driver to start the parser
@@ -704,4 +717,6 @@ int main()
     }
     else
         cout << "There is no filename:" << filename << endl;
+
+    ofstream translated_file("translated.txt");//added for outputing text in gen func
 }// end
