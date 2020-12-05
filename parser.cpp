@@ -9,6 +9,8 @@ stringstream split;
 /* Look for all **'s and complete them */
 static std::map<std::string, std::string> dict;
 
+
+
 string saved_E_word;
 
 //=====================================================
@@ -366,10 +368,10 @@ bool token_available;             //not sure if this needs to be here.
 bool display_tracing_flag = true; // used for turning on and off tracing messages
 ofstream translated_file("translated.txt");
 
-static std::map<string,string>  dict;
 
 
 
+tokentype saved_token;
 string checkDict (string input){
 
 try{// add english work.
@@ -395,7 +397,7 @@ void createDict(){
     cin >> filename;
     fin2.open(filename.c_str());
     }
-   
+
     cout << endl;
     if (fin2.good()) {//if the file is good run the parser.
         while (fin2>>line){
@@ -406,7 +408,7 @@ void createDict(){
             {
                 std::cout<< "unbalanced dictionary file"<<endl;
                 break;
-            } 
+            }
     }
     cout<<"dictionary size is: "<< dict.size()<< endl;
     fin2.close();
@@ -415,8 +417,29 @@ void createDict(){
 }
 
 
-// Purpose: takes tokentype checks for token and next 
-// Done by: Rudy 
+// Purpose: takes tokentype checks for token and next
+// Done by: Rudy
+
+void getEword(){
+    saved_E_word=checkDict(saved_lexeme);
+}
+void gen(string word)
+{
+    if(word !="TENSE"){
+        cout << word << ": " << saved_E_word << endl;
+        translated_file << word << ": " << saved_E_word << endl;
+    }
+    else{
+        cout << word << ": " << saved_token;
+        translated_file << word << ": " << saved_token << endl;
+    }
+
+}
+
+
+
+// Purpose: takes tokentype checks for token and next
+// Done by: Rudy
 tokentype next_token(tokentype expected)
 {
     if (!token_available)
@@ -698,18 +721,8 @@ void DeleteEmptyLines(const string& FilePath)
 }
 
 
-void gen(string word)
-{
-    if(word !="TENSE"){
-        cout << word << ": " << saved_E_word << endl;
-        translated_file << word << ": " << saved_E_word << endl;
-    }
-    else{
-        cout << word << ": " << saved_token;
-        translated_file << word << ": " << saved_token << endl;
-    }
 
-}
+
 
 //----------- Driver ---------------------------
 
