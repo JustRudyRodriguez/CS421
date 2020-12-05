@@ -4,7 +4,7 @@
 #include <sstream>
 #include <string>
 using namespace std;
-stringstream split;
+istringstream split;
 /* Look for all **'s and complete them */
 
 //=====================================================
@@ -210,7 +210,7 @@ int scanner(tokentype& tt, string& w, string reRun)
     split >> current;
 }
     else {
-        current = reRun;
+        current = reRun; 
     }
     tt = ERROR; // setting this as a starting value for logic reasons ahead, ignore for now.
     cout << "Scanner called using word: " << current << endl;
@@ -328,8 +328,8 @@ void AFTER_NOUN();
 // ** Need syntax_error1 and syntax_error2 functions (each takes 2 args)
 //    to display syntax error messages as specified by me.
 
-// Type of error: Error 1
-// Done by: Julian
+// Type of error: Error 1 
+// Done by: Julian 
 bool syntax_error1(string lexeme, tokentype token)
 {
 
@@ -348,11 +348,15 @@ bool syntax_error1(string lexeme, tokentype token)
 
     return false;
 }
-// Type of error: Error 2
-// Done by: Julian
+// Type of error: Error 2 
+// Done by: Julian 
 void syntax_error2(tokentype input, tokentype expected)
 {
+
+    //<<<<<<< HEAD
+    //=======
     cout << "SYNTAX ERROR : expected " << tokenName[expected] << " but found " << tokenName[input] << endl;
+    //need exit(1)
     exit(1);
 }
 
@@ -363,8 +367,8 @@ bool token_available;             //not sure if this needs to be here.
 bool display_tracing_flag = true; // used for turning on and off tracing messages
 
 
-// Purpose: takes tokentype checks for token and next
-// Done by: Rudy
+// Purpose: takes tokentype checks for token and next 
+// Done by: Rudy 
 tokentype next_token(tokentype expected)
 {
     if (!token_available)
@@ -396,7 +400,7 @@ tokentype next_token(tokentype expected)
 }
 
 // Purpose: recieves tokentype and checks if its expected type
-// Done by: Rudy
+// Done by: Rudy 
 bool match(tokentype expected)
 {
 
@@ -426,10 +430,10 @@ void TENSE_FUNC()
     switch (next_token(VERBPAST))
     {
     case VERBPAST:
-        match(VERBPAST);
+        match(VERBPAST); 
         break;
     case VERBPASTNEG:
-        match(VERBPASTNEG);
+        match(VERBPASTNEG); 
         break;
     case VERB:
         match(VERB);
@@ -452,8 +456,8 @@ void VERB_FUNC()
     match(WORD2);
 }
 
-//Done by: Julian
-// Grammer: <noun> ::= WORD1 | PRONOUN
+//Done by: Julian 
+// Grammer: <noun> ::= WORD1 | PRONOUN 
 void NOUN_FUNC()
 {
 
@@ -473,7 +477,7 @@ void NOUN_FUNC()
 }
 
 //Done by: Rudy
-//Grammer:
+//Grammer: 
 void AFTER_SUBJECT()
 {
 
@@ -499,7 +503,7 @@ void AFTER_SUBJECT()
     }
 }
 
-//Done by: Andrew
+//Done by: Andrew 
 //Grammer: <be> ::=   IS | WAS
 void BE_FUNC()
 {
@@ -519,8 +523,8 @@ void BE_FUNC()
     }
 }
 
-//Done by: Julian
-//Grammer:
+//Done by: Julian 
+//Grammer: 
 void AFTER_OBJECT()
 {
 
@@ -552,7 +556,7 @@ void AFTER_OBJECT()
     }
 }
 
-//Done by: Rudy
+//Done by: Rudy 
 //Grammer:
 void AFTER_NOUN()
 {
@@ -608,7 +612,7 @@ void story()
 
 }
 
-//Done by: Julian
+//Done by: Julian 
 //Purpose: Remove the empty lines from txt file
 void DeleteEmptyLines(const string& FilePath)
 {
@@ -637,7 +641,7 @@ void DeleteEmptyLines(const string& FilePath)
 //----------- Driver ---------------------------
 
 // The new test driver to start the parser
-// Done by: Andrew
+// Done by: Andrew 
 int main()
 {
     std::cout << "CS 433 Programming assignment 3" << std::endl;
@@ -667,8 +671,7 @@ int main()
                 break;
             cout << "====================================================================================================" << endl;
             cout << "The line is: " << line << endl;
-            split.clear();
-            split << line;
+            split = istringstream(line);
             story();      //** calls the <story> to start parsing
             cout << endl;
             token_available = false;
@@ -680,3 +683,4 @@ int main()
     else
         cout << "There is no filename:" << filename << endl;
 }// end
+ 
