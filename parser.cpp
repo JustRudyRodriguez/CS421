@@ -10,7 +10,7 @@ stringstream split;
 
 string saved_E_word;
 void getEword(){
-    
+    saved_E_word=checkDict(saved_lexeme);
 }
 //=====================================================
 // File scanner.cpp written by: Group Number: **
@@ -386,10 +386,10 @@ catch(std::out_of_range){ // add japanese word
 
 }
 void createDict(){
-    
+
 }
-// Purpose: takes tokentype checks for token and next 
-// Done by: Rudy 
+// Purpose: takes tokentype checks for token and next
+// Done by: Rudy
 tokentype next_token(tokentype expected)
 {
     if (!token_available)
