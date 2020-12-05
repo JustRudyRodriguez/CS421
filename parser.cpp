@@ -8,10 +8,11 @@ using namespace std;
 stringstream split;
 /* Look for all **'s and complete them */
 
-string saved_E_word;
+/*string saved_E_word;
 void getEword(){
     saved_E_word=checkDict(saved_lexeme);
 }
+*/
 //=====================================================
 // File scanner.cpp written by: Group Number: **
 //=====================================================
@@ -374,33 +375,44 @@ static std::map<string,string>  dict;
 
 string checkDict (string input){
 
-std::cout << "does this dict work? : "<< dict.count("watashi") << endl;
-
 try{// add english work.
-std::cout << "a => " << dict.at(input)<< '\n';// for testing delete later.
-return dict.at(input);
+    dict.at(input);
+    return dict.at(input);
 }
 catch(std::out_of_range){ // add japanese word
 
-    std::cout <<"ya broke it dumb dumb"<< endl;
+    return input;
 }
 
 }
 void createDict(){
-    string filename;
-    std::cout << "Enter the dictionary file name: ";
-    cin >> filename;
+    string filename="lexicon.txt";
     ifstream fin2;
     string line;
-    fin2.open(filename.c_str());
-    std::cout << endl;
-    if (fin.good()) {//if the file is good run the parser.
-        while (getline(fin2, line)){
-            std::cout<<line;
+    string line2;
 
-        }
-        
-    
+    fin2.open(filename.c_str());
+    if(!fin2.good()){
+    std::cout << "Enter the dictionary file name: ";
+    cin >> filename;
+    fin2.open(filename.c_str());
+    }
+   
+    cout << endl;
+    if (fin2.good()) {//if the file is good run the parser.
+        while (fin2>>line){
+            if(fin2>>line2){
+                dict[line] =line2;
+            }
+            else
+            {
+                std::cout<< "unbalanced dictionary file"<<endl;
+                break;
+            } 
+    }
+    cout<<"dictionary size is: "<< dict.size()<< endl;
+    fin2.close();
+
     }
 }
 
@@ -676,7 +688,7 @@ void DeleteEmptyLines(const string& FilePath)
 }
 
 
-void gen(string word)
+/*void gen(string word)
 {
     if(word !="TENSE"){
         cout << word << ": " << saved_E_word << endl;
@@ -688,6 +700,7 @@ void gen(string word)
     }
 
 }
+*/
 //----------- Driver ---------------------------
 
 // The new test driver to start the parser
