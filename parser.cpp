@@ -7,11 +7,10 @@
 using namespace std;
 stringstream split;
 /* Look for all **'s and complete them */
+static std::map<std::string, std::string> dict;
 
 string saved_E_word;
-void getEword(){
-    saved_E_word=checkDict(saved_lexeme);
-}
+
 //=====================================================
 // File scanner.cpp written by: Group Number: **
 //=====================================================
@@ -362,16 +361,11 @@ void syntax_error2(tokentype input, tokentype expected)
 }
 
 
-tokentype saved_token;
 string saved_lexeme;              // the example has this within next_token()
 bool token_available;             //not sure if this needs to be here.
 bool display_tracing_flag = true; // used for turning on and off tracing messages
 ofstream translated_file("translated.txt");
-
-static std::map<std::string, std::string> dict;
-
-
-
+tokentype saved_token;
 string checkDict (string input){
 std::cout << "does this dict work? : "<< dict.count("watashi") << endl;
 
@@ -383,11 +377,30 @@ catch(std::out_of_range){ // add japanese word
 
     std::cout <<"ya broke it dumb dumb"<< endl;
 }
-
+return "";
 }
 void createDict(){
 
 }
+
+void getEword(){
+    saved_E_word=dict.checkDict(saved_lexeme);
+}
+void gen(string word)
+{
+    if(word !="TENSE"){
+        cout << word << ": " << saved_E_word << endl;
+        translated_file << word << ": " << saved_E_word << endl;
+    }
+    else{
+        cout << word << ": " << saved_token;
+        translated_file << word << ": " << saved_token << endl;
+    }
+
+}
+
+
+
 // Purpose: takes tokentype checks for token and next
 // Done by: Rudy
 tokentype next_token(tokentype expected)
@@ -507,9 +520,9 @@ void AFTER_SUBJECT()
     switch (next_token(WORD2))
     {
     case WORD2:
-        VERB_FUNC
+        VERB_FUNC();
         getEword();
-        gen("ACTION")
+        gen("ACTION");
         TENSE_FUNC();
         gen("TENSE");
         match(PERIOD);
@@ -558,7 +571,7 @@ void AFTER_OBJECT()
     case WORD2:
         VERB_FUNC();
         getEword();
-        gen("ACTION")
+        gen("ACTION");
         TENSE_FUNC();
         gen("TENSE");
         match(PERIOD);
@@ -567,7 +580,7 @@ void AFTER_OBJECT()
         NOUN_FUNC();
         getEword();
         match(DESTINATION);
-        gen("TO")
+        gen("TO");
         VERB_FUNC();
         getEword();
         gen("ACTION");
@@ -590,24 +603,24 @@ void AFTER_NOUN()
     switch (next_token(IS))
     {
     case IS: case WAS:
-    gen("DESCRIPTION")
+    gen("DESCRIPTION");
         BE_FUNC();
         gen("TENSE");
         match(PERIOD);
         break;
     case DESTINATION:
         match(DESTINATION);
-        gen("TO")
+        gen("TO");
         VERB_FUNC();
         getEword();
-        gen("ACTION")
+        gen("ACTION");
         TENSE_FUNC();
-        gen("TENSE")
+        gen("TENSE");
         match(PERIOD);
         break;
     case OBJECT:
         match(OBJECT);
-        gen("OBJECT")
+        gen("OBJECT");
         AFTER_OBJECT();
         break;
     default:
@@ -631,14 +644,14 @@ void story()
         NOUN_FUNC();
         getEword();
         match(SUBJECT);
-        gen("ACTOR")
+        gen("ACTOR");
         AFTER_SUBJECT();
         break;
     default:
         NOUN_FUNC();
         getEword();
         match(SUBJECT);
-        gen("ACTOR")
+        gen("ACTOR");
         AFTER_SUBJECT();
         break;
     }
@@ -671,18 +684,7 @@ void DeleteEmptyLines(const string& FilePath)
 }
 
 
-void gen(string word)
-{
-    if(word !="TENSE"){
-        cout << word << ": " << saved_E_word << endl;
-        translated_file << word << ": " << saved_E_word << endl;
-    }
-    else{
-        cout << word << ": " << saved_token;
-        translated_file << word << ": " << saved_token << endl;
-    }
 
-}
 //----------- Driver ---------------------------
 
 // The new test driver to start the parser
