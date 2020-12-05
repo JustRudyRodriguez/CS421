@@ -3,6 +3,7 @@
 #include <fstream>
 #include <sstream>
 #include <string>
+#include <map>
 using namespace std;
 istringstream split;
 /* Look for all **'s and complete them */
@@ -367,6 +368,25 @@ bool token_available;             //not sure if this needs to be here.
 bool display_tracing_flag = true; // used for turning on and off tracing messages
 
 
+static std::map<std::string, std::string> dict;
+
+
+
+void getEword (){
+std::cout << "does this dict work? : "<< dict.count("watashi") << endl;
+
+try{// add english work.
+std::cout << "a => " << dict.at("junk")<< '\n';
+}
+catch(std::out_of_range){ // add japanese word
+
+    std::cout <<"ya broke it dumb dumb"<< endl;
+}
+
+}
+void createDict(){
+    
+}
 // Purpose: takes tokentype checks for token and next 
 // Done by: Rudy 
 tokentype next_token(tokentype expected)
