@@ -368,11 +368,12 @@ bool token_available;             //not sure if this needs to be here.
 bool display_tracing_flag = true; // used for turning on and off tracing messages
 
 
-static std::map<std::string, std::string> dict;
+static std::map<string,string>  dict;
 
 
 
 string checkDict (string input){
+
 std::cout << "does this dict work? : "<< dict.count("watashi") << endl;
 
 try{// add english work.
@@ -386,8 +387,24 @@ catch(std::out_of_range){ // add japanese word
 
 }
 void createDict(){
+    string filename;
+    std::cout << "Enter the dictionary file name: ";
+    cin >> filename;
+    ifstream fin2;
+    string line;
+    fin2.open(filename.c_str());
+    std::cout << endl;
+    if (fin.good()) {//if the file is good run the parser.
+        while (getline(fin2, line)){
+            std::cout<<line;
+
+        }
+        
     
+    }
 }
+
+
 // Purpose: takes tokentype checks for token and next 
 // Done by: Rudy 
 tokentype next_token(tokentype expected)
@@ -665,6 +682,9 @@ void DeleteEmptyLines(const string& FilePath)
 // Done by: Andrew
 int main()
 {
+
+    createDict();
+    checkDict("junk");
     std::cout << "CS 433 Programming assignment 3" << std::endl;
     std::cout << "Authors: Andrew, Rudy, and Julian" << std::endl;
     std::cout << "Date: 11/22/2020" << std::endl;
@@ -697,7 +717,7 @@ int main()
             story();      //** calls the <story> to start parsing
             cout << endl;
             token_available = false;
-
+            fin.close();
 
         }
 
