@@ -658,8 +658,7 @@ void DeleteEmptyLines(const string& FilePath)
     FileStream.close();
 }
 
-//translated_file should be ofstream 
-//ofstream translated_file("translated.txt");//added for outputing text in gen func
+
 void gen(string word)
 {
     if(word !="TENSE"){
