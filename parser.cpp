@@ -718,4 +718,5 @@ int main()
         cout << "There is no filename:" << filename << endl;
 
     //close ofstream
+    translated_file.close();
 }// end
