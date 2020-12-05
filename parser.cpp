@@ -10,7 +10,7 @@ stringstream split;
 
 string saved_E_word;
 void getEword(){
-    
+    saved_E_word=checkDict(saved_lexeme);
 }
 //=====================================================
 // File scanner.cpp written by: Group Number: **
@@ -366,7 +366,7 @@ tokentype saved_token;
 string saved_lexeme;              // the example has this within next_token()
 bool token_available;             //not sure if this needs to be here.
 bool display_tracing_flag = true; // used for turning on and off tracing messages
-
+ofstream translated_file("translated.txt");
 
 static std::map<string,string>  dict;
 
@@ -676,6 +676,18 @@ void DeleteEmptyLines(const string& FilePath)
 }
 
 
+void gen(string word)
+{
+    if(word !="TENSE"){
+        cout << word << ": " << saved_E_word << endl;
+        translated_file << word << ": " << saved_E_word << endl;
+    }
+    else{
+        cout << word << ": " << saved_token;
+        translated_file << word << ": " << saved_token << endl;
+    }
+
+}
 //----------- Driver ---------------------------
 
 // The new test driver to start the parser
@@ -724,4 +736,6 @@ int main()
     }
     else
         cout << "There is no filename:" << filename << endl;
+
+    //close ofstream
 }// end
