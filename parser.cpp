@@ -7,6 +7,10 @@ using namespace std;
 stringstream split;
 /* Look for all **'s and complete them */
 
+string saved_E_word;
+void getEword(){
+    
+}
 //=====================================================
 // File scanner.cpp written by: Group Number: **
 //=====================================================
