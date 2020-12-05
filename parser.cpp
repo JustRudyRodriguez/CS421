@@ -507,18 +507,20 @@ void AFTER_SUBJECT()
     switch (next_token(WORD2))
     {
     case WORD2:
-        VERB_FUNC();
+        VERB_FUNC
+        getEword();
+        gen("ACTION")
         TENSE_FUNC();
+        gen("TENSE");
         match(PERIOD);
         break;
-    case WORD1:
+    case WORD1: case PRONOUN:
         NOUN_FUNC();
+        getEword();
         AFTER_NOUN();
         break;
-    case PRONOUN:
-        NOUN_FUNC();
-        AFTER_NOUN();
-        break;
+
+
     default:
         syntax_error2(saved_token, SUBJECT);
     }
@@ -555,21 +557,22 @@ void AFTER_OBJECT()
     {
     case WORD2:
         VERB_FUNC();
+        getEword();
+        gen("ACTION")
         TENSE_FUNC();
+        gen("TENSE");
         match(PERIOD);
         break;
-    case WORD1:
+    case WORD1:  case PRONOUN:
         NOUN_FUNC();
+        getEword();
         match(DESTINATION);
+        gen("TO")
         VERB_FUNC();
+        getEword();
+        gen("ACTION");
         TENSE_FUNC();
-        match(PERIOD);
-        break;
-    case PRONOUN:
-        NOUN_FUNC();
-        match(DESTINATION);
-        VERB_FUNC();
-        TENSE_FUNC();
+        gen("TENSE");
         match(PERIOD);
         break;
     default:
@@ -586,22 +589,25 @@ void AFTER_NOUN()
         cout << "Processing <AFTER_NOUN>\n";
     switch (next_token(IS))
     {
-    case IS:
+    case IS: case WAS:
+    gen("DESCRIPTION")
         BE_FUNC();
-        match(PERIOD);
-        break;
-    case WAS:
-        BE_FUNC();
+        gen("TENSE");
         match(PERIOD);
         break;
     case DESTINATION:
         match(DESTINATION);
+        gen("TO")
         VERB_FUNC();
+        getEword();
+        gen("ACTION")
         TENSE_FUNC();
+        gen("TENSE")
         match(PERIOD);
         break;
     case OBJECT:
         match(OBJECT);
+        gen("OBJECT")
         AFTER_OBJECT();
         break;
     default:
@@ -620,13 +626,19 @@ void story()
     switch (next_token(CONNECTOR)) {
     case CONNECTOR:
         match(CONNECTOR);
+        getEword();
+        gen("CONNECTOR");
         NOUN_FUNC();
+        getEword();
         match(SUBJECT);
+        gen("ACTOR")
         AFTER_SUBJECT();
         break;
     default:
         NOUN_FUNC();
+        getEword();
         match(SUBJECT);
+        gen("ACTOR")
         AFTER_SUBJECT();
         break;
     }
