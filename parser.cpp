@@ -382,8 +382,9 @@ catch(std::out_of_range){ // add japanese word
 
     return input;
 }
-return "";
+
 }
+
 void createDict(){
     string filename="lexicon.txt";
     ifstream fin2;
