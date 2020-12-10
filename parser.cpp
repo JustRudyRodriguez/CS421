@@ -430,8 +430,8 @@ void gen(string word)
         translated_file << word << ": " << saved_E_word << endl;
     }
     else{
-        cout << word << ": " << saved_token;
-        translated_file << word << ": " << saved_token << endl;
+        cout << word << ": " << tokenName[saved_token]<<endl;
+        translated_file << word << ": " << tokenName[saved_token] << endl;
     }
 
 }
