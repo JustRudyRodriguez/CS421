@@ -349,6 +349,8 @@ bool syntax_error1(string lexeme, tokentype token)
     string choice;
     cout << "Would you like to replace word? Y/N: ";
     cin >> choice;
+    transform(choice.begin(), choice.end(), choice.begin(), ::toupper);
+
     if (choice == "Y")
         return true;
 
@@ -460,6 +462,7 @@ tokentype next_token(tokentype expected)
             if (saved_token == ERROR) {
                 cout << "Would you like to skip this word? Y/N?" << endl;
                 cin >> word;
+                transform(word.begin(), word.end(), word.begin(), ::toupper);
                 if (word == "Y") {
                     saved_token = expected;
                     token_available = true;
@@ -742,6 +745,7 @@ int main()
     string filename;
     cout << "Display tracing messages? Y/N: ";
     cin >> choice;
+    transform(choice.begin(), choice.end(), choice.begin(), ::toupper);
 
     if (choice == "N")
         display_tracing_flag = false;
