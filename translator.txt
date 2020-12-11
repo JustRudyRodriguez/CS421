@@ -1,0 +1,237 @@
+Script started on Thu 10 Dec 2020 06:09:18 PM PST
+]0;malms002@empress:~/projects[?1034h[malms002@empress projects]$ ls
+[0m[01;32ma.out[0m  dictionary.txt  errors.txt  lexicon.txt  partCtest1  partCtest2  partCtest3  partCtest4  partCtest5  partCtest6  partECtest7  [01;34mProject1[0m  translated.txt  translator.cpp  ,translator.txt
+]0;malms002@empress:~/projects[malms002@empress projects]$ g++ translator.c-translator.cOtranslator.c translator.c-translator.cstranslator.c[Ctranslator.cdtranslator.c=translator.cctranslator.c+translator.c+translator.c1translator.c1translator.c translator.cp[C translator.cp- translator.cpo translator.cpg translator.cpr translator.c[1P translator.c[1P translator.cp[C translator.cpg translator.cpr translator.cpo translator.cpu translator.cpp translator.cp2 translator.cp5 translator.cpp translator.cpr translator.cpo translator.cpj translator.cpe translator.cpc translator.cpt translator.cp. translator.cpo translator.cpu translator.cpt translator.cp[C translator.cp[1Ptranslator.c[1P translator.c[1P translator.c[1P translator.c[1P translator.cp
+]0;malms002@empress:~/projects[malms002@empress projects]$ ls
+[0m[01;32ma.out[0m  dictionary.txt  errors.txt  [01;32mgroup25project[0m  lexicon.txt  partCtest1  partCtest2  partCtest3  partCtest4  partCtest5  partCtest6  partECtest7  [01;34mProject1[0m  translated.txt  translator.cpp  ,translator.txt
+]0;malms002@empress:~/projects[malms002@empress projects]$ ./group25project
+
+dictionary size is: 47
+CS 433 Programming assignment 3
+Authors: Andrew, Rudy, and Julian
+Date: 11/22/2020
+Course: CS421 (Theory of Computing)
+Description : parser project 
+=================================
+Display tracing messages? Y/N: Y
+Enter the input file name: partCtest1
+
+====================================================================================================
+The line is: watashi wa rika desu .
+Processing <story>
+Scanner called using word: watashi
+Processing <NOUN>
+ Match succeeded, token type is: PRONOUN
+Scanner called using word: wa
+ Match succeeded, token type is: SUBJECT
+ACTOR: I/me
+Processing <AFTER_SUBJECT>
+Scanner called using word: rika
+Processing <NOUN>
+ Match succeeded, token type is: WORD1
+Processing <AFTER_NOUN>
+Scanner called using word: desu
+DESCRIPTION: rika
+Processing <BE>
+ Match succeeded, token type is: IS
+TENSE: IS
+Scanner called using word: .
+ Match succeeded, token type is: PERIOD
+
+]0;malms002@empress:~/projects[malms002@empress projects]$ ./group25project
+
+dictionary size is: 47
+CS 433 Programming assignment 3
+Authors: Andrew, Rudy, and Julian
+Date: 11/22/2020
+Course: CS421 (Theory of Computing)
+Description : parser project 
+=================================
+Display tracing messages? Y/N: Y
+Enter the input file name: partCtest2
+
+====================================================================================================
+The line is: soshite watashi wa rika desu ne .
+Processing <story>
+Scanner called using word: soshite
+ Match succeeded, token type is: CONNECTOR
+CONNECTOR: Then
+Processing <NOUN>
+Scanner called using word: watashi
+ Match succeeded, token type is: PRONOUN
+Scanner called using word: wa
+ Match succeeded, token type is: SUBJECT
+ACTOR: I/me
+Processing <AFTER_SUBJECT>
+Scanner called using word: rika
+Processing <NOUN>
+ Match succeeded, token type is: WORD1
+Processing <AFTER_NOUN>
+Scanner called using word: desu
+DESCRIPTION: rika
+Processing <BE>
+ Match succeeded, token type is: IS
+TENSE: IS
+Scanner called using word: ne
+SYNTAX ERROR : expected PERIOD but found WORD1
+]0;malms002@empress:~/projects[malms002@empress projects]$ ./group25project
+
+dictionary size is: 47
+CS 433 Programming assignment 3
+Authors: Andrew, Rudy, and Julian
+Date: 11/22/2020
+Course: CS421 (Theory of Computing)
+Description : parser project 
+=================================
+Display tracing messages? Y/N: Y
+Enter the input file name: partCtest3
+
+====================================================================================================
+The line is: dakara watashi de rika desu . 
+Processing <story>
+Scanner called using word: dakara
+ Match succeeded, token type is: CONNECTOR
+CONNECTOR: Therefore
+Processing <NOUN>
+Scanner called using word: watashi
+ Match succeeded, token type is: PRONOUN
+Scanner called using word: de
+SYNTAX ERROR : expected SUBJECT but found WORD1
+]0;malms002@empress:~/projects[malms002@empress projects]$ ./group25project
+
+dictionary size is: 47
+CS 433 Programming assignment 3
+Authors: Andrew, Rudy, and Julian
+Date: 11/22/2020
+Course: CS421 (Theory of Computing)
+Description : parser project 
+=================================
+Display tracing messages? Y/N: Y
+Enter the input file name: partCtest4
+
+====================================================================================================
+The line is: watashi wa rika mashita . 
+Processing <story>
+Scanner called using word: watashi
+Processing <NOUN>
+ Match succeeded, token type is: PRONOUN
+Scanner called using word: wa
+ Match succeeded, token type is: SUBJECT
+ACTOR: I/me
+Processing <AFTER_SUBJECT>
+Scanner called using word: rika
+Processing <NOUN>
+ Match succeeded, token type is: WORD1
+Processing <AFTER_NOUN>
+Scanner called using word: mashita
+SYNTAX ERROR : expected NOUN but found VERBPAST
+]0;malms002@empress:~/projects[malms002@empress projects]$ ./group25project
+
+dictionary size is: 47
+CS 433 Programming assignment 3
+Authors: Andrew, Rudy, and Julian
+Date: 11/22/2020
+Course: CS421 (Theory of Computing)
+Description : parser project 
+=================================
+Display tracing messages? Y/N: Y
+Enter the input file name: partCtest5
+
+====================================================================================================
+The line is: wa rika desu . 
+Processing <story>
+Scanner called using word: wa
+Processing <NOUN>
+SYNTAX ERROR : expected NOUN but found SUBJECT
+]0;malms002@empress:~/projects[malms002@empress projects]$ ./group25project
+
+dictionary size is: 47
+CS 433 Programming assignment 3
+Authors: Andrew, Rudy, and Julian
+Date: 11/22/2020
+Course: CS421 (Theory of Computing)
+Description : parser project 
+=================================
+Display tracing messages? Y/N: Y
+Enter the input file name: partCtest6
+
+====================================================================================================
+The line is: apple wa red desu .
+Processing <story>
+Scanner called using word: apple
+Lexical error: apple is not a valid token
+SYNTAX ERROR : expected ERROR but found apple
+Would you like to replace word? Y/N: Y
+Type your new word
+watashi
+Scanner called using word: watashi
+Processing <NOUN>
+ Match succeeded, token type is: PRONOUN
+Scanner called using word: wa
+ Match succeeded, token type is: SUBJECT
+ACTOR: I/me
+Processing <AFTER_SUBJECT>
+Scanner called using word: red
+Lexical error: red is not a valid token
+SYNTAX ERROR : expected ERROR but found red
+Would you like to replace word? Y/N: N
+Would you like to skip this word? Y/N?
+Y
+Processing <VERB>
+ Match succeeded, token type is: WORD2
+ACTION: red
+Processing <TENSE>
+Scanner called using word: desu
+SYNTAX ERROR : expected TENSE but found IS
+]0;malms002@empress:~/projects[malms002@empress projects]$ ./group25project
+
+dictionary size is: 47
+CS 433 Programming assignment 3
+Authors: Andrew, Rudy, and Julian
+Date: 11/22/2020
+Course: CS421 (Theory of Computing)
+Description : parser project 
+=================================
+Display tracing messages? Y/N: Y
+Enter the input file name: partCtest7
+
+]0;malms002@empress:~/projects[malms002@empress projects]$ ./group25projec
+
+dictionary size is: 47
+CS 433 Programming assignment 3
+Authors: Andrew, Rudy, and Julian
+Date: 11/22/2020
+Course: CS421 (Theory of Computing)
+Description : parser project 
+=================================
+Display tracing messages? Y/N: Y
+Enter the input file name: partECtest7
+
+====================================================================================================
+The line is: soshite watashi wa rika desu ne .
+Processing <story>
+Scanner called using word: soshite
+ Match succeeded, token type is: CONNECTOR
+CONNECTOR: Then
+Processing <NOUN>
+Scanner called using word: watashi
+ Match succeeded, token type is: PRONOUN
+Scanner called using word: wa
+ Match succeeded, token type is: SUBJECT
+ACTOR: I/me
+Processing <AFTER_SUBJECT>
+Scanner called using word: rika
+Processing <NOUN>
+ Match succeeded, token type is: WORD1
+Processing <AFTER_NOUN>
+Scanner called using word: desu
+DESCRIPTION: rika
+Processing <BE>
+ Match succeeded, token type is: IS
+TENSE: IS
+Scanner called using word: ne
+SYNTAX ERROR : expected PERIOD but found WORD1
+]0;malms002@empress:~/projects[malms002@empress projects]$ exit
+exit
+
+Script done on Thu 10 Dec 2020 06:16:30 PM PST

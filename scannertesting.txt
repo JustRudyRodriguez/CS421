@@ -1,0 +1,114 @@
+Script started on Tue 03 Nov 2020 12:54:42 AM PST
+]0;malms002@empress:~/CS421Progs/ScannerFiles[?1034h[malms002@empress ScannerFiles]$ ex/cs/submitIt_LK G25 scanne[18P./scannelsg++ -o scanner -O -std=c++11 scanner.cpp
+]0;malms002@empress:~/CS421Progs/ScannerFiles[malms002@empress ScannerFiles]$ g++ -o scanner -O -std=c++11 scanner.cpp[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Cexit/cs/submitIt_LK G25 scanne[18P./scannels./scanner
+Enter the input file name: scannertest1
+Type is:PRONOUN
+Word is:watashi
+Type is:SUBJECT
+Word is:wa
+Type is:WORD1
+Word is:rika
+Type is:IS
+Word is:desu
+Type is:PERIOD
+Word is:.
+Type is:PRONOUN
+Word is:watashi
+Type is:SUBJECT
+Word is:wa
+Type is:WORD1
+Word is:sensei
+Type is:IS
+Word is:desu
+Type is:PERIOD
+Word is:.
+Type is:PRONOUN
+Word is:watashi
+Type is:SUBJECT
+Word is:wa
+Lexical error: ryouri is not a valid token
+Type is:ERROR
+Word is:ryouri
+Type is:OBJECT
+Word is:o
+Type is:WORD2
+Word is:yarI
+Type is:VERB
+Word is:masu
+Type is:PERIOD
+Word is:.
+Type is:PRONOUN
+Word is:watashi
+Type is:SUBJECT
+Word is:wa
+Lexical error: gohan is not a valid token
+Type is:ERROR
+Word is:gohan
+Type is:OBJECT
+Word is:o
+Type is:WORD1
+Word is:seito
+Type is:DESTINATION
+Word is:ni
+Type is:WORD2
+Word is:agE
+Type is:VERBPAST
+Word is:mashita
+Type is:PERIOD
+Word is:.
+Type is:CONNECTOR
+Word is:shikashi
+Type is:WORD1
+Word is:seito
+Type is:SUBJECT
+Word is:wa
+Type is:WORD2
+Word is:yorokobI
+Lexical error: masendeshita is not a valid token
+Type is:ERROR
+Word is:masendeshita
+Type is:PERIOD
+Word is:.
+Type is:CONNECTOR
+Word is:dakara
+Type is:PRONOUN
+Word is:watashi
+Type is:SUBJECT
+Word is:wa
+Type is:WORD1
+Word is:kanashii
+Type is:WAS
+Word is:deshita
+Type is:PERIOD
+Word is:.
+Type is:CONNECTOR
+Word is:soshite
+Type is:PRONOUN
+Word is:watashi
+Type is:SUBJECT
+Word is:wa
+Type is:WORD1
+Word is:toire
+Type is:DESTINATION
+Word is:ni
+Type is:WORD2
+Word is:ikI
+Type is:VERBPAST
+Word is:mashita
+Type is:PERIOD
+Word is:.
+Type is:PRONOUN
+Word is:watashi
+Type is:SUBJECT
+Word is:wa
+Type is:WORD2
+Word is:nakI
+Type is:VERBPAST
+Word is:mashita
+Type is:PERIOD
+Word is:.
+End of file is encountered.
+]0;malms002@empress:~/CS421Progs/ScannerFiles[malms002@empress ScannerFiles]$ exit
+exit
+
+Script done on Tue 03 Nov 2020 12:55:09 AM PST
