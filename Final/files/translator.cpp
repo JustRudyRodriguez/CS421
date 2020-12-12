@@ -325,13 +325,13 @@ void AFTER_NOUN();
 
 // Type of error: Error 1
 // Done by: Julian
+ofstream RecordErrors("errors.txt");
+
 bool syntax_error1(string lexeme, tokentype token)
 {
 	cout << "SYNTAX ERROR : expected " << tokenName[token] << " but found " << lexeme << endl;
-	ofstream file;
-	file.open("errors.txt");// may need to write condition for re-acessing this multiple times.
-	file << "SYNTAX ERROR: expected " << tokenName[token] << " but found " << lexeme << endl;
-	file.close();
+	RecordErrors << "SYNTAX ERROR: expected " << tokenName[token] << " but found " << lexeme << endl;
+	
 
 	return false;
 }
@@ -722,6 +722,8 @@ int main()
 	int refernces = 0;
 	cout << endl;
 	if (fin.good()) {//if the file is good run the parser.
+		
+		
 		while (getline(fin, line)) {//while we can get a line from the text
 			refernces++;
 			if (line.size() == 1)
@@ -739,9 +741,12 @@ int main()
 		}
 		fin.close();
 	}
+	
 	if (refernces == 0)
 		cout << "There is no filename:" << filename << endl;
 
 	//close ofstream
+	RecordErrors.close();
+
 	translated_file.close();
 }// end
