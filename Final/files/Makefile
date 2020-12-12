@@ -1,6 +1,8 @@
 ###################################
-# OS COURSE - CS 433 example
-#
+# CS421 Computational Theory
+# Program: A Japanese to English translator
+#Features: Includes skip, and replace word, and records all errors and tranlations.
+# Made by: Rodolfo Rodriguez, Julian Jaramillo, and Andrew Malmstead	
 ###################################
 CC = g++			# use g++ for compiling c++ code or gcc for c code
 CFLAGS = -O -std=c++11		# compilation flags: -Change to -O or -O2 for optimized code. -std
