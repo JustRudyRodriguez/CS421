@@ -1,10 +1,49 @@
-Script started on Thu 10 Dec 2020 06:09:18 PM PST
-]0;malms002@empress:~/projects[?1034h[malms002@empress projects]$ ls
-[0m[01;32ma.out[0m  dictionary.txt  errors.txt  lexicon.txt  partCtest1  partCtest2  partCtest3  partCtest4  partCtest5  partCtest6  partECtest7  [01;34mProject1[0m  translated.txt  translator.cpp  ,translator.txt
-]0;malms002@empress:~/projects[malms002@empress projects]$ g++ translator.c-translator.cOtranslator.c translator.c-translator.cstranslator.c[Ctranslator.cdtranslator.c=translator.cctranslator.c+translator.c+translator.c1translator.c1translator.c translator.cp[C translator.cp- translator.cpo translator.cpg translator.cpr translator.c[1P translator.c[1P translator.cp[C translator.cpg translator.cpr translator.cpo translator.cpu translator.cpp translator.cp2 translator.cp5 translator.cpp translator.cpr translator.cpo translator.cpj translator.cpe translator.cpc translator.cpt translator.cp. translator.cpo translator.cpu translator.cpt translator.cp[C translator.cp[1Ptranslator.c[1P translator.c[1P translator.c[1P translator.c[1P translator.cp
-]0;malms002@empress:~/projects[malms002@empress projects]$ ls
-[0m[01;32ma.out[0m  dictionary.txt  errors.txt  [01;32mgroup25project[0m  lexicon.txt  partCtest1  partCtest2  partCtest3  partCtest4  partCtest5  partCtest6  partECtest7  [01;34mProject1[0m  translated.txt  translator.cpp  ,translator.txt
-]0;malms002@empress:~/projects[malms002@empress projects]$ ./group25project
+Script started on Fri 11 Dec 2020 04:51:41 PM PST
+]0;malms002@empress:~/CS421Progs/TranslatorFiles[?1034h[malms002@empress TranslatorFiles]$ more Makefile
+###################################
+# CS421 Computational Theory
+# Program: A Japanese to English translator
+#Features: Includes skip, and replace word, and records all errors and tranlations.
+# Made by: Rodolfo Rodriguez, Julian Jaramillo, and Andrew Malmstead	
+###################################
+CC = g++			# use g++ for compiling c++ code or gcc for c code
+CFLAGS = -O -std=c++11		# compilation flags: -Change to -O or -O2 for optimized code. -std
+LIB = -lm			# linked libraries
+LDFLAGS = -L.			# link flags
+PROG = group25project			# target executable (output)
+SRCS = translator.cpp      # .c or .cpp source files.
+OBJ = $(SRCS:.cpp=.o) 	# object files for the target.
+
+all : $(PROG)
+
+$(PROG): $(OBJ)
+	$(CC) -o $(PROG) $(OBJ) $(LDFLAGS) $(LIB)
+
+.cpp.o:
+	$(CC) -c $(CFLAGS) $< -o $@
+
+depend: .depend
+
+.depend: $(SRCS)
+	rm -f ./.depend
+	$(CC) $(CFLAGS) -MM $^ > ./.depend;
+
+include .depend
+
+# cleanup
+clean:
+	/bin/rm -f *.o $(PROG)
+
+# DO NOT DELETE
+]0;malms002@empress:~/CS421Progs/TranslatorFiles[malms002@empress TranslatorFiles]$ ls
+dictionary.txt  lexicon.txt  Makefile  partCtest1  partCtest2  partCtest3  partCtest4  partCtest5  partCtest6  partctest7  partCtest7  partECtest7  @readMe  translator.cpp  ,translator.txt
+]0;malms002@empress:~/CS421Progs/TranslatorFiles[malms002@empress TranslatorFiles]$ make
+g++			 -c -O -std=c++11		 translator.cpp -o translator.o
+g++			 -o group25project			 translator.o 	 -L.			 -lm			
+]0;malms002@empress:~/CS421Progs/TranslatorFiles[malms002@empress TranslatorFiles]$ ls
+dictionary.txt  lexicon.txt  partCtest1  partCtest3  partCtest5  partctest7  partECtest7  translator.cpp  ,translator.txt
+[0m[01;32mgroup25project[0m  Makefile     partCtest2  partCtest4  partCtest6  partCtest7  @readMe      translator.o
+]0;malms002@empress:~/CS421Progs/TranslatorFiles[malms002@empress TranslatorFiles]$ ./group25project
 
 dictionary size is: 47
 CS 433 Programming assignment 3
@@ -38,7 +77,312 @@ TENSE: IS
 Scanner called using word: .
  Match succeeded, token type is: PERIOD
 
-]0;malms002@empress:~/projects[malms002@empress projects]$ ./group25project
+====================================================================================================
+The line is: watashi wa sensei desu .
+Processing <story>
+Scanner called using word: watashi
+Processing <NOUN>
+ Match succeeded, token type is: PRONOUN
+Scanner called using word: wa
+ Match succeeded, token type is: SUBJECT
+ACTOR: I/me
+Processing <AFTER_SUBJECT>
+Scanner called using word: sensei
+Processing <NOUN>
+ Match succeeded, token type is: WORD1
+Processing <AFTER_NOUN>
+Scanner called using word: desu
+DESCRIPTION: teacher
+Processing <BE>
+ Match succeeded, token type is: IS
+TENSE: IS
+Scanner called using word: .
+ Match succeeded, token type is: PERIOD
+
+====================================================================================================
+The line is: rika wa gohan o tabE masu .
+Processing <story>
+Scanner called using word: rika
+Processing <NOUN>
+ Match succeeded, token type is: WORD1
+Scanner called using word: wa
+ Match succeeded, token type is: SUBJECT
+ACTOR: rika
+Processing <AFTER_SUBJECT>
+Scanner called using word: gohan
+Processing <NOUN>
+ Match succeeded, token type is: WORD1
+Processing <AFTER_NOUN>
+Scanner called using word: o
+ Match succeeded, token type is: OBJECT
+OBJECT: meal
+Processing <AFTER_OBJECT>
+Scanner called using word: tabE
+Processing <VERB>
+ Match succeeded, token type is: WORD2
+ACTION: eat
+Processing <TENSE>
+Scanner called using word: masu
+ Match succeeded, token type is: VERB
+TENSE: VERB
+Scanner called using word: .
+ Match succeeded, token type is: PERIOD
+
+====================================================================================================
+The line is: watashi wa tesuto o seito ni agE mashita .
+Processing <story>
+Scanner called using word: watashi
+Processing <NOUN>
+ Match succeeded, token type is: PRONOUN
+Scanner called using word: wa
+ Match succeeded, token type is: SUBJECT
+ACTOR: I/me
+Processing <AFTER_SUBJECT>
+Scanner called using word: tesuto
+Processing <NOUN>
+ Match succeeded, token type is: WORD1
+Processing <AFTER_NOUN>
+Scanner called using word: o
+ Match succeeded, token type is: OBJECT
+OBJECT: test
+Processing <AFTER_OBJECT>
+Scanner called using word: seito
+Processing <NOUN>
+ Match succeeded, token type is: WORD1
+Scanner called using word: ni
+ Match succeeded, token type is: DESTINATION
+TO: student
+Processing <VERB>
+Scanner called using word: agE
+ Match succeeded, token type is: WORD2
+ACTION: give
+Processing <TENSE>
+Scanner called using word: mashita
+ Match succeeded, token type is: VERBPAST
+TENSE: VERBPAST
+Scanner called using word: .
+ Match succeeded, token type is: PERIOD
+
+====================================================================================================
+The line is: shikashi seito wa yorokobI masendeshita .
+Processing <story>
+Scanner called using word: shikashi
+ Match succeeded, token type is: CONNECTOR
+CONNECTOR: However
+Processing <NOUN>
+Scanner called using word: seito
+ Match succeeded, token type is: WORD1
+Scanner called using word: wa
+ Match succeeded, token type is: SUBJECT
+ACTOR: student
+Processing <AFTER_SUBJECT>
+Scanner called using word: yorokobI
+Processing <VERB>
+ Match succeeded, token type is: WORD2
+ACTION: enjoy
+Processing <TENSE>
+Scanner called using word: masendeshita
+ Match succeeded, token type is: VERBPASTNEG
+TENSE: VERBPASTNEG
+Scanner called using word: .
+ Match succeeded, token type is: PERIOD
+
+====================================================================================================
+The line is: dakara watashi wa kanashii deshita .
+Processing <story>
+Scanner called using word: dakara
+ Match succeeded, token type is: CONNECTOR
+CONNECTOR: Therefore
+Processing <NOUN>
+Scanner called using word: watashi
+ Match succeeded, token type is: PRONOUN
+Scanner called using word: wa
+ Match succeeded, token type is: SUBJECT
+ACTOR: I/me
+Processing <AFTER_SUBJECT>
+Scanner called using word: kanashii
+Processing <NOUN>
+ Match succeeded, token type is: WORD1
+Processing <AFTER_NOUN>
+Scanner called using word: deshita
+DESCRIPTION: sad
+Processing <BE>
+ Match succeeded, token type is: WAS
+TENSE: WAS
+Scanner called using word: .
+ Match succeeded, token type is: PERIOD
+
+====================================================================================================
+The line is: soshite rika wa toire ni ikI mashita .
+Processing <story>
+Scanner called using word: soshite
+ Match succeeded, token type is: CONNECTOR
+CONNECTOR: Then
+Processing <NOUN>
+Scanner called using word: rika
+ Match succeeded, token type is: WORD1
+Scanner called using word: wa
+ Match succeeded, token type is: SUBJECT
+ACTOR: rika
+Processing <AFTER_SUBJECT>
+Scanner called using word: toire
+Processing <NOUN>
+ Match succeeded, token type is: WORD1
+Processing <AFTER_NOUN>
+Scanner called using word: ni
+ Match succeeded, token type is: DESTINATION
+TO: restroom
+Processing <VERB>
+Scanner called using word: ikI
+ Match succeeded, token type is: WORD2
+ACTION: go
+Processing <TENSE>
+Scanner called using word: mashita
+ Match succeeded, token type is: VERBPAST
+TENSE: VERBPAST
+Scanner called using word: .
+ Match succeeded, token type is: PERIOD
+
+====================================================================================================
+The line is: rika wa nakI mashita .
+Processing <story>
+Scanner called using word: rika
+Processing <NOUN>
+ Match succeeded, token type is: WORD1
+Scanner called using word: wa
+ Match succeeded, token type is: SUBJECT
+ACTOR: rika
+Processing <AFTER_SUBJECT>
+Scanner called using word: nakI
+Processing <VERB>
+ Match succeeded, token type is: WORD2
+ACTION: cry
+Processing <TENSE>
+Scanner called using word: mashita
+ Match succeeded, token type is: VERBPAST
+TENSE: VERBPAST
+Scanner called using word: .
+ Match succeeded, token type is: PERIOD
+
+]0;malms002@empress:~/CS421Progs/TranslatorFiles[malms002@empress TranslatorFiles]$ ./group25project
+
+dictionary size is: 47
+CS 433 Programming assignment 3
+Authors: Andrew, Rudy, and Julian
+Date: 11/22/2020
+Course: CS421 (Theory of Computing)
+Description : parser project 
+=================================
+Display tracing messages? Y/N: N
+Enter the input file name: partCtest1
+
+====================================================================================================
+The line is: watashi wa rika desu .
+Scanner called using word: watashi
+Scanner called using word: wa
+ACTOR: I/me
+Scanner called using word: rika
+Scanner called using word: desu
+DESCRIPTION: rika
+TENSE: IS
+Scanner called using word: .
+
+====================================================================================================
+The line is: watashi wa sensei desu .
+Scanner called using word: watashi
+Scanner called using word: wa
+ACTOR: I/me
+Scanner called using word: sensei
+Scanner called using word: desu
+DESCRIPTION: teacher
+TENSE: IS
+Scanner called using word: .
+
+====================================================================================================
+The line is: rika wa gohan o tabE masu .
+Scanner called using word: rika
+Scanner called using word: wa
+ACTOR: rika
+Scanner called using word: gohan
+Scanner called using word: o
+OBJECT: meal
+Scanner called using word: tabE
+ACTION: eat
+Scanner called using word: masu
+TENSE: VERB
+Scanner called using word: .
+
+====================================================================================================
+The line is: watashi wa tesuto o seito ni agE mashita .
+Scanner called using word: watashi
+Scanner called using word: wa
+ACTOR: I/me
+Scanner called using word: tesuto
+Scanner called using word: o
+OBJECT: test
+Scanner called using word: seito
+Scanner called using word: ni
+TO: student
+Scanner called using word: agE
+ACTION: give
+Scanner called using word: mashita
+TENSE: VERBPAST
+Scanner called using word: .
+
+====================================================================================================
+The line is: shikashi seito wa yorokobI masendeshita .
+Scanner called using word: shikashi
+CONNECTOR: However
+Scanner called using word: seito
+Scanner called using word: wa
+ACTOR: student
+Scanner called using word: yorokobI
+ACTION: enjoy
+Scanner called using word: masendeshita
+TENSE: VERBPASTNEG
+Scanner called using word: .
+
+====================================================================================================
+The line is: dakara watashi wa kanashii deshita .
+Scanner called using word: dakara
+CONNECTOR: Therefore
+Scanner called using word: watashi
+Scanner called using word: wa
+ACTOR: I/me
+Scanner called using word: kanashii
+Scanner called using word: deshita
+DESCRIPTION: sad
+TENSE: WAS
+Scanner called using word: .
+
+====================================================================================================
+The line is: soshite rika wa toire ni ikI mashita .
+Scanner called using word: soshite
+CONNECTOR: Then
+Scanner called using word: rika
+Scanner called using word: wa
+ACTOR: rika
+Scanner called using word: toire
+Scanner called using word: ni
+TO: restroom
+Scanner called using word: ikI
+ACTION: go
+Scanner called using word: mashita
+TENSE: VERBPAST
+Scanner called using word: .
+
+====================================================================================================
+The line is: rika wa nakI mashita .
+Scanner called using word: rika
+Scanner called using word: wa
+ACTOR: rika
+Scanner called using word: nakI
+ACTION: cry
+Scanner called using word: mashita
+TENSE: VERBPAST
+Scanner called using word: .
+
+]0;malms002@empress:~/CS421Progs/TranslatorFiles[malms002@empress TranslatorFiles]$ ./group25project
 
 dictionary size is: 47
 CS 433 Programming assignment 3
@@ -73,8 +417,33 @@ Processing <BE>
  Match succeeded, token type is: IS
 TENSE: IS
 Scanner called using word: ne
-SYNTAX ERROR : expected PERIOD but found WORD1
-]0;malms002@empress:~/projects[malms002@empress projects]$ ./group25project
+SYNTAX ERROR : expected PERIOD but found ne
+Would you like to replace or skip word? R/S s
+Scanner called using word: .
+
+====================================================================================================
+The line is: watashi wa sensei desu .
+Processing <story>
+Scanner called using word: watashi
+Processing <NOUN>
+ Match succeeded, token type is: PRONOUN
+Scanner called using word: wa
+ Match succeeded, token type is: SUBJECT
+ACTOR: I/me
+Processing <AFTER_SUBJECT>
+Scanner called using word: sensei
+Processing <NOUN>
+ Match succeeded, token type is: WORD1
+Processing <AFTER_NOUN>
+Scanner called using word: desu
+DESCRIPTION: teacher
+Processing <BE>
+ Match succeeded, token type is: IS
+TENSE: IS
+Scanner called using word: .
+ Match succeeded, token type is: PERIOD
+
+]0;malms002@empress:~/CS421Progs/TranslatorFiles[malms002@empress TranslatorFiles]$ ./group25project
 
 dictionary size is: 47
 CS 433 Programming assignment 3
@@ -96,8 +465,23 @@ Processing <NOUN>
 Scanner called using word: watashi
  Match succeeded, token type is: PRONOUN
 Scanner called using word: de
-SYNTAX ERROR : expected SUBJECT but found WORD1
-]0;malms002@empress:~/projects[malms002@empress projects]$ ./group25project
+SYNTAX ERROR : expected SUBJECT but found de
+Would you like to replace or skip word? R/S s
+ACTOR: I/me
+Processing <AFTER_SUBJECT>
+Scanner called using word: rika
+Processing <NOUN>
+ Match succeeded, token type is: WORD1
+Processing <AFTER_NOUN>
+Scanner called using word: desu
+DESCRIPTION: rika
+Processing <BE>
+ Match succeeded, token type is: IS
+TENSE: IS
+Scanner called using word: .
+ Match succeeded, token type is: PERIOD
+
+]0;malms002@empress:~/CS421Progs/TranslatorFiles[malms002@empress TranslatorFiles]$ ./group25project
 
 dictionary size is: 47
 CS 433 Programming assignment 3
@@ -125,7 +509,7 @@ Processing <NOUN>
 Processing <AFTER_NOUN>
 Scanner called using word: mashita
 SYNTAX ERROR : expected NOUN but found VERBPAST
-]0;malms002@empress:~/projects[malms002@empress projects]$ ./group25project
+]0;malms002@empress:~/CS421Progs/TranslatorFiles[malms002@empress TranslatorFiles]$ ./group25project
 
 dictionary size is: 47
 CS 433 Programming assignment 3
@@ -134,16 +518,15 @@ Date: 11/22/2020
 Course: CS421 (Theory of Computing)
 Description : parser project 
 =================================
-Display tracing messages? Y/N: Y
+Display tracing messages? Y/N: y
 Enter the input file name: partCtest5
 
 ====================================================================================================
 The line is: wa rika desu . 
 Processing <story>
 Scanner called using word: wa
-Processing <NOUN>
-SYNTAX ERROR : expected NOUN but found SUBJECT
-]0;malms002@empress:~/projects[malms002@empress projects]$ ./group25project
+SYNTAX ERROR : expected STORY but found SUBJECT
+]0;malms002@empress:~/CS421Progs/TranslatorFiles[malms002@empress TranslatorFiles]$ ./group25project
 
 dictionary size is: 47
 CS 433 Programming assignment 3
@@ -152,7 +535,7 @@ Date: 11/22/2020
 Course: CS421 (Theory of Computing)
 Description : parser project 
 =================================
-Display tracing messages? Y/N: Y
+Display tracing messages? Y/N: y
 Enter the input file name: partCtest6
 
 ====================================================================================================
@@ -160,30 +543,8 @@ The line is: apple wa red desu .
 Processing <story>
 Scanner called using word: apple
 Lexical error: apple is not a valid token
-SYNTAX ERROR : expected ERROR but found apple
-Would you like to replace word? Y/N: Y
-Type your new word
-watashi
-Scanner called using word: watashi
-Processing <NOUN>
- Match succeeded, token type is: PRONOUN
-Scanner called using word: wa
- Match succeeded, token type is: SUBJECT
-ACTOR: I/me
-Processing <AFTER_SUBJECT>
-Scanner called using word: red
-Lexical error: red is not a valid token
-SYNTAX ERROR : expected ERROR but found red
-Would you like to replace word? Y/N: N
-Would you like to skip this word? Y/N?
-Y
-Processing <VERB>
- Match succeeded, token type is: WORD2
-ACTION: red
-Processing <TENSE>
-Scanner called using word: desu
-SYNTAX ERROR : expected TENSE but found IS
-]0;malms002@empress:~/projects[malms002@empress projects]$ ./group25project
+SYNTAX ERROR : expected STORY but found ERROR
+]0;malms002@empress:~/CS421Progs/TranslatorFiles[malms002@empress TranslatorFiles]$ ./group25project
 
 dictionary size is: 47
 CS 433 Programming assignment 3
@@ -193,19 +554,7 @@ Course: CS421 (Theory of Computing)
 Description : parser project 
 =================================
 Display tracing messages? Y/N: Y
-Enter the input file name: partCtest7
-
-]0;malms002@empress:~/projects[malms002@empress projects]$ ./group25projec
-
-dictionary size is: 47
-CS 433 Programming assignment 3
-Authors: Andrew, Rudy, and Julian
-Date: 11/22/2020
-Course: CS421 (Theory of Computing)
-Description : parser project 
-=================================
-Display tracing messages? Y/N: Y
-Enter the input file name: partECtest7
+Enter the input file name: partCtest7^[[D^[[D^[partECtest7
 
 ====================================================================================================
 The line is: soshite watashi wa rika desu ne .
@@ -230,8 +579,106 @@ Processing <BE>
  Match succeeded, token type is: IS
 TENSE: IS
 Scanner called using word: ne
-SYNTAX ERROR : expected PERIOD but found WORD1
-]0;malms002@empress:~/projects[malms002@empress projects]$ exit
+SYNTAX ERROR : expected PERIOD but found ne
+Would you like to replace or skip word? R/S R
+input a word: .
+
+Scanner called using word: .
+ Match succeeded, token type is: PERIOD
+Scanner called using word: .
+
+====================================================================================================
+The line is: watashi wa sensei desu .
+Processing <story>
+Scanner called using word: watashi
+Processing <NOUN>
+ Match succeeded, token type is: PRONOUN
+Scanner called using word: wa
+ Match succeeded, token type is: SUBJECT
+ACTOR: I/me
+Processing <AFTER_SUBJECT>
+Scanner called using word: sensei
+Processing <NOUN>
+ Match succeeded, token type is: WORD1
+Processing <AFTER_NOUN>
+Scanner called using word: desu
+DESCRIPTION: teacher
+Processing <BE>
+ Match succeeded, token type is: IS
+TENSE: IS
+Scanner called using word: .
+ Match succeeded, token type is: PERIOD
+
+====================================================================================================
+The line is: dakara watashi de rika desu . 
+Processing <story>
+Scanner called using word: dakara
+ Match succeeded, token type is: CONNECTOR
+CONNECTOR: Therefore
+Processing <NOUN>
+Scanner called using word: watashi
+ Match succeeded, token type is: PRONOUN
+Scanner called using word: de
+SYNTAX ERROR : expected SUBJECT but found de
+Would you like to replace or skip word? R/S r
+input a word: wa
+
+Scanner called using word: wa
+ Match succeeded, token type is: SUBJECT
+ACTOR: I/me
+Processing <AFTER_SUBJECT>
+Scanner called using word: rika
+Processing <NOUN>
+ Match succeeded, token type is: WORD1
+Processing <AFTER_NOUN>
+Scanner called using word: desu
+DESCRIPTION: rika
+Processing <BE>
+ Match succeeded, token type is: IS
+TENSE: IS
+Scanner called using word: .
+ Match succeeded, token type is: PERIOD
+
+====================================================================================================
+The line is: watashi wa rika mashita . 
+Processing <story>
+Scanner called using word: watashi
+Processing <NOUN>
+ Match succeeded, token type is: PRONOUN
+Scanner called using word: wa
+ Match succeeded, token type is: SUBJECT
+ACTOR: I/me
+Processing <AFTER_SUBJECT>
+Scanner called using word: rika
+Processing <NOUN>
+ Match succeeded, token type is: WORD1
+Processing <AFTER_NOUN>
+Scanner called using word: mashita
+SYNTAX ERROR : expected NOUN but found VERBPAST
+]0;malms002@empress:~/CS421Progs/TranslatorFiles[malms002@empress TranslatorFiles]$ s
+
+bash: s: command not found
+]0;malms002@empress:~/CS421Progs/TranslatorFiles[malms002@empress TranslatorFiles]$  more errors.txt
+
+SYNTAX ERROR: expected PERIOD but found ne
+SYNTAX ERROR: expected SUBJECT but found de
+]0;malms002@empress:~/CS421Progs/TranslatorFiles[malms002@empress TranslatorFiles]$  more translated.txt
+
+CONNECTOR: Then
+ACTOR: I/me
+DESCRIPTION: rika
+TENSE: IS
+ACTOR: I/me
+DESCRIPTION: teacher
+TENSE: IS
+CONNECTOR: Therefore
+ACTOR: I/me
+DESCRIPTION: rika
+TENSE: IS
+ACTOR: I/me
+]0;malms002@empress:~/CS421Progs/TranslatorFiles[malms002@empress TranslatorFiles]$ exit
 exit
 
-Script done on Thu 10 Dec 2020 06:16:30 PM PST
+
+
+Script done on Fri 11 Dec 2020 04:57:17 PM PST
