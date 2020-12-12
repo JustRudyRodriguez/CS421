@@ -1,1 +1,2 @@
+SYNTAX ERROR: expected PERIOD but found ne
 SYNTAX ERROR: expected SUBJECT but found de

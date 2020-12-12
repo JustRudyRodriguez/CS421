@@ -331,7 +331,6 @@ bool syntax_error1(string lexeme, tokentype token)
 {
 	cout << "SYNTAX ERROR : expected " << tokenName[token] << " but found " << lexeme << endl;
 	RecordErrors << "SYNTAX ERROR: expected " << tokenName[token] << " but found " << lexeme << endl;
-	
 
 	return false;
 }
@@ -431,12 +430,12 @@ bool match(tokentype expected)
 		cout << "Would you like to replace or skip word? R/S ";
 		cin >> choice;
 
-		if (choice == "S"||choice=="s") {//if we choose to skip this word
+		if (choice == "S" || choice == "s") {//if we choose to skip this word
 			token_available = false;//make the token_available so that we can go to the next
 			return true;
 		}
 		else
-			if (choice == "R"||choice=="r") {
+			if (choice == "R" || choice == "r") {
 				replace = true;
 				scanner(saved_token, saved_lexeme);
 				match(expected);
@@ -711,7 +710,7 @@ int main()
 	cout << "Display tracing messages? Y/N: ";
 	cin >> choice;
 
-	if (choice == "N"||choice=="n")
+	if (choice == "N" || choice == "n")
 		display_tracing_flag = false;
 	cout << "Enter the input file name: ";
 	cin >> filename;
@@ -722,8 +721,6 @@ int main()
 	int refernces = 0;
 	cout << endl;
 	if (fin.good()) {//if the file is good run the parser.
-		
-		
 		while (getline(fin, line)) {//while we can get a line from the text
 			refernces++;
 			if (line.size() == 1)
@@ -741,12 +738,15 @@ int main()
 		}
 		fin.close();
 	}
-	
+
 	if (refernces == 0)
 		cout << "There is no filename:" << filename << endl;
 
 	//close ofstream
+	RecordErrors << "==========================================================================================================================" << endl;
+	RecordErrors << endl;
+	translated_file << "==========================================================================================================================" << endl;
+	translated_file << endl;
 	RecordErrors.close();
-
 	translated_file.close();
 }// end
