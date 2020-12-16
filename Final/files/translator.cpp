@@ -201,20 +201,20 @@ int scanner(tokentype& tt, string& w)
 	// ** Grab the next word from the file via fin
 	// 1. If it is eofm, return right now.
 	string current;
-	if (!replace) {// checks if we're adding a word in manually through syntax error 1
-		split >> current;
+	if (!replace) {// checks if we're adding a word in manually through syntax error 1 flag
+		split >> current;//pull from split
 	}
 	else {
 		cout << "input a word: ";
-		cin >> current;
+		cin >> current;//pull from the user input stream.
 		cout << endl;
 	}
-	if (current.compare(" ") == 0)
+	if (current.compare(" ") == 0)//if the current word is space return back control
 	{
 		fin >> current;
 	}
-	if (current.compare("") == 0)
-		return 1;
+	if (current.compare("") == 0)//if the current word is blank
+		return 1;// return error for blank
 	tt = ERROR; // setting this as a starting value for logic reasons ahead, ignore for now.
 	cout << "Scanner called using word: " << current << endl;
 
@@ -233,7 +233,7 @@ int scanner(tokentype& tt, string& w)
 
   ***/
 
-	for (int i = 0; i < 18; i++)
+	for (int i = 0; i < 18; i++)//iterate the reservedWords array and look for a match
 	{
 		if (reservedWords[i] == current)
 		{
@@ -278,13 +278,13 @@ int scanner(tokentype& tt, string& w)
 
 	***/
 
-	if (current.back() == 'I' || current.back() == 'E')
+	if (current.back() == 'I' || current.back() == 'E')//If the word ends with I or E then its a word2
 	{
-		tt = WORD2; // needs to be added to list.
+		tt = WORD2;
 		w = current;
 		return 0;
 	}
-	else
+	else//otherwise its a word1.
 	{
 		tt = WORD1;
 		w = current;
@@ -388,12 +388,12 @@ void createDict() {
 	}
 }
 
-// Purpose: takes tokentype checks for token and next
-// Done by: Rudy
-
+// Purpose: To use the saved_lexeme and cast is to the method checkDict and assign the returned value to saved_E_word.
+// Done by: Andrew
 void getEword() {
 	saved_E_word = checkDict(saved_lexeme);
 }
+
 void gen(string word)
 {
 	if (word != "TENSE") {
@@ -410,12 +410,12 @@ void gen(string word)
 // Done by: Rudy
 tokentype next_token()
 {
-	if (!token_available)
+	if (!token_available)//If there is no token avialave
 	{
-		scanner(saved_token, saved_lexeme);
+		scanner(saved_token, saved_lexeme);//scan for one using saved_token, and saved_lexeme.
 		token_available = true;//We have some cache in saved_token and saved_lexeme
 	}
-	return saved_token;
+	return saved_token;//return the token type in saved_token
 }
 
 // Purpose: recieves tokentype and checks if its expected type
@@ -436,10 +436,10 @@ bool match(tokentype expected)
 		}
 		else
 			if (choice == "R" || choice == "r") {
-				replace = true;
-				scanner(saved_token, saved_lexeme);
-				match(expected);
-				replace = false;
+				replace = true;// set replacement flag to on
+				scanner(saved_token, saved_lexeme);//start scanner with replacement flag
+				match(expected);//match the new word with the expected token
+				replace = false;//lower the flag for replacement
 			}
 			else//if the user doesn't want to fix it
 				exit(1);
@@ -461,18 +461,18 @@ void TENSE_FUNC()
 {
 	if (display_tracing_flag == true)
 		cout << "Processing <TENSE>\n";
-	switch (next_token())
+	switch (next_token())//VERBPAST  | VERBPASTNEG | VERB | VERBNEG
 	{
-	case VERBPAST:
+	case VERBPAST://VERBPAST
 		match(VERBPAST);
 		break;
-	case VERBPASTNEG:
+	case VERBPASTNEG://VERBPASTNEG
 		match(VERBPASTNEG);
 		break;
-	case VERB:
+	case VERB://VERB
 		match(VERB);
 		break;
-	case VERBNEG:
+	case VERBNEG://VERBNEG
 		match(VERBNEG);
 		break;
 	default:
@@ -495,13 +495,13 @@ void NOUN_FUNC()
 {
 	if (display_tracing_flag == true)
 		cout << "Processing <NOUN>\n";
-	switch (next_token())
+	switch (next_token())//WORD1 | PRONOUN
 	{
 	case WORD1:
-		match(WORD1);
+		match(WORD1);//WORD1
 		break;
 	case PRONOUN:
-		match(PRONOUN);
+		match(PRONOUN);//PRONOUN
 		break;
 	default:
 		syntax_error2(saved_token, NOUN);
@@ -514,20 +514,20 @@ void AFTER_SUBJECT()
 {
 	if (display_tracing_flag == true)
 		cout << "Processing <AFTER_SUBJECT>\n";
-	switch (next_token())
+	switch (next_token())//<verb>|<noun>
 	{
 	case WORD2:
-		VERB_FUNC();
+		VERB_FUNC();//<verb>
 		getEword();
 		gen("ACTION");
-		TENSE_FUNC();
+		TENSE_FUNC();//<tense>
 		gen("TENSE");
-		match(PERIOD);
+		match(PERIOD);//PERIOD
 		break;
 	case WORD1: case PRONOUN:
-		NOUN_FUNC();
+		NOUN_FUNC();//<noun>
 		getEword();
-		AFTER_NOUN();
+		AFTER_NOUN();//<after_noun>
 		break;
 
 	default:
@@ -541,13 +541,13 @@ void BE_FUNC()
 {
 	if (display_tracing_flag == true)
 		cout << "Processing <BE>\n";
-	switch (next_token())
+	switch (next_token())// IS | WAS
 	{
 	case IS:
-		match(IS);
+		match(IS);//IS
 		break;
 	case WAS:
-		match(WAS);
+		match(WAS);//WAS
 		break;
 	default:
 		syntax_error2(saved_token, BE);
@@ -560,27 +560,27 @@ void AFTER_OBJECT()
 {
 	if (display_tracing_flag == true)
 		cout << "Processing <AFTER_OBJECT>\n";
-	switch (next_token())
+	switch (next_token())//<verb>|<noun>
 	{
 	case WORD2:
-		VERB_FUNC();
+		VERB_FUNC();//<verb>
 		getEword();
 		gen("ACTION");
-		TENSE_FUNC();
+		TENSE_FUNC();//<tense>
 		gen("TENSE");
-		match(PERIOD);
+		match(PERIOD);//PERIOD
 		break;
 	case WORD1:  case PRONOUN:
-		NOUN_FUNC();
+		NOUN_FUNC();//<noun>
 		getEword();
-		match(DESTINATION);
+		match(DESTINATION);//DESTINATION
 		gen("TO");
-		VERB_FUNC();
+		VERB_FUNC();//<verb>
 		getEword();
 		gen("ACTION");
-		TENSE_FUNC();
+		TENSE_FUNC();//<tense>
 		gen("TENSE");
-		match(PERIOD);
+		match(PERIOD);//PERIOD
 		break;
 	default:
 		syntax_error2(saved_token, OBJECT);
@@ -593,26 +593,26 @@ void AFTER_NOUN()
 {
 	if (display_tracing_flag == true)
 		cout << "Processing <AFTER_NOUN>\n";
-	switch (next_token())
+	switch (next_token())// <be> | DESTINATION| OBJECT
 	{
 	case IS: case WAS:
 		gen("DESCRIPTION");
-		BE_FUNC();
+		BE_FUNC();//<be>
 		gen("TENSE");
-		match(PERIOD);
+		match(PERIOD);//PERIOD
 		break;
 	case DESTINATION:
-		match(DESTINATION);
+		match(DESTINATION);//DESTINATION
 		gen("TO");
-		VERB_FUNC();
+		VERB_FUNC();//<verb>
 		getEword();
 		gen("ACTION");
-		TENSE_FUNC();
+		TENSE_FUNC();//<tense>
 		gen("TENSE");
-		match(PERIOD);
+		match(PERIOD);//PERIOD
 		break;
 	case OBJECT:
-		match(OBJECT);
+		match(OBJECT);//OBJECT
 		gen("OBJECT");
 		AFTER_OBJECT();
 		break;
@@ -630,21 +630,21 @@ void s()
 
 	switch (next_token()) {
 	case CONNECTOR:
-		match(CONNECTOR);
+		match(CONNECTOR);//[CONNECTOR]
 		getEword();
 		gen("CONNECTOR");
-		NOUN_FUNC();
+		NOUN_FUNC();//<noun>
 		getEword();
-		match(SUBJECT);
+		match(SUBJECT);//SUBJECT
 		gen("ACTOR");
-		AFTER_SUBJECT();
+		AFTER_SUBJECT();//<after_subject>
 		break;
 	case PRONOUN: case WORD1:
-		NOUN_FUNC();
+		NOUN_FUNC();//<noun>
 		getEword();
-		match(SUBJECT);
+		match(SUBJECT);//<SUBJECT>
 		gen("ACTOR");
-		AFTER_SUBJECT();
+		AFTER_SUBJECT();//<after_subject>
 		break;
 	default:
 		syntax_error2(saved_token, STORY);
@@ -654,12 +654,12 @@ void s()
 //Done by: Andrew
 //Grammar story::<s>{<s>}
 void story() {
-	s();
+	s();//<s>
 
-	while (true) {
+	while (true) {//{<s>}
 		switch (next_token())
 		{
-		case CONNECTOR: case PRONOUN: case WORD1:
+		case CONNECTOR: case PRONOUN: case WORD1://<s>::= CONNECTOR| <noun>
 			s();
 			break;
 		default:
@@ -723,17 +723,21 @@ int main()
 	if (fin.good()) {//if the file is good run the parser.
 		while (getline(fin, line)) {//while we can get a line from the text
 			refernces++;
-			if (line.size() == 1)
+			if (line.size() == 1)//if there is no contents ine line then skip this iteration
 				continue;
-			if (line == "eofm")
+			if (line == "eofm")//break the loop if line is eofm
 				break;
 			cout << "====================================================================================================" << endl;
 			cout << "The line is: " << line << endl;
-			split.clear();
-			split << line;
+			split.clear();//clear the flags and contents of split
+			split << line;//pipe in the string line into split so it's tokenized between space marks.
 			story();      //** calls the <story> to start parsing
 			token_available = false;
-
+			//add borders between interation of story for readability.
+			RecordErrors << "==========================================================================================================================" << endl;
+			RecordErrors << endl;
+			translated_file << "==========================================================================================================================" << endl;
+			translated_file << endl;
 			cout << endl;
 		}
 		fin.close();
@@ -743,10 +747,7 @@ int main()
 		cout << "There is no filename:" << filename << endl;
 
 	//close ofstream
-	RecordErrors << "==========================================================================================================================" << endl;
-	RecordErrors << endl;
-	translated_file << "==========================================================================================================================" << endl;
-	translated_file << endl;
-	RecordErrors.close();
-	translated_file.close();
+
+	RecordErrors.close();//close the file for the error report.
+	translated_file.close();//close the file for the translated report.
 }// end
