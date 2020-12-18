@@ -19,7 +19,7 @@ string saved_E_word;
 
 // WORD DFA
 // Done by: Julian Jaramillo
-// RE:   **
+// RE:   RE:(Vowel | vowel n | consonant vowel | consonant vowel n| consonant-pair vowel | consonant-pair vowel n)^+
 bool word(string s)
 {
 	int state = 0;
